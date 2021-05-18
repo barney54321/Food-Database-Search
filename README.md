@@ -1,6 +1,10 @@
 # SOFT3202 Exam: Food Database
 SID: 480394196
 
+## APIs
+* [Food Database](https://developer.edamam.com/food-database-api)
+* [Twilio](https://www.twilio.com)
+
 ## TDD Feature Commits
 * Sample
     * **RED**: 
@@ -14,4 +18,46 @@ SID: 480394196
 ## Level Implemented
 DISTINCTION (hopefully)
 
+### Pass
+You will be given an entity, and you need to display information about it. This entity is derived from your input
+API. There may be multiple steps required to build this entity. You may need to perform an operation on this
+entity after you have derived it. Your task is to display this entity in a way that would be useful to a user –
+detailed UI requirements will not be mandated, but you should ensure that the presented information of your
+entity is easily readable, and the interaction is simple.
+
+Instructions are given about the report that should be produced for your output API. This report is related to
+the entity you have built. 
+
+### Credit
+Cached items: this is something you need to cache in your local SQLite database each time it is retrieved from
+the API. If a user requests a matching item, you need to ask the user if they would like to just use the cached
+version, or grab a fresh copy from the API (and update the DB version along with it). 
+
+For those wishing to achieve a Credit score for their exam or higher (65% and up) you will need to include a
+SQLite database as part of your application. You can use the [SQLite JDBC library](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.34.0) to communicate with this
+database which has sample code [here](https://github.com/xerial/sqlite-jdbc). 
+
+You will need to decide on the database schema and other properties yourself. You can either have your
+application set this schema up on first run, or you may include a .SQL file to do this that your marker will run
+manually.
+Information on what to use this database for is dependent on your Input API and listed in that section. 
+
+### Distinction
+The distinction requirement is the same for all: you need to separate out the GUI thread from the API requests
+/ database access thread. The GUI must remain live and responsive during API request. It is suggested to use
+the provisions in your chosen GUI library to help with this.
+
+For those wishing to achieve a Distinction score for their exam or higher (75% and up) you will need to include
+some basic concurrency. This should allow the GUI/View to operate independently of the operations the
+Model is conducting. You should have the GUI drawing and events on 1 thread, and the Model operations
+occurring on another thread. Most GUI libraries include dedicated support for this paradigm, and will usually
+refer to the Model thread or threads as ‘Workers’.
+
+You do not need to achieve true concurrency in your Model for this requirement – a single thread GUI thread
+and a single thread handling Model calls is all that is required. This should limit the need for handling race
+conditions or dealing with resource contention. 
+
 ## References
+
+## Style
+The code abides by the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).
