@@ -35,6 +35,11 @@ public class Runner {
             res.put("twilio-sid", (String) json.get("twilio-sid"));
             res.put("twilio-token", (String) json.get("twilio-token"));
 
+            if (res.containsValue(null)) {
+                System.err.println("Credentials file missing field");
+                return null;
+            }
+
             return res;
         } catch (IOException e) {
             System.err.println(e.getMessage());
