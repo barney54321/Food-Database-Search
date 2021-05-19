@@ -12,6 +12,11 @@ SID: 480394196
     * **REFACTOR**: 
     
 ## Setup
+* Copy *credentials.json.example* and name the copy *credentials.json*
+* Replace the value for "food-id" with the Food-Database-API ID
+* Replace the value for "food-key" with the Food-Database-API authentication key
+* Replace the value for "twilio-sid" with the Twilio Account SID
+* Replace the value for "twilio-token" with the Twilio Application Token
     
 ## How to Run
 
