@@ -1,0 +1,14 @@
+Structure of Food Parser Response:
+    text: The input text
+    parsed: Direct result from NLP handling of request
+        # From the looks of it, appears to be in same format at hints food item
+    hints: List of related foods, similar to that of parsed
+        foodId: Food ID
+        label: Display label
+        measure: List of available food measures for the item (e.g. kilogram)
+        nutrients: Quantity of kcal, protein, fat, carbs (if >0)
+        brand: Brand who makes it (e.g. Burger King for "hamburger")
+        category: Generic Foods; Generic Meals; Packaged Foods; Fast Foods
+        categoryLabel: Item type as food or meal
+        image: URL to image of food (when available)
+        servingSizes: Servince size information for packaged foods as listed on label
