@@ -31,12 +31,12 @@ public class InputRunner {
     }
 
     public static void nutrition() throws Exception {
+        JSONObject body = new JSONObject();
+
         JSONObject ingredientOne = new JSONObject();
         ingredientOne.put("quantity", 1);
         ingredientOne.put("measureURI", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit");
         ingredientOne.put("foodId", "food_al1do7ybtx5mz5b85twtradho1lj");
-
-        JSONObject body = new JSONObject();
 
         JSONArray ingredients = new JSONArray();
 
