@@ -30,9 +30,21 @@ public class IngredientImpl implements Ingredient {
     private String foodID;
 
     public IngredientImpl(JSONObject json) {
-        this.quantity = ((Long) json.get("quantity")).doubleValue();
+
+        try {
+            this.quantity = ((Long) json.get("quantity")).doubleValue();
+        } catch (ClassCastException e) {
+            this.quantity = (Double) json.get("quantity");
+        }
+
         this.measure = (String) json.get("measure");
-        this.weight = ((Long) json.get("weight")).doubleValue();
+
+        try {
+            this.weight = ((Long) json.get("weight")).doubleValue();
+        } catch (ClassCastException e) {
+            this.weight = (Double) json.get("weight");
+        }
+
         this.food = (String) json.get("food");
         this.foodID = (String) json.get("foodId");
     }
