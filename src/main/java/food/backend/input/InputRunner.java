@@ -1,5 +1,7 @@
 package food.backend.input;
 
+import food.model.Food;
+import food.model.FoodImpl;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
@@ -26,17 +28,17 @@ import java.util.Scanner;
 public class InputRunner {
 
     public static void main(String[] args) throws Exception {
-//        get();
-        nutrition();
+        get();
+//        nutrition();
     }
 
     public static void nutrition() throws Exception {
-        JSONObject body = new JSONObject();
-
         JSONObject ingredientOne = new JSONObject();
         ingredientOne.put("quantity", 1);
         ingredientOne.put("measureURI", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit");
         ingredientOne.put("foodId", "food_al1do7ybtx5mz5b85twtradho1lj");
+
+        JSONObject body = new JSONObject();
 
         JSONArray ingredients = new JSONArray();
 
@@ -91,7 +93,15 @@ public class InputRunner {
             out += sc.nextLine();
         }
 
-        System.out.println(out);
+        JSONObject json = (JSONObject) new JSONParser().parse(out);
+
+        JSONArray results = (JSONArray) json.get("hints");
+
+        for (Object o : results) {
+            Food food = new FoodImpl((JSONObject) o);
+            System.out.println(food.getLabel());
+            System.out.println("\t" + food.getID());
+        }
     }
 
     private static Map<String, String> credentialsParser(String file) {

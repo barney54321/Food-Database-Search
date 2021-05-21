@@ -30,5 +30,5 @@ dependencies {
 }
 
 application {
-    mainClassName = 'food.Runner'
+    mainClassName = 'food.backend.input.InputRunner'
 }
