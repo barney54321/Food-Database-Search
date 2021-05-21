@@ -9,11 +9,6 @@ public class IngredientImpl implements Ingredient {
     }
 
     @Override
-    public String getURI() {
-        return null;
-    }
-
-    @Override
     public Double getQuantity() {
         return null;
     }

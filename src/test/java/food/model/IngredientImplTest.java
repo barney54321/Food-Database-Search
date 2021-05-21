@@ -26,11 +26,6 @@ public class IngredientImplTest {
     }
 
     @Test
-    public void getURI() {
-        assertEquals("http://www.edamam.com/ontologies/edamam.owl#Measure_unit", ingredient.getURI());
-    }
-
-    @Test
     public void getQuantity() {
         assertEquals(1, ingredient.getQuantity(), 0.01);
     }

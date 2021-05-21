@@ -3,12 +3,6 @@ package food.model;
 public interface Ingredient {
 
     /**
-     * Returns the URL of the Ingredient.
-     * @return The ingredient URL.
-     */
-    String getURI();
-
-    /**
      * Returns the quantity of the ingredient that is present.
      * @return The quantity of the ingredient.
      */

@@ -10,6 +10,8 @@ SID: 480394196
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/0ddf24701827e199d4133b342f608d7414448afc
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/dd07d26ac65f34f7e9d0b7a19ae6379b92402704
     * **REFACTOR**: 
+* Base Ingredient Class
+    * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/24fad954f287c716eecec2947e7e690cc64a921f
     
 ## Setup
 * Copy *credentials.json.example* and name the copy *credentials.json*
