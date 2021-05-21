@@ -7,22 +7,39 @@ import java.util.Map;
 
 public class NutrientImpl implements Nutrient {
 
-    public NutrientImpl(JSONObject json) {
+    /**
+     * The display label.
+     */
+    private String label;
 
+    /**
+     * The quantity of specified units.
+     */
+    private Double quantity;
+
+    /**
+     * The unit of measurement for quantity.
+     */
+    private String unit;
+
+    public NutrientImpl(JSONObject json) {
+        this.label = (String) json.get("label");
+        this.quantity = (Double) json.get("quantity");
+        this.unit = (String) json.get("unit");
     }
 
     @Override
     public String getLabel() {
-        return null;
+        return this.label;
     }
 
     @Override
     public Double getQuantity() {
-        return null;
+        return this.quantity;
     }
 
     @Override
     public String getUnit() {
-        return null;
+        return this.unit;
     }
 }

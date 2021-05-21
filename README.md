@@ -13,6 +13,8 @@ SID: 480394196
 * Base Ingredient Class
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/24fad954f287c716eecec2947e7e690cc64a921f
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/8ebf54a5311e505f3ac570d4ed14961dc3d36e4a
+* Base Nutrient Class
+    * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/9ca2a2037ba899ed7f48b8ff513c3ce7e9ea2500
     
 ## Setup
 * Copy *credentials.json.example* and name the copy *credentials.json*
