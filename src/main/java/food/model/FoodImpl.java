@@ -11,15 +11,54 @@ import java.util.Map;
  */
 public class FoodImpl implements Food {
 
+    /**
+     * The Food id.
+     */
     private String id;
+
+    /**
+     * The label (name) of the food.
+     */
     private String label;
+
+    /**
+     * The nutrients present in the food.
+     */
     private Map<String, Double> nutrients;
+
+    /**
+     * The brand that produces the food.
+     */
     private String brand;
+
+    /**
+     * The category of the food item.
+     */
     private String category;
+
+    /**
+     * The label of the category.
+     */
     private String categoryLabel;
+
+    /**
+     * The contents of the food.
+     */
     private String foodContentsLabel;
+
+    /**
+     * The image path for the food.
+     */
     private String imagePath;
+
+    /**
+     * The number of servings per container.
+     */
     private Double servingsPerContainer;
+
+    /**
+     * The available measures for the food.
+     */
     private Map<String, Double> measures;
 
     public FoodImpl(JSONObject json) {
