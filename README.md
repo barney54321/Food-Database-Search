@@ -9,15 +9,16 @@ SID: 480394196
 * Base FoodImpl Class
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/0ddf24701827e199d4133b342f608d7414448afc
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/dd07d26ac65f34f7e9d0b7a19ae6379b92402704
-    * **REFACTOR**: 
 * Base Ingredient Class
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/24fad954f287c716eecec2947e7e690cc64a921f
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/8ebf54a5311e505f3ac570d4ed14961dc3d36e4a
+    * **REFACTOR**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/79001e9ce30646a2393a67dc2ce0a34b51ad234f
 * Base Nutrient Class
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/9ca2a2037ba899ed7f48b8ff513c3ce7e9ea2500
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/1fec3f053597b5747e7a32c978fb099fe8642024
 * Base Nutrition Class
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/58e4dea8232449111172443e5ff7c6fe6a88c5c8
+    * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/79001e9ce30646a2393a67dc2ce0a34b51ad234f
     
 ## Setup
 * Copy *credentials.json.example* and name the copy *credentials.json*
