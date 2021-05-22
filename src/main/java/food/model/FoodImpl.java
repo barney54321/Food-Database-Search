@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 /**
  * Concrete implementation of the Food interface.
@@ -61,7 +62,17 @@ public class FoodImpl implements Food {
      */
     private Map<String, Double> measures;
 
-    public FoodImpl(JSONObject json) {
+    /**
+     * The Food item's association Nutrition object.
+     */
+    private Nutrition nutrition;
+
+    /**
+     * The method for loading in the associated Nutrition object.
+     */
+    private Function<String, Nutrition> loader;
+
+    public FoodImpl(JSONObject json, Function<String, Nutrition> loader) {
         JSONObject food = (JSONObject) json.get("food");
 
         this.id = (String) food.get("foodId");
@@ -91,6 +102,8 @@ public class FoodImpl implements Food {
             JSONObject measure = (JSONObject) o;
             this.measures.put((String) measure.get("label"), (Double) measure.get("weight"));
         }
+
+        this.loader = loader;
     }
 
     @Override
@@ -141,5 +154,10 @@ public class FoodImpl implements Food {
     @Override
     public Map<String, Double> getMeasures() {
         return this.measures;
+    }
+
+    @Override
+    public Nutrition getNutrition() {
+        return null;
     }
 }

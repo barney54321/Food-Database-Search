@@ -66,4 +66,10 @@ public interface Food {
      * @return A mapping of the sizes to weight stored in the nutrition database.
      */
     Map<String, Double> getMeasures();
+
+    /**
+     * Returns the associated Nutrition object for the item.
+     * @return The associated nutrition object.
+     */
+    Nutrition getNutrition();
 }

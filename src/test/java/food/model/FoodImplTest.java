@@ -23,7 +23,7 @@ public class FoodImplTest {
 
         JSONObject json = (JSONObject) parser.parse(reader);
 
-        this.food = new FoodImpl(json);
+        this.food = new FoodImpl(json, (term) -> null);
     }
 
     @Test
