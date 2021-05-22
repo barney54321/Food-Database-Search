@@ -1,5 +1,8 @@
 package food;
 
+import food.view.FoodWindow;
+import javafx.application.Application;
+import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -10,7 +13,9 @@ import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Runner {
+public class Runner extends Application {
+
+    private FoodWindow window;
 
     public static void main(String[] args) {
         Map<String, String> credentials = credentialsParser("credentials.json");
@@ -19,6 +24,17 @@ public class Runner {
             return;
         }
 
+        launch(args);
+
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        this.window = new FoodWindow();
+
+        primaryStage.setTitle("Food Database");
+        primaryStage.setScene(this.window.getScene());
+        primaryStage.show();
     }
 
     private static Map<String, String> credentialsParser(String file) {
