@@ -2,6 +2,7 @@ package food.backend.input;
 
 import food.model.Food;
 import food.model.FoodImpl;
+import food.model.Nutrition;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
@@ -18,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -28,10 +30,19 @@ import java.util.Scanner;
 public class InputRunner {
 
     public static void main(String[] args) throws Exception {
-        get();
+//        get();
 //        nutrition();
+        Map<String, String> credentials = credentialsParser("credentials.json");
+        FoodDatabase food = new FoodDatabaseOnline(credentials.get("food-id"), credentials.get("food-key"));
+
+        List<Food> res = food.search("Red Apple");
+        System.out.println(res.get(0).getLabel());
+
+        Nutrition nutrition = food.getNutrition(res.get(0).getID(), "http://www.edamam.com/ontologies/edamam.owl#Measure_unit");
+        System.out.println(nutrition.getCalories());
     }
 
+    @SuppressWarnings("unchecked")
     public static void nutrition() throws Exception {
         JSONObject ingredientOne = new JSONObject();
         ingredientOne.put("quantity", 1);

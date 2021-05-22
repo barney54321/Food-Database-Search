@@ -5,6 +5,9 @@ import food.model.Nutrition;
 
 import java.util.List;
 
+/**
+ * Interface outlining the behaviours of a FoodDatabase Strategy object.
+ */
 public interface FoodDatabase {
 
     /**
@@ -19,5 +22,5 @@ public interface FoodDatabase {
      * @param foodID The foodID to search on.
      * @return The corresponding foodID.
      */
-    Nutrition getNutrition(String foodID);
+    Nutrition getNutrition(String foodID, String measure);
 }
