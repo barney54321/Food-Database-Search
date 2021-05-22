@@ -99,20 +99,10 @@ public class FoodDatabaseOnline implements FoodDatabase {
     @Override
     public Nutrition getNutrition(String foodID, String measure) {
         try {
-            JSONObject ingredientOne = new JSONObject();
-            ingredientOne.put("quantity", 1);
-            ingredientOne.put("measureURI", measure);
-            ingredientOne.put("foodId", foodID);
 
-            JSONObject body = new JSONObject();
+            String body = "{\"ingredients\": [{\"quantity\": 1, \"measureURI\": \"" + measure + "\", \"foodId\": \"" + foodID + "\"}]}";
 
-            JSONArray ingredients = new JSONArray();
-
-            ingredients.add(ingredientOne);
-
-            body.put("ingredients", ingredients);
-
-            StringEntity entity = new StringEntity(body.toString(), ContentType.APPLICATION_JSON);
+            StringEntity entity = new StringEntity(body, ContentType.APPLICATION_JSON);
 
             CloseableHttpClient client = HttpClients.createDefault();
 
