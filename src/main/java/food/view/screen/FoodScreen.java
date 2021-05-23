@@ -10,7 +10,6 @@ import javafx.scene.text.TextAlignment;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Map;
 
 public class FoodScreen extends AbstractScreen {
@@ -34,7 +33,8 @@ public class FoodScreen extends AbstractScreen {
         });
 
         addButton("Nutrition", 500, 50, 90, 30, event -> {
-
+            Screen nutritionScreen = new NutritionScreen(this.window, this, this.food);
+            this.window.setScreen(nutritionScreen);
         });
 
         addButton("Generate\nReport", 500, 90, 90, 50, event -> {
