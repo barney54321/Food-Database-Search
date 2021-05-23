@@ -93,14 +93,14 @@ public class FoodImplTest {
     @Test
     public void getMeasures() {
 
-        Map<String, Double> measures = food.getMeasures();
+        Map<String, String> measures = food.getMeasures();
 
-        assertEquals(40.0, measures.get("Serving"), 0.01);
-        assertEquals(100.0, measures.get("Package"), 0.01);
-        assertEquals(1.0, measures.get("Gram"), 0.01);
-        assertEquals(28.349523125, measures.get("Ounce"), 0.01);
-        assertEquals(453.59237, measures.get("Pound"), 0.01);
-        assertEquals(1000.0, measures.get("Kilogram"), 0.01);
+        assertEquals("http://www.edamam.com/ontologies/edamam.owl#Measure_serving", measures.get("Serving"));
+        assertEquals("http://www.edamam.com/ontologies/edamam.owl#Measure_package", measures.get("Package"));
+        assertEquals("http://www.edamam.com/ontologies/edamam.owl#Measure_gram", measures.get("Gram"));
+        assertEquals("http://www.edamam.com/ontologies/edamam.owl#Measure_ounce", measures.get("Ounce"));
+        assertEquals("http://www.edamam.com/ontologies/edamam.owl#Measure_pound", measures.get("Pound"));
+        assertEquals("http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram", measures.get("Kilogram"));
     }
 
     @Test

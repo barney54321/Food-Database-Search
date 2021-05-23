@@ -61,7 +61,7 @@ public class FoodImpl implements Food {
     /**
      * The available measures for the food.
      */
-    private Map<String, Double> measures;
+    private Map<String, String> measures;
 
     /**
      * The Food item's association Nutrition object.
@@ -102,13 +102,6 @@ public class FoodImpl implements Food {
         this.nutrients.put("FIBTG", (Double) nutrients.get("FIBTG"));
 
         this.measures = new HashMap<>();
-
-        JSONArray measures = (JSONArray) json.get("measures");
-
-        for (Object o : measures) {
-            JSONObject measure = (JSONObject) o;
-            this.measures.put((String) measure.get("label"), (Double) measure.get("weight"));
-        }
 
         this.loader = loader;
     }
@@ -159,7 +152,7 @@ public class FoodImpl implements Food {
     }
 
     @Override
-    public Map<String, Double> getMeasures() {
+    public Map<String, String> getMeasures() {
         return this.measures;
     }
 
