@@ -31,6 +31,9 @@ SID: 480394196
 * Replace the value for "twilio-token" with the Twilio Application Token
     
 ## How to Run
+* Use command `gradle run --args="offline"` to run in Offline mode
+    * Offline mode will only work with search term "Hawaiian Pizza"
+* Use command `gradle run --agrs="online"` to run in Online mode
 
 ## Level Implemented
 DISTINCTION (hopefully)
