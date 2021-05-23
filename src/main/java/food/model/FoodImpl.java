@@ -74,6 +74,11 @@ public class FoodImpl implements Food {
      */
     private Function<String, Nutrition> loader;
 
+    /**
+     * Creates a new FoodImpl object based on the provided JSONObject.
+     * @param json The JSONObject to base the Food item off of.
+     * @param loader How to retrieve the lazy loaded attributes.
+     */
     public FoodImpl(JSONObject json, Function<String, Nutrition> loader) {
         JSONObject food = (JSONObject) json.get("food");
 
@@ -86,7 +91,7 @@ public class FoodImpl implements Food {
         this.imagePath = (String) food.get("image");
         this.servingsPerContainer = (Double) food.get("servingsPerContainer");
 
-        this.nutrients = new HashMap<String, Double>();
+        this.nutrients = new HashMap<>();
 
         JSONObject nutrients = (JSONObject) food.get("nutrients");
 
@@ -125,22 +130,22 @@ public class FoodImpl implements Food {
 
     @Override
     public String getBrand() {
-        return this.brand;
+        return this.brand == null ? "N/A" : this.brand;
     }
 
     @Override
     public String getCategory() {
-        return this.category;
+        return this.category == null ? "N/A" : this.category;
     }
 
     @Override
     public String getCategoryLabel() {
-        return this.categoryLabel;
+        return this.categoryLabel == null ? "N/A" : this.categoryLabel;
     }
 
     @Override
     public String getFoodContentsLabel() {
-        return this.foodContentsLabel;
+        return this.foodContentsLabel == null ? "N/A" : this.foodContentsLabel;
     }
 
     @Override
@@ -150,7 +155,7 @@ public class FoodImpl implements Food {
 
     @Override
     public Double getServingsPerContainer() {
-        return this.servingsPerContainer;
+        return this.servingsPerContainer == null ? 0.0 : this.servingsPerContainer;
     }
 
     @Override
