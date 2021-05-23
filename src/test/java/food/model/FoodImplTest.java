@@ -8,14 +8,21 @@ import org.junit.Test;
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.Map;
+import java.util.function.Function;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
 public class FoodImplTest {
 
     private FoodImpl food;
 
+    private Nutrition nutrition;
+    private Function<String, Nutrition> function;
+
     @Before
+    @SuppressWarnings("unchecked")
     public void setUp() throws Exception {
         Reader reader = new FileReader("src/test/resources/ferrero.json");
 
@@ -23,7 +30,12 @@ public class FoodImplTest {
 
         JSONObject json = (JSONObject) parser.parse(reader);
 
-        this.food = new FoodImpl(json, (term) -> null);
+        this.function = (Function<String, Nutrition>) mock(Function.class);
+        this.nutrition = mock(Nutrition.class);
+
+        when(function.apply(anyString())).thenReturn(this.nutrition);
+
+        this.food = new FoodImpl(json, function);
     }
 
     @Test
@@ -89,5 +101,19 @@ public class FoodImplTest {
         assertEquals(28.349523125, measures.get("Ounce"), 0.01);
         assertEquals(453.59237, measures.get("Pound"), 0.01);
         assertEquals(1000.0, measures.get("Kilogram"), 0.01);
+    }
+
+    @Test
+    public void getNutritionOnce() {
+        assertEquals(nutrition, food.getNutrition());
+        verify(function, times(1)).apply("food_bn4bryqayjl958auu03k3bxf6ja8");
+    }
+
+    @Test
+    public void getNutritionMultipleTimes() {
+        assertEquals(nutrition, food.getNutrition());
+        assertEquals(nutrition, food.getNutrition());
+        assertEquals(nutrition, food.getNutrition());
+        verify(function, times(1)).apply("food_bn4bryqayjl958auu03k3bxf6ja8");
     }
 }
