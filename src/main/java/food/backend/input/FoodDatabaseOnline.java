@@ -104,8 +104,6 @@ public class FoodDatabaseOnline implements FoodDatabase {
 
             StringEntity entity = new StringEntity(body, ContentType.APPLICATION_JSON);
 
-            CloseableHttpClient client = HttpClients.createDefault();
-
             String url = "https://api.edamam.com/api/food-database/v2/nutrients?app_id=" + appID + "&app_key=" + appKey;
             HttpPost poster = new HttpPost(url);
 

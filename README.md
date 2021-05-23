@@ -35,6 +35,8 @@ SID: 480394196
 * Replace the value for "food-key" with the Food-Database-API authentication key
 * Replace the value for "twilio-sid" with the Twilio Account SID
 * Replace the value for "twilio-token" with the Twilio Application Token
+* Replace the value for "twilio-phone-from" with the Twilio source phone number
+* Replace the value for "twilio-phone-to" with your mobile number including country code (e.g. +61123456789)
     
 ## How to Run
 * Use command `gradle run --args="offline"` to run in Offline mode

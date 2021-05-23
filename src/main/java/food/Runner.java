@@ -3,6 +3,8 @@ package food;
 import food.backend.input.FoodDatabase;
 import food.backend.input.FoodDatabaseOffline;
 import food.backend.input.FoodDatabaseOnline;
+import food.backend.output.Twilio;
+import food.backend.output.TwilioOnline;
 import food.controller.Facade;
 import food.controller.FacadeImpl;
 import food.view.FoodWindow;
@@ -37,7 +39,6 @@ public class Runner extends Application {
         Runner.mode = args[0];
 
         launch(args);
-
     }
 
     @Override
@@ -74,6 +75,8 @@ public class Runner extends Application {
             res.put("food-key", (String) json.get("food-key"));
             res.put("twilio-sid", (String) json.get("twilio-sid"));
             res.put("twilio-token", (String) json.get("twilio-token"));
+            res.put("twilio-phone-from", (String) json.get("twilio-phone-from"));
+            res.put("twilio-phone-to", (String) json.get("twilio-phone-to"));
 
             if (res.containsValue(null)) {
                 System.err.println("Credentials file missing field");
