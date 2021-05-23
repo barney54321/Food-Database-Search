@@ -23,6 +23,8 @@ public class NutritionScreen extends AbstractScreen {
 
     private ComboBox<String> options;
 
+    private Pagination pagination;
+
     public NutritionScreen(FoodWindow window, Screen parent, Food food) {
         super(window);
         this.parent = parent;
@@ -67,7 +69,11 @@ public class NutritionScreen extends AbstractScreen {
     }
 
     private void setupNutrition() {
-        Pagination pagination = new Pagination(3);
+        if (this.pagination != null) {
+            this.nodes.remove(pagination);
+        }
+
+        this.pagination = new Pagination(3);
 
         pagination.setLayoutX(10);
         pagination.setLayoutY(90);
