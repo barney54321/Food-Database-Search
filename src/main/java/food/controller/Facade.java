@@ -27,4 +27,12 @@ public interface Facade {
      * @throws IllegalArgumentException If the id or measure is empty or null.
      */
     Nutrition getNutrition(String foodID, String measure) throws IllegalArgumentException;
+
+    /**
+     * Sends the given message by SMS, using Twilio.
+     * @param message The message to send.
+     * @return Whether the message is successfully sent.
+     * @throws IllegalArgumentException If the message is empty or null.
+     */
+    boolean sendMessage(String message) throws IllegalArgumentException;
 }
