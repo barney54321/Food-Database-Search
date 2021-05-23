@@ -1,6 +1,7 @@
 package food.controller;
 
 import food.backend.input.FoodDatabase;
+import food.backend.output.Twilio;
 import food.model.Food;
 import food.model.Nutrition;
 
@@ -12,9 +13,11 @@ import java.util.List;
 public class FacadeImpl implements Facade {
 
     private FoodDatabase foodDatabase;
+    private Twilio twilio;
 
-    public FacadeImpl(FoodDatabase foodDatabase) {
+    public FacadeImpl(FoodDatabase foodDatabase, Twilio twilio) {
         this.foodDatabase = foodDatabase;
+        this.twilio = twilio;
     }
 
     @Override
@@ -35,5 +38,10 @@ public class FacadeImpl implements Facade {
         }
 
         return this.foodDatabase.getNutrition(foodID, measure);
+    }
+
+    @Override
+    public boolean sendMessage(String message) throws IllegalArgumentException {
+        return false;
     }
 }

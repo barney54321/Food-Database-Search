@@ -1,6 +1,7 @@
 package food.controller;
 
 import food.backend.input.FoodDatabase;
+import food.backend.output.Twilio;
 import food.model.Food;
 import food.model.Nutrition;
 import org.junit.Before;
@@ -20,12 +21,15 @@ public class FacadeImplTest {
 
     private FoodDatabase foodDatabase;
 
+    private Twilio twilio;
+
     @Before
     public void setUp() {
 
         this.foodDatabase = mock(FoodDatabase.class);
+        this.twilio = mock(Twilio.class);
 
-        this.facade = new FacadeImpl(foodDatabase);
+        this.facade = new FacadeImpl(foodDatabase, twilio);
     }
 
     @Test
@@ -110,5 +114,23 @@ public class FacadeImplTest {
         assertThrows(IllegalArgumentException.class, () -> facade.getNutrition("1234", null));
 
         verify(foodDatabase, never()).getNutrition(anyString(), anyString());
+    }
+
+    @Test
+    public void sendMessageNormal() {
+        assertTrue(facade.sendMessage("Hello world"));
+        verify(twilio, times(1)).sendMessage("Hello world");
+    }
+
+    @Test
+    public void sendMessageEmpty() {
+        assertThrows(IllegalArgumentException.class, () -> facade.sendMessage(""));
+        verify(twilio, never()).sendMessage(anyString());
+    }
+
+    @Test
+    public void sendMessageNull() {
+        assertThrows(IllegalArgumentException.class, () -> facade.sendMessage(null));
+        verify(twilio, never()).sendMessage(anyString());
     }
 }
