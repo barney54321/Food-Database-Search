@@ -61,7 +61,6 @@ public class FoodDatabaseOffline implements FoodDatabase {
     @Override
     public Nutrition getNutrition(String foodID, String measure) {
         try {
-
             FileReader reader = new FileReader("src/main/resources/hawaiian_nutrition.json");
 
             Scanner sc = new Scanner(reader);

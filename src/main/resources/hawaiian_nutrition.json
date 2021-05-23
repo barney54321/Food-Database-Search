@@ -2,7 +2,10 @@
   "uri": "http://www.edamam.com/ontologies/edamam.owl#28a8f169-0d4d-4617-875f-18240234c932",
   "calories": 180,
   "totalWeight": 92.0,
-  "dietLabels": [],
+  "dietLabels": [
+    "LOW_FAT",
+    "LOW_SODIUM"
+  ],
   "healthLabels": [
     "EGG_FREE",
     "PEANUT_FREE",
