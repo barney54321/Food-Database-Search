@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 
 /**
@@ -64,8 +65,9 @@ public class FoodImpl implements Food {
 
     /**
      * The Food item's association Nutrition object.
+     * Using Optional because there may not be an associated Nutrition object.
      */
-    private Nutrition nutrition;
+    private Optional<Nutrition> nutrition;
 
     /**
      * The method for loading in the associated Nutrition object.
@@ -159,9 +161,9 @@ public class FoodImpl implements Food {
     @Override
     public Nutrition getNutrition() {
         if (this.nutrition == null) {
-            this.nutrition = loader.apply(this.id);
+            this.nutrition = Optional.ofNullable(loader.apply(this.id));
         }
 
-        return this.nutrition;
+        return this.nutrition.get();
     }
 }
