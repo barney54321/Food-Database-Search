@@ -13,7 +13,7 @@ public class FoodWindow {
     /**
      * The width of the window.
      */
-    public static final int WIDTH = 1000;
+    public static final int WIDTH = 600;
 
     /**
      * The height of the window.

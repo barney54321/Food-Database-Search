@@ -13,11 +13,11 @@ public class SearchScreen extends AbstractScreen {
 
     @Override
     protected void setupNodes() {
-        addText("Food Database", Font.font(30), TextAlignment.LEFT, Color.BLACK, 400, 50);
+        addText("Food Database", Font.font(30), TextAlignment.LEFT, Color.BLACK, 200, 50);
 
-        this.searchBar = addTextField(250, 80, 440, 10, "Search term");
+        this.searchBar = addTextField(40, 80, 440, 10, "Search term");
 
-        this.button = addButton("Search", 700, 80, 100, 10, event -> {
+        this.button = addButton("Search", 490, 80, 70, 10, event -> {
             System.out.println(this.searchBar.getText());
         });
     }
