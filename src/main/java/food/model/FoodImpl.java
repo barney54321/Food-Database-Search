@@ -158,6 +158,10 @@ public class FoodImpl implements Food {
 
     @Override
     public Nutrition getNutrition() {
-        return null;
+        if (this.nutrition == null) {
+            this.nutrition = loader.apply(this.id);
+        }
+
+        return this.nutrition;
     }
 }
