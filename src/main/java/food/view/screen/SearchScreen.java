@@ -66,6 +66,10 @@ public class SearchScreen extends AbstractScreen {
                     foodButtons[i].setAlignment(Pos.BASELINE_LEFT);
                     foodButtons[i].setText(food.getLabel());
                     foodButtons[i].setMaxWidth(520);
+
+                    foodButtons[i].setOnAction(event -> {
+                        this.window.setScreen(new FoodScreen(this.window, this, food));
+                    });
                 }
 
                 return new VBox(5, foodButtons);

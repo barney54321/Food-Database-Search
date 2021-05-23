@@ -81,6 +81,7 @@ and a single thread handling Model calls is all that is required. This should li
 conditions or dealing with resource contention. 
 
 ## References
+* Placeholder image: https://socialistmodernism.com/placeholder-image/
 
 ## Style
 The code abides by the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).
