@@ -1,5 +1,7 @@
 package food.view.screen;
 
+import food.controller.Facade;
+import food.view.FoodWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -15,11 +17,24 @@ import javafx.scene.text.TextAlignment;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Template for all concrete Screen classes.
+ * Each Screen class overrides the setupNodes() method, which specifies what appears on the screen and where.
+ */
 public abstract class AbstractScreen implements Screen {
 
+    /**
+     * The list of JavaFX nodes on the Screen.
+     */
     protected List<Node> nodes;
 
-    public AbstractScreen() {
+    /**
+     * The enveloping window object.
+     */
+    protected FoodWindow window;
+
+    public AbstractScreen(FoodWindow window) {
+        this.window = window;
         this.nodes = new ArrayList<>();
         setupNodes();
     }

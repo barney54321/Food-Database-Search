@@ -1,5 +1,10 @@
 package food;
 
+import food.backend.input.FoodDatabase;
+import food.backend.input.FoodDatabaseOffline;
+import food.backend.input.FoodDatabaseOnline;
+import food.controller.Facade;
+import food.controller.FacadeImpl;
 import food.view.FoodWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -17,12 +22,19 @@ public class Runner extends Application {
 
     private FoodWindow window;
 
-    public static void main(String[] args) {
-        Map<String, String> credentials = credentialsParser("credentials.json");
+    private static String mode;
+    private static Map<String, String> credentials;
 
-        if (credentials == null) {
+    public static void main(String[] args) {
+        Runner.credentials = credentialsParser("credentials.json");
+
+        if (Runner.credentials == null) {
+            return;
+        } else if (args.length == 0) {
             return;
         }
+
+        Runner.mode = args[0];
 
         launch(args);
 
@@ -30,7 +42,19 @@ public class Runner extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.window = new FoodWindow();
+        if (Runner.mode.equals("online")) {
+            String appID = Runner.credentials.get("food-id");
+            String appKey = Runner.credentials.get("food-key");
+            FoodDatabase online = new FoodDatabaseOnline(appID, appKey);
+            Facade controller = new FacadeImpl(online);
+            this.window = new FoodWindow(controller);
+        } else if (Runner.mode.equals("offline")) {
+            FoodDatabase offline = new FoodDatabaseOffline();
+            Facade controller = new FacadeImpl(offline);
+            this.window = new FoodWindow(controller);
+        } else {
+            throw new IllegalStateException("No mode specified");
+        }
 
         primaryStage.setTitle("Food Database");
         primaryStage.setScene(this.window.getScene());
