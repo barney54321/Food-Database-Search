@@ -103,6 +103,13 @@ public class FoodImpl implements Food {
 
         this.measures = new HashMap<>();
 
+        JSONArray measures = (JSONArray) json.get("measures");
+
+        for (Object o : measures) {
+            JSONObject measure = (JSONObject) o;
+            this.measures.put((String) measure.get("label"), (String) measure.get("uri"));
+        }
+
         this.loader = loader;
     }
 
