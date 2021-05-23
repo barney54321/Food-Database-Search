@@ -70,7 +70,13 @@ public class FoodScreen extends AbstractScreen {
                 }
             }
 
-            addText(this.food.getLabel(), Font.font(30), TextAlignment.LEFT, Color.BLACK, 10, 250);
+            if (this.food.getLabel().length() > 60) {
+                addText(this.food.getLabel().substring(0, 60) + "...", Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 250);
+            } else if (this.food.getLabel().length() > 30) {
+                addText(this.food.getLabel(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 250);
+            } else {
+                addText(this.food.getLabel(), Font.font(30), TextAlignment.LEFT, Color.BLACK, 10, 250);
+            }
             addText("Brand: " + this.food.getBrand(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 280);
             addText("Category: " + this.food.getCategory(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 310);
             addText("Servings per size: " + this.food.getServingsPerContainer(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 340);

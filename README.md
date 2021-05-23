@@ -12,6 +12,7 @@ SID: 480394196
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/501b6a250c6c2b66a7c25623cd19929ef7a868fd
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/a172c9a8f353d6354a977d59a67f9096827ce7ec
     * **REFACTOR**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/4e3a5af2ec4a001dd23a6a6109aa01b3f63cac14
+    * **REFACTOR**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/5e32e80438c945379f9a8c61c5c528e5af2ad7b9
 * Base Ingredient Class
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/24fad954f287c716eecec2947e7e690cc64a921f
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/8ebf54a5311e505f3ac570d4ed14961dc3d36e4a
