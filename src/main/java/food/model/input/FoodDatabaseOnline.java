@@ -22,9 +22,9 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Concrete implementation of the FoodDatabase Strategy.
+ * Online extension of FoodDatabase template.
  */
-public class FoodDatabaseOnline implements FoodDatabase {
+public class FoodDatabaseOnline extends FoodDatabaseTemplate {
 
     /**
      * The HtppClient used for connections.
@@ -48,7 +48,7 @@ public class FoodDatabaseOnline implements FoodDatabase {
     }
 
     @Override
-    public List<Food> search(String term) {
+    public List<Food> searchFood(String term) {
         try {
             term = term.replace(" ", "%20");
 
@@ -97,7 +97,7 @@ public class FoodDatabaseOnline implements FoodDatabase {
     }
 
     @Override
-    public Nutrition getNutrition(String foodID, String measure) {
+    public Nutrition searchNutrition(String foodID, String measure) {
         try {
 
             CloseableHttpClient client = HttpClients.createDefault();

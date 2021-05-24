@@ -16,12 +16,12 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Offline implementation of FoodDatabase interface.
+ * Offline extension of FoodDatabase template.
  * Note that search only works with "Hawaiian Pizza".
  */
-public class FoodDatabaseOffline implements FoodDatabase {
+public class FoodDatabaseOffline extends FoodDatabaseTemplate {
     @Override
-    public List<Food> search(String term) {
+    public List<Food> searchFood(String term) {
 
         List<Food> res = new ArrayList<>();
 
@@ -59,7 +59,7 @@ public class FoodDatabaseOffline implements FoodDatabase {
     }
 
     @Override
-    public Nutrition getNutrition(String foodID, String measure) {
+    public Nutrition searchNutrition(String foodID, String measure) {
         try {
             FileReader reader = new FileReader("src/main/resources/hawaiian_nutrition.json");
 
