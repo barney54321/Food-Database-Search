@@ -52,17 +52,7 @@ SID: 480394196
 * Use command `gradle run --agrs="online"` to run in Online mode
 
 ## Level Implemented
-DISTINCTION (hopefully)
-
-### Pass
-You will be given an entity, and you need to display information about it. This entity is derived from your input
-API. There may be multiple steps required to build this entity. You may need to perform an operation on this
-entity after you have derived it. Your task is to display this entity in a way that would be useful to a user –
-detailed UI requirements will not be mandated, but you should ensure that the presented information of your
-entity is easily readable, and the interaction is simple.
-
-Instructions are given about the report that should be produced for your output API. This report is related to
-the entity you have built. 
+PASS (for now)
 
 ### Credit
 Cached items: this is something you need to cache in your local SQLite database each time it is retrieved from

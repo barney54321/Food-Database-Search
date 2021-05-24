@@ -6,8 +6,8 @@ import food.backend.input.FoodDatabaseOnline;
 import food.backend.output.Twilio;
 import food.backend.output.TwilioOffline;
 import food.backend.output.TwilioOnline;
-import food.controller.Facade;
-import food.controller.FacadeImpl;
+import food.controller.Controller;
+import food.controller.ControllerImpl;
 import food.view.FoodWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -54,12 +54,12 @@ public class Runner extends Application {
             String twilioTo = Runner.credentials.get("twilio-phone-to");
             String twilioFrom = Runner.credentials.get("twilio-phone-from");
             Twilio twilio = new TwilioOnline(twilioSID, twilioKey, twilioFrom, twilioTo);
-            Facade controller = new FacadeImpl(online, twilio);
+            Controller controller = new ControllerImpl(online, twilio);
             this.window = new FoodWindow(controller);
         } else if (Runner.mode.equals("offline")) {
             FoodDatabase offline = new FoodDatabaseOffline();
             Twilio twilio = new TwilioOffline();
-            Facade controller = new FacadeImpl(offline, twilio);
+            Controller controller = new ControllerImpl(offline, twilio);
             this.window = new FoodWindow(controller);
         } else {
             throw new IllegalStateException("No mode specified");

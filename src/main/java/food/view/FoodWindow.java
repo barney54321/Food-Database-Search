@@ -1,6 +1,6 @@
 package food.view;
 
-import food.controller.Facade;
+import food.controller.Controller;
 import food.view.screen.Screen;
 import food.view.screen.SearchScreen;
 import javafx.scene.Scene;
@@ -39,9 +39,9 @@ public class FoodWindow {
     /**
      * The Controller used to interact with the Model.
      */
-    private Facade controller;
+    private Controller controller;
 
-    public FoodWindow(Facade controller) {
+    public FoodWindow(Controller controller) {
         this.controller = controller;
 
         this.pane = new Pane();
@@ -54,7 +54,7 @@ public class FoodWindow {
         return this.scene;
     }
 
-    public Facade getController() {
+    public Controller getController() {
         return this.controller;
     }
 

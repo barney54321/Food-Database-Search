@@ -1,6 +1,5 @@
 package food.view.screen;
 
-import food.controller.Facade;
 import food.view.FoodWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

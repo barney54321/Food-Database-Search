@@ -9,7 +9,7 @@ import java.util.List;
  * The base Controller interface.
  * Defines behaviours used for accessing Database and APIs.
  */
-public interface Facade {
+public interface Controller {
 
     /**
      * Searches the input API for food items based on the given search term.

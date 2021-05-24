@@ -8,16 +8,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class FacadeImplTest {
+public class ControllerImplTest {
 
-    private Facade facade;
+    private Controller controller;
 
     private FoodDatabase foodDatabase;
 
@@ -29,7 +27,7 @@ public class FacadeImplTest {
         this.foodDatabase = mock(FoodDatabase.class);
         this.twilio = mock(Twilio.class);
 
-        this.facade = new FacadeImpl(foodDatabase, twilio);
+        this.controller = new ControllerImpl(foodDatabase, twilio);
     }
 
     @Test
@@ -40,20 +38,20 @@ public class FacadeImplTest {
 
         when(foodDatabase.search("Pizza")).thenReturn(list);
 
-        assertEquals(list, facade.search("Pizza"));
+        assertEquals(list, controller.search("Pizza"));
 
         verify(foodDatabase, times(1)).search("Pizza");
     }
 
     @Test
     public void searchEmpty() {
-        assertThrows(IllegalArgumentException.class, () -> facade.search(""));
+        assertThrows(IllegalArgumentException.class, () -> controller.search(""));
         verify(foodDatabase, never()).search(anyString());
     }
 
     @Test
     public void searchNull() {
-        assertThrows(IllegalArgumentException.class, () -> facade.search(null));
+        assertThrows(IllegalArgumentException.class, () -> controller.search(null));
         verify(foodDatabase, never()).search(anyString());
     }
 
@@ -63,7 +61,7 @@ public class FacadeImplTest {
 
         when(foodDatabase.search("Orange")).thenReturn(list);
 
-        assertEquals(list, facade.search("Orange"));
+        assertEquals(list, controller.search("Orange"));
 
         verify(foodDatabase, times(1)).search(anyString());
     }
@@ -74,7 +72,7 @@ public class FacadeImplTest {
 
         when(foodDatabase.getNutrition("1234", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit")).thenReturn(nutrition);
 
-        assertEquals(nutrition, facade.getNutrition("1234", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit"));
+        assertEquals(nutrition, controller.getNutrition("1234", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit"));
 
         verify(foodDatabase, times(1)).getNutrition("1234", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit");
     }
@@ -83,35 +81,35 @@ public class FacadeImplTest {
     public void getNutritionNullResult() {
         when(foodDatabase.getNutrition("2345", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit")).thenReturn(null);
 
-        assertNull(facade.getNutrition("2345", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit"));
+        assertNull(controller.getNutrition("2345", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit"));
 
         verify(foodDatabase, times(1)).getNutrition("2345", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit");
     }
 
     @Test
     public void getNutritionEmptyID() {
-        assertThrows(IllegalArgumentException.class, () -> facade.getNutrition("", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit"));
+        assertThrows(IllegalArgumentException.class, () -> controller.getNutrition("", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit"));
 
         verify(foodDatabase, never()).getNutrition(anyString(), anyString());
     }
 
     @Test
     public void getNutritionNullID() {
-        assertThrows(IllegalArgumentException.class, () -> facade.getNutrition(null, "http://www.edamam.com/ontologies/edamam.owl#Measure_unit"));
+        assertThrows(IllegalArgumentException.class, () -> controller.getNutrition(null, "http://www.edamam.com/ontologies/edamam.owl#Measure_unit"));
 
         verify(foodDatabase, never()).getNutrition(anyString(), anyString());
     }
 
     @Test
     public void getNutritionEmptyMeasure() {
-        assertThrows(IllegalArgumentException.class, () -> facade.getNutrition("1234", ""));
+        assertThrows(IllegalArgumentException.class, () -> controller.getNutrition("1234", ""));
 
         verify(foodDatabase, never()).getNutrition(anyString(), anyString());
     }
 
     @Test
     public void getNutritionNullMeasure() {
-        assertThrows(IllegalArgumentException.class, () -> facade.getNutrition("1234", null));
+        assertThrows(IllegalArgumentException.class, () -> controller.getNutrition("1234", null));
 
         verify(foodDatabase, never()).getNutrition(anyString(), anyString());
     }
@@ -122,7 +120,7 @@ public class FacadeImplTest {
         when(food.generateReport("size1")).thenReturn("Hello world");
         when(twilio.sendMessage("Hello world")).thenReturn(true);
 
-        assertTrue(facade.sendMessage(food, "size1"));
+        assertTrue(controller.sendMessage(food, "size1"));
         verify(twilio, times(1)).sendMessage("Hello world");
     }
 
@@ -132,13 +130,13 @@ public class FacadeImplTest {
         when(food.generateReport("size1")).thenReturn("Hello world");
         when(twilio.sendMessage("Hello world")).thenReturn(false);
 
-        assertFalse(facade.sendMessage(food, "size1"));
+        assertFalse(controller.sendMessage(food, "size1"));
         verify(twilio, times(1)).sendMessage("Hello world");
     }
 
     @Test
     public void sendMessageNullFood() {
-        assertThrows(IllegalArgumentException.class, () -> facade.sendMessage(null, "size1"));
+        assertThrows(IllegalArgumentException.class, () -> controller.sendMessage(null, "size1"));
         verify(twilio, never()).sendMessage(anyString());
     }
 
@@ -148,7 +146,7 @@ public class FacadeImplTest {
         when(food.generateReport("size1")).thenReturn("Hello world");
         when(twilio.sendMessage("Hello world")).thenReturn(false);
 
-        assertThrows(IllegalArgumentException.class, () -> facade.sendMessage(food, null));
+        assertThrows(IllegalArgumentException.class, () -> controller.sendMessage(food, null));
         verify(twilio, never()).sendMessage(anyString());
     }
 
@@ -158,7 +156,7 @@ public class FacadeImplTest {
         when(food.generateReport("")).thenThrow(new IllegalStateException());
         when(twilio.sendMessage("Hello world")).thenReturn(false);
 
-        assertThrows(IllegalArgumentException.class, () -> facade.sendMessage(food, ""));
+        assertThrows(IllegalArgumentException.class, () -> controller.sendMessage(food, ""));
         verify(twilio, never()).sendMessage(anyString());
     }
 }

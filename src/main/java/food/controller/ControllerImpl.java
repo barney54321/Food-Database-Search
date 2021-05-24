@@ -8,14 +8,14 @@ import food.model.Nutrition;
 import java.util.List;
 
 /**
- * Concrete implementation of Facade interface.
+ * Concrete implementation of Controller interface.
  */
-public class FacadeImpl implements Facade {
+public class ControllerImpl implements Controller {
 
     private FoodDatabase foodDatabase;
     private Twilio twilio;
 
-    public FacadeImpl(FoodDatabase foodDatabase, Twilio twilio) {
+    public ControllerImpl(FoodDatabase foodDatabase, Twilio twilio) {
         this.foodDatabase = foodDatabase;
         this.twilio = twilio;
     }
