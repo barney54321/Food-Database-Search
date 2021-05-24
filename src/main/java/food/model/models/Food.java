@@ -67,16 +67,9 @@ public interface Food {
     Map<String, String> getMeasures();
 
     /**
-     * Returns the associated Nutrition object for the item.
-     * @param size The size for the Nutrition object.
-     * @return The associated nutrition object.
-     */
-    Nutrition getNutrition(String size);
-
-    /**
      * Generates a report for the given Food item.
      * @return The String report to send out via SMS.
      * @throws IllegalStateException If the item hasn't generated its Nutrition information yet.
      */
-    String generateReport(String size) throws IllegalStateException;
+    String generateReport(String size, Nutrition nutrition) throws IllegalStateException;
 }

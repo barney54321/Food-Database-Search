@@ -64,12 +64,6 @@ public class FoodImpl implements Food {
     private Map<String, String> measures;
 
     /**
-     * The Food item's associated Nutrition objects.
-     * String key represents the size for the nutrition object.
-     */
-    private Map<String, Nutrition> nutritionMap;
-
-    /**
      * The method for loading in the associated Nutrition object.
      */
     private BiFunction<String, String, Nutrition> loader;
@@ -111,8 +105,6 @@ public class FoodImpl implements Food {
         }
 
         this.loader = loader;
-
-        this.nutritionMap = new HashMap<>();
     }
 
     @Override
@@ -166,15 +158,7 @@ public class FoodImpl implements Food {
     }
 
     @Override
-    public Nutrition getNutrition(String size) {
-        return this.nutritionMap.computeIfAbsent(size, (str) -> loader.apply(this.id, str));
-    }
-
-    @Override
-    public String generateReport(String size) throws IllegalStateException {
-        if (!this.nutritionMap.containsKey(size)) {
-            throw new IllegalStateException("Nutrition not present for given size");
-        }
+    public String generateReport(String size, Nutrition nutrition) throws IllegalStateException {
 
         String res = "";
 
@@ -183,9 +167,9 @@ public class FoodImpl implements Food {
         res += "Brand: " + this.getBrand() + "\n";
         res += "Servings per container: " + this.getServingsPerContainer() + "\n";
         res += "Size: " + size + "\n";
-        res += "Calories: " + this.getNutrition(size).getCalories() + "\n";
-        res += "Diet labels: " + this.getNutrition(size).getDietLabels().stream().map(x -> x.replace("_", " ")).collect(Collectors.toList()) + "\n";
-        res += "Health labels: " + this.getNutrition(size).getHealthLabels().stream().map(x -> x.replace("_", " ")).collect(Collectors.toList()) + "\n\n";
+        res += "Calories: " + nutrition.getCalories() + "\n";
+        res += "Diet labels: " + nutrition.getDietLabels().stream().map(x -> x.replace("_", " ")).collect(Collectors.toList()) + "\n";
+        res += "Health labels: " + nutrition.getHealthLabels().stream().map(x -> x.replace("_", " ")).collect(Collectors.toList()) + "\n\n";
         res += "Nutrients: \n";
         res += "ENERC_KCAL: " + this.nutrients.get("ENERC_KCAL") + "\n";
         res += "PROCNT: " + this.nutrients.get("PROCNT") + "\n";

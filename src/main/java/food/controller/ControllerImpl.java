@@ -2,6 +2,7 @@ package food.controller;
 
 import food.model.ModelFacade;
 import food.model.models.Food;
+import food.model.models.Nutrition;
 import food.view.observers.FoodListObserver;
 import food.view.observers.MessageObserver;
 import food.view.observers.NutritionObserver;
@@ -45,15 +46,16 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void sendMessage(Food food, String size, MessageObserver observer) {
+    public void sendMessage(Food food, Nutrition nutrition, String size, MessageObserver observer) {
         if (food == null) {
             observer.update(new IllegalArgumentException("Food cannot be null"));
         } else if (size == null || size.equals("")) {
             observer.update(new IllegalArgumentException("Size cannot be empty"));
         } else if (!food.getMeasures().containsKey(size)) {
+            System.out.println(food.getMeasures());
             observer.update(new IllegalArgumentException("Invalid size"));
         } else {
-            this.facade.sendMessage(food.generateReport(size), observer);
+            this.facade.sendMessage(food.generateReport(size, nutrition), observer);
         }
     }
 }

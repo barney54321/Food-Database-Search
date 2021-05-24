@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -97,16 +98,24 @@ public class ControllerImplTest {
     @Test
     public void sendMessageNormal() {
         Food mock = mock(Food.class);
-        when(mock.generateReport("size1")).thenReturn("Hello world");
 
-        controller.sendMessage(mock, "size1", messageObserver);
+        HashMap<String, String> measures = new HashMap<>();
+        measures.put("size1", "asasdasd");
+
+        when(mock.getMeasures()).thenReturn(measures);
+
+        Nutrition nutrition = mock(Nutrition.class);
+        when(mock.generateReport("size1", nutrition)).thenReturn("Hello world");
+
+        controller.sendMessage(mock, nutrition, "size1", messageObserver);
 
         verify(facade, times(1)).sendMessage("Hello world", messageObserver);
     }
 
     @Test
     public void sendMessageNullFood() {
-        controller.sendMessage(null, "size1", messageObserver);
+        Nutrition nutrition = mock(Nutrition.class);
+        controller.sendMessage(null, nutrition, "size1", messageObserver);
 
         verify(messageObserver, times(1)).update(any(Exception.class));
     }
@@ -114,8 +123,9 @@ public class ControllerImplTest {
     @Test
     public void sendMessageEmptySize() {
         Food mock = mock(Food.class);
-        when(mock.generateReport("")).thenReturn("Hello world");
-        controller.sendMessage(mock, "", messageObserver);
+        Nutrition nutrition = mock(Nutrition.class);
+        when(mock.generateReport("", nutrition)).thenReturn("Hello world");
+        controller.sendMessage(mock, nutrition, "", messageObserver);
 
         verify(messageObserver, times(1)).update(any(Exception.class));
     }
@@ -123,8 +133,9 @@ public class ControllerImplTest {
     @Test
     public void sendMessageNullSize() {
         Food mock = mock(Food.class);
-        when(mock.generateReport(null)).thenReturn("Hello world");
-        controller.sendMessage(mock, null, messageObserver);
+        Nutrition nutrition = mock(Nutrition.class);
+        when(mock.generateReport(null, nutrition)).thenReturn("Hello world");
+        controller.sendMessage(mock, nutrition, null, messageObserver);
 
         verify(messageObserver, times(1)).update(any(Exception.class));
     }

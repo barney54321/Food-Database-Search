@@ -107,20 +107,6 @@ public class FoodImplTest {
     }
 
     @Test
-    public void getNutritionOnce() {
-        assertEquals(nutrition, food.getNutrition("size1"));
-        verify(function, times(1)).apply("food_bn4bryqayjl958auu03k3bxf6ja8", "size1");
-    }
-
-    @Test
-    public void getNutritionMultipleTimes() {
-        assertEquals(nutrition, food.getNutrition("size1"));
-        assertEquals(nutrition, food.getNutrition("size1"));
-        assertEquals(nutrition, food.getNutrition("size1"));
-        verify(function, times(1)).apply("food_bn4bryqayjl958auu03k3bxf6ja8", "size1");
-    }
-
-    @Test
     public void generateReportSimple() {
         String expected = "";
 
@@ -143,12 +129,6 @@ public class FoodImplTest {
         when(nutrition.getDietLabels()).thenReturn(Arrays.asList("GLUTEN_FREE"));
         when(nutrition.getHealthLabels()).thenReturn(Arrays.asList("HALAL, VEGETARIAN"));
 
-        food.getNutrition("size1");
-        assertEquals(expected, food.generateReport("size1"));
-    }
-
-    @Test
-    public void generateReportEarly() {
-        assertThrows(IllegalStateException.class, () -> food.generateReport("size1"));
+        assertEquals(expected, food.generateReport("size1", nutrition));
     }
 }

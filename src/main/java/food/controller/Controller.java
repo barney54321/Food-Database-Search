@@ -1,6 +1,7 @@
 package food.controller;
 
 import food.model.models.Food;
+import food.model.models.Nutrition;
 import food.view.observers.FoodListObserver;
 import food.view.observers.MessageObserver;
 import food.view.observers.NutritionObserver;
@@ -32,8 +33,9 @@ public interface Controller {
      * Delegates sending messages to the Model and passes along the observer.
      * Updates observer with exception if food or size is empty or null.
      * @param food The food item to generate the report for.
+     * @param nutrition The nutrition item to use in the report.
      * @param size The size for the nutritional information.
      * @param observer The observer the model will update.
      */
-    void sendMessage(Food food, String size, MessageObserver observer);
+    void sendMessage(Food food, Nutrition nutrition, String size, MessageObserver observer);
 }

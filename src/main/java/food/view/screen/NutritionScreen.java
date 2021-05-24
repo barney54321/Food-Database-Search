@@ -43,8 +43,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         });
 
         addButton("Generate\nReport", 500, 50, 90, 50, event -> {
-            System.out.println(this.food.getMeasures().get(options.getValue()));
-            this.window.getController().sendMessage(this.food, options.getValue(), this);
+            this.window.getController().sendMessage(this.food, this.nutrition, options.getValue(), this);
         });
 
         if (this.food != null) {
