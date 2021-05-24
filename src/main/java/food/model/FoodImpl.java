@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Concrete implementation of the Food interface.
@@ -173,6 +174,27 @@ public class FoodImpl implements Food {
 
     @Override
     public String generateReport(String size) throws IllegalStateException {
-        return null;
+        if (!this.nutritionMap.containsKey(size)) {
+            throw new IllegalStateException("Nutrition not present for given size");
+        }
+
+        String res = "";
+
+        res += "Food ID: " + this.id + "\n";
+        res += "Label: " + this.label + "\n";
+        res += "Brand: " + this.getBrand() + "\n";
+        res += "Servings per container: " + this.getServingsPerContainer() + "\n";
+        res += "Size: " + size + "\n";
+        res += "Calories: " + this.getNutrition(size).getCalories() + "\n";
+        res += "Diet labels: " + this.getNutrition(size).getDietLabels().stream().map(x -> x.replace("_", " ")).collect(Collectors.toList()) + "\n";
+        res += "Health labels: " + this.getNutrition(size).getHealthLabels().stream().map(x -> x.replace("_", " ")).collect(Collectors.toList()) + "\n\n";
+        res += "Nutrients: \n";
+        res += "ENERC_KCAL: " + this.nutrients.get("ENERC_KCAL") + "\n";
+        res += "PROCNT: " + this.nutrients.get("PROCNT") + "\n";
+        res += "FAT: " + this.nutrients.get("FAT") + "\n";
+        res += "CHOCDF: " + this.nutrients.get("CHOCDF") + "\n";
+        res += "FIBTG: " + this.nutrients.get("FIBTG") + "\n";
+
+        return res;
     }
 }
