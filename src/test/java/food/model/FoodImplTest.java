@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import java.io.FileReader;
 import java.io.Reader;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -116,5 +116,37 @@ public class FoodImplTest {
         assertEquals(nutrition, food.getNutrition("size1"));
         assertEquals(nutrition, food.getNutrition("size1"));
         verify(function, times(1)).apply("food_bn4bryqayjl958auu03k3bxf6ja8", "size1");
+    }
+
+    @Test
+    public void generateReportSimple() {
+        String expected = "";
+
+        expected += "Food ID: food_bn4bryqayjl958auu03k3bxf6ja8\n";
+        expected += "Label: Ferrero Rocher Ferrero Eggs, Cocoa\n";
+        expected += "Brand: Ferrero Rocher\n";
+        expected += "Servings per container: 0.01\n";
+        expected += "Size: size1\n";
+        expected += "Calories: 100\n";
+        expected += "Diet labes: [Gluten Free]\n";
+        expected += "Health labels: [Halal, Vegetarian]\n\n";
+        expected += "Nutrients: \n";
+        expected += "ENERC_KCAL: 573.0\n";
+        expected += "PROCNT: 5.0\n";
+        expected += "FAT: 37.5\n";
+        expected += "CHOCDF: 55.0\n";
+        expected += "FIBTG: 5.0\n";
+
+        when(nutrition.getCalories()).thenReturn(100);
+        when(nutrition.getDietLabels()).thenReturn(Arrays.asList("GLUTEN_FREE"));
+        when(nutrition.getHealthLabels()).thenReturn(Arrays.asList("HALAL, VEGETARIAN"));
+
+        food.getNutrition("size1");
+        assertEquals(expected, food.generateReport("size1"));
+    }
+
+    @Test
+    public void generateReportEarly() {
+        assertThrows(IllegalStateException.class, () -> food.generateReport("size1"));
     }
 }
