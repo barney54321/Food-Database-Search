@@ -4,6 +4,8 @@ import food.model.models.Food;
 import food.model.models.Nutrient;
 import food.model.models.Nutrition;
 import food.view.FoodWindow;
+import food.view.observers.MessageObserver;
+import food.view.observers.NutritionObserver;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,7 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-public class NutritionScreen extends AbstractScreen {
+public class NutritionScreen extends AbstractScreen implements NutritionObserver, MessageObserver {
 
     private Screen parent;
 
@@ -41,19 +43,8 @@ public class NutritionScreen extends AbstractScreen {
         });
 
         addButton("Generate\nReport", 500, 50, 90, 50, event -> {
-            if (this.nutrition == null) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Select a size", ButtonType.OK);
-                alert.show();
-            } else {
-//                boolean result = this.window.getController().sendMessage(this.food, this.food.getMeasures().get(options.getValue()));
-//                if (result) {
-//                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Message sent", ButtonType.OK);
-//                    alert.show();
-//                } else {
-//                    Alert alert = new Alert(Alert.AlertType.ERROR, "Message failure", ButtonType.OK);
-//                    alert.show();
-//                }
-            }
+            System.out.println(this.food.getMeasures().get(options.getValue()));
+            this.window.getController().sendMessage(this.food, options.getValue(), this);
         });
 
         if (this.food != null) {
@@ -77,9 +68,7 @@ public class NutritionScreen extends AbstractScreen {
 
             addButton("Search", 320, 50, 100, 10, event -> {
                 String measure = this.food.getMeasures().get(this.options.getValue());
-                this.nutrition = food.getNutrition(measure);
-                this.setupNutrition();
-                this.window.refresh();
+                this.window.getController().getNutrition(this.food, measure, this);
             });
         }
     }
@@ -227,5 +216,29 @@ public class NutritionScreen extends AbstractScreen {
         dailyNutrients.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         return new VBox(5, dailyNutrientsLabel, dailyNutrients);
+    }
+
+    @Override
+    public void update(boolean messageSuccess) {
+        if (messageSuccess) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Message sent", ButtonType.OK);
+            alert.show();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Message failure", ButtonType.OK);
+            alert.show();
+        }
+    }
+
+    @Override
+    public void update(Nutrition nutrition) {
+        this.nutrition = nutrition;
+        this.setupNutrition();
+        this.window.refresh();
+    }
+
+    @Override
+    public void update(Exception exception) {
+        Alert alert = new Alert(Alert.AlertType.ERROR, "Select a size", ButtonType.OK);
+        alert.show();
     }
 }

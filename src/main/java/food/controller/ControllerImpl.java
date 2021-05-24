@@ -50,6 +50,8 @@ public class ControllerImpl implements Controller {
             observer.update(new IllegalArgumentException("Food cannot be null"));
         } else if (size == null || size.equals("")) {
             observer.update(new IllegalArgumentException("Size cannot be empty"));
+        } else if (!food.getMeasures().containsKey(size)) {
+            observer.update(new IllegalArgumentException("Invalid size"));
         } else {
             this.facade.sendMessage(food.generateReport(size), observer);
         }
