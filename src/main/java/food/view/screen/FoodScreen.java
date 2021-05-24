@@ -16,12 +16,28 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.Map;
 
+/**
+ * The basic Food information Screen.
+ */
 public class FoodScreen extends AbstractScreen {
 
+    /**
+     * The Screen which the user came to this Screen from.
+     * Used for navigating without hitting API again.
+     */
     private Screen parent;
 
+    /**
+     * The Food object this Screen represents.
+     */
     private Food food;
 
+    /**
+     * Creates a new FoodScreen object based on the provided Food object.
+     * @param window The encompassing window.
+     * @param parent The parent Screen object.
+     * @param food The food object the screen represents.
+     */
     public FoodScreen(FoodWindow window, Screen parent, Food food) {
         super(window);
         this.parent = parent;
@@ -30,20 +46,44 @@ public class FoodScreen extends AbstractScreen {
         this.window.refresh();
     }
 
-    // This is here because JavaFX TableView won't use HashMap.Entry
+    /**
+     * Represents a Key-Value pairing for Nutrient information.
+     * This class is here simply because JavaFX TableView can't access Map.Entry with Reflections.
+     */
     public class NutrientMap {
+
+        /**
+         * The key (nutrient name).
+         */
         public String key;
+
+        /**
+         * The value (nutrient amount).
+         */
         public Double value;
 
+        /**
+         * Creates a new NutrientMap object.
+         * @param key The key the map is based on.
+         * @param value The associated value.
+         */
         public NutrientMap(String key, Double value) {
             this.key = key;
             this.value = value;
         }
 
+        /**
+         * Returns the stored key.
+         * @return The key.
+         */
         public String getKey() {
             return this.key;
         }
 
+        /**
+         * Returns the stored value.
+         * @return The value.
+         */
         public Double getValue() {
             return this.value;
         }
@@ -91,12 +131,14 @@ public class FoodScreen extends AbstractScreen {
             }
 
             if (this.food.getLabel().length() > 60) {
-                addText(this.food.getLabel().substring(0, 60) + "...", Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 240);
+                String text = this.food.getLabel().substring(0, 60) + "...";
+                addText(text, Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 240);
             } else if (this.food.getLabel().length() > 30) {
                 addText(this.food.getLabel(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 240);
             } else {
                 addText(this.food.getLabel(), Font.font(30), TextAlignment.LEFT, Color.BLACK, 10, 240);
             }
+
             addText("Brand: " + this.food.getBrand(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 270);
             addText("Category: " + this.food.getCategory(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 300);
             addText("Servings per size: " + this.food.getServingsPerContainer(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 330);
