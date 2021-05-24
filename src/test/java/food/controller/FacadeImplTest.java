@@ -118,29 +118,47 @@ public class FacadeImplTest {
 
     @Test
     public void sendMessageNormal() {
+        Food food = mock(Food.class);
+        when(food.generateReport("size1")).thenReturn("Hello world");
         when(twilio.sendMessage("Hello world")).thenReturn(true);
 
-        assertTrue(facade.sendMessage("Hello world"));
+        assertTrue(facade.sendMessage(food, "size1"));
         verify(twilio, times(1)).sendMessage("Hello world");
     }
 
     @Test
     public void sendMessageNormalFail() {
+        Food food = mock(Food.class);
+        when(food.generateReport("size1")).thenReturn("Hello world");
         when(twilio.sendMessage("Hello world")).thenReturn(false);
 
-        assertFalse(facade.sendMessage("Hello world"));
+        assertFalse(facade.sendMessage(food, "size1"));
         verify(twilio, times(1)).sendMessage("Hello world");
     }
 
     @Test
-    public void sendMessageEmpty() {
-        assertThrows(IllegalArgumentException.class, () -> facade.sendMessage(""));
+    public void sendMessageNullFood() {
+        assertThrows(IllegalArgumentException.class, () -> facade.sendMessage(null, "size1"));
         verify(twilio, never()).sendMessage(anyString());
     }
 
     @Test
-    public void sendMessageNull() {
-        assertThrows(IllegalArgumentException.class, () -> facade.sendMessage(null));
+    public void sendMessageNullSize() {
+        Food food = mock(Food.class);
+        when(food.generateReport("size1")).thenReturn("Hello world");
+        when(twilio.sendMessage("Hello world")).thenReturn(false);
+
+        assertThrows(IllegalArgumentException.class, () -> facade.sendMessage(food, null));
+        verify(twilio, never()).sendMessage(anyString());
+    }
+
+    @Test
+    public void sendMessageEmptySize() {
+        Food food = mock(Food.class);
+        when(food.generateReport("")).thenThrow(new IllegalStateException());
+        when(twilio.sendMessage("Hello world")).thenReturn(false);
+
+        assertThrows(IllegalArgumentException.class, () -> facade.sendMessage(food, ""));
         verify(twilio, never()).sendMessage(anyString());
     }
 }

@@ -45,7 +45,8 @@ public class NutritionScreen extends AbstractScreen {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Select a size", ButtonType.OK);
                 alert.show();
             } else {
-                if (this.window.getController().sendMessage(this.food.getLabel())) {
+                boolean result = true;
+                if (result) {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Message sent", ButtonType.OK);
                     alert.show();
                 } else {

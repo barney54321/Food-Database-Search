@@ -29,10 +29,11 @@ public interface Facade {
     Nutrition getNutrition(String foodID, String measure) throws IllegalArgumentException;
 
     /**
-     * Sends the given message by SMS, using Twilio.
-     * @param message The message to send.
+     * Sends the Food objects report by SMS, using Twilio.
+     * @param food The Food object to generate a report for.
+     * @param size The size to use for the food.
      * @return Whether the message is successfully sent.
-     * @throws IllegalArgumentException If the message is empty or null.
+     * @throws IllegalArgumentException If the food object or size is missing or invalid.
      */
-    boolean sendMessage(String message) throws IllegalArgumentException;
+    boolean sendMessage(Food food, String size) throws IllegalArgumentException;
 }
