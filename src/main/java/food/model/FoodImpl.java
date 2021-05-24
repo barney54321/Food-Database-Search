@@ -168,6 +168,6 @@ public class FoodImpl implements Food {
 
     @Override
     public Nutrition getNutrition(String size) {
-        return null;
+        return this.nutritionMap.computeIfAbsent(size, (str) -> loader.apply(this.id, str));
     }
 }
