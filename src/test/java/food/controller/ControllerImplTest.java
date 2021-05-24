@@ -139,4 +139,19 @@ public class ControllerImplTest {
 
         verify(messageObserver, times(1)).update(any(Exception.class));
     }
+
+    @Test
+    public void sendMessageNullNutrition() {
+        Food mock = mock(Food.class);
+
+        HashMap<String, String> measures = new HashMap<>();
+        measures.put("size1", "asasdasd");
+
+        when(mock.getMeasures()).thenReturn(measures);
+
+        when(mock.generateReport("size1", null)).thenReturn("Hello world");
+        controller.sendMessage(mock, null, "size1", messageObserver);
+
+        verify(messageObserver, times(1)).update(any(Exception.class));
+    }
 }
