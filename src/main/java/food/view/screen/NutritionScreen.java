@@ -15,18 +15,42 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
+/**
+ * The detailed Nutrition Screen.
+ */
 public class NutritionScreen extends AbstractScreen implements NutritionObserver, MessageObserver {
 
+    /**
+     * The parent Screen object.
+     */
     private Screen parent;
 
+    /**
+     * The Food the Nutrition is based on.
+     */
     private Food food;
 
+    /**
+     * The Nutrition being displayed.
+     */
     private Nutrition nutrition;
 
+    /**
+     * The options for sizes.
+     */
     private ComboBox<String> options;
 
+    /**
+     * The pagination used to show Nutrition.
+     */
     private Pagination pagination;
 
+    /**
+     * Creates a new NutritionScreen object.
+     * @param window The encompassing window.
+     * @param parent The parent Screen object.
+     * @param food The Food object the Screen is based on.
+     */
     public NutritionScreen(FoodWindow window, Screen parent, Food food) {
         super(window);
         this.parent = parent;
@@ -72,6 +96,9 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         }
     }
 
+    /**
+     * Sets up the Nutrition pagination.
+     */
     private void setupNutrition() {
         if (this.pagination != null) {
             this.nodes.remove(pagination);
@@ -101,6 +128,10 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         this.nodes.add(pagination);
     }
 
+    /**
+     * Creates Page 1 of Pagination.
+     * @return The encompassing VBox.
+     */
     private VBox setPageOne() {
         Text calories = new Text();
         calories.setText("Calories: " + nutrition.getCalories() + "kcal");
@@ -147,6 +178,10 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         return new VBox(5, calories, weight, dietLabel, diet, healthLabel, health);
     }
 
+    /**
+     * Creates Page 2 of Pagination.
+     * @return The encompassing VBox.
+     */
     private VBox setPageTwo() {
 
         Text cautionLabels = new Text();
@@ -193,6 +228,10 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         return new VBox(5, cautionLabels, cautions, totalNutrientsLabel, totalNutrients);
     }
 
+    /**
+     * Creates Page 3 of Pagination.
+     * @return The encompassing VBox.
+     */
     private VBox setPageThree() {
 
         Text dailyNutrientsLabel = new Text();

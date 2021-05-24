@@ -1,5 +1,8 @@
 package food.model.models;
 
+/**
+ * Interface representing a Nutrient object.
+ */
 public interface Nutrient {
 
     /**

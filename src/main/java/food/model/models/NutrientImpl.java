@@ -2,6 +2,9 @@ package food.model.models;
 
 import org.json.simple.JSONObject;
 
+/**
+ * Concrete implementation of Nutrient interface.
+ */
 public class NutrientImpl implements Nutrient {
 
     /**
@@ -19,6 +22,10 @@ public class NutrientImpl implements Nutrient {
      */
     private String unit;
 
+    /**
+     * Creates a Nutrient object.
+     * @param json The JSONObject to base the Nutrient off of.
+     */
     public NutrientImpl(JSONObject json) {
         this.label = (String) json.get("label");
         this.quantity = (Double) json.get("quantity");

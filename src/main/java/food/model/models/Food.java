@@ -2,6 +2,9 @@ package food.model.models;
 
 import java.util.Map;
 
+/**
+ * Interface representing a food object.
+ */
 public interface Food {
 
     /**
@@ -68,8 +71,10 @@ public interface Food {
 
     /**
      * Generates a report for the given Food item.
+     * @param size The size to use.
+     * @param nutrition The associated Nutrition object.
      * @return The String report to send out via SMS.
-     * @throws IllegalStateException If the item hasn't generated its Nutrition information yet.
+     * @throws IllegalStateException If the Food object is incomplete
      */
     String generateReport(String size, Nutrition nutrition) throws IllegalStateException;
 }

@@ -41,6 +41,11 @@ public class FoodDatabaseOnline extends FoodDatabaseTemplate {
      */
     private String appKey;
 
+    /**
+     * Creates a new FoodDatabase object.
+     * @param appID The App ID.
+     * @param appKey The App Key.
+     */
     public FoodDatabaseOnline(String appID, String appKey) {
         this.client = HttpClients.createDefault();
         this.appID = appID;

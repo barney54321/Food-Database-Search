@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Concrete implementation of Nutrition interface.
+ */
 public class NutritionImpl implements Nutrition {
 
     /**
@@ -55,6 +58,10 @@ public class NutritionImpl implements Nutrition {
      */
     private List<Ingredient> ingredients;
 
+    /**
+     * Creates a Nutrient object.
+     * @param json The JSONObject to base the Nutrition off of.
+     */
     public NutritionImpl(JSONObject json) {
         this.url = (String) json.get("uri");
         this.calories = ((Long) json.get("calories")).intValue();

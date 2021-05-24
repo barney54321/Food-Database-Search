@@ -2,73 +2,33 @@ package food.view;
 
 import food.controller.Controller;
 import food.view.screen.Screen;
-import food.view.screen.SearchScreen;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 
 /**
- * Manages the Window used by the GUI.
+ * Interface representing a Window.
  */
-public class FoodWindow {
+public interface FoodWindow {
 
     /**
-     * The width of the window.
+     * Returns the Window's scene.
+     * @return The current scene.
      */
-    public static final int WIDTH = 600;
+    Scene getScene();
 
     /**
-     * The height of the window.
+     * Returns the Window's controller.
+     * @return The controller.
      */
-    public static final int HEIGHT = 500;
+    Controller getController();
 
     /**
-     * The JavaFX Scene for the Window.
+     * Updates the Screen.
+     * @param screen The new Screen.
      */
-    private Scene scene;
+    void setScreen(Screen screen);
 
     /**
-     * The Pane nested in the Window.
+     * Refreshes the Window when nodes are added/removed.
      */
-    private Pane pane;
-
-    /**
-     * The Screen object for the window (uses State pattern).
-     */
-    private Screen screen;
-
-    /**
-     * The Controller used to interact with the Model.
-     */
-    private Controller controller;
-
-    public FoodWindow(Controller controller) {
-        this.controller = controller;
-
-        this.pane = new Pane();
-        this.scene = new Scene(pane, WIDTH, HEIGHT);
-
-        this.setScreen(new SearchScreen(this));
-    }
-
-    public Scene getScene() {
-        return this.scene;
-    }
-
-    public Controller getController() {
-        return this.controller;
-    }
-
-    public void setScreen(Screen screen) {
-        if (this.screen != null) {
-            this.pane.getChildren().removeAll(this.screen.getNodes());
-        }
-
-        this.screen = screen;
-        this.pane.getChildren().addAll(this.screen.getNodes());
-    }
-
-    public void refresh() {
-        this.pane.getChildren().clear();
-        this.pane.getChildren().addAll(this.screen.getNodes());
-    }
+    void refresh();
 }

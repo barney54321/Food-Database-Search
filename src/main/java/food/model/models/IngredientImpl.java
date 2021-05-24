@@ -2,6 +2,9 @@ package food.model.models;
 
 import org.json.simple.JSONObject;
 
+/**
+ * Concrete implementation of Ingredient interface.
+ */
 public class IngredientImpl implements Ingredient {
 
     /**
@@ -29,6 +32,10 @@ public class IngredientImpl implements Ingredient {
      */
     private String foodID;
 
+    /**
+     * Creates a new Ingredient object based on JSONObject.
+     * @param json The JSONObject the ingredient is based on.
+     */
     public IngredientImpl(JSONObject json) {
 
         try {

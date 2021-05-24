@@ -4,6 +4,9 @@ import food.view.observers.FoodListObserver;
 import food.view.observers.MessageObserver;
 import food.view.observers.NutritionObserver;
 
+/**
+ * Interface representing the Facade that covers all Model aspects.
+ */
 public interface ModelFacade {
 
     /**

@@ -3,6 +3,9 @@ package food.model.models;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Interface representing a Nutrition object.
+ */
 public interface Nutrition {
 
     /**

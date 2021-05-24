@@ -11,6 +11,7 @@ import food.model.output.TwilioOnline;
 import food.controller.Controller;
 import food.controller.ControllerImpl;
 import food.view.FoodWindow;
+import food.view.FoodWindowImpl;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
@@ -23,13 +24,30 @@ import java.io.Reader;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The Runner class for the Application.
+ */
 public class Runner extends Application {
 
+    /**
+     * The Window for JavaFX.
+     */
     private FoodWindow window;
 
+    /**
+     * The mode the application is running in.
+     */
     private static String mode;
+
+    /**
+     * The map of credentials.
+     */
     private static Map<String, String> credentials;
 
+    /**
+     * Runs the program.
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         Runner.credentials = credentialsParser("credentials.json");
 
@@ -60,7 +78,7 @@ public class Runner extends Application {
             ModelFacade facade = new ModelFacadeImpl(online, twilio);
 
             Controller controller = new ControllerImpl(facade);
-            this.window = new FoodWindow(controller);
+            this.window = new FoodWindowImpl(controller);
         } else if (Runner.mode.equals("offline")) {
 
             FoodDatabase offline = new FoodDatabaseOffline();
@@ -69,7 +87,7 @@ public class Runner extends Application {
             ModelFacade facade = new ModelFacadeImpl(offline, twilio);
 
             Controller controller = new ControllerImpl(facade);
-            this.window = new FoodWindow(controller);
+            this.window = new FoodWindowImpl(controller);
         } else {
             throw new IllegalStateException("No mode specified");
         }
@@ -79,6 +97,11 @@ public class Runner extends Application {
         primaryStage.show();
     }
 
+    /**
+     * Parses the credentials file.
+     * @param file The credentials file.
+     * @return The map of credentials.
+     */
     private static Map<String, String> credentialsParser(String file) {
         try {
             JSONParser parser = new JSONParser();
