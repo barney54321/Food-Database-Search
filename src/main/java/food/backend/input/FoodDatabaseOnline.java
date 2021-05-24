@@ -100,6 +100,8 @@ public class FoodDatabaseOnline implements FoodDatabase {
     public Nutrition getNutrition(String foodID, String measure) {
         try {
 
+            CloseableHttpClient client = HttpClients.createDefault();
+
             String body = "{\"ingredients\": [{\"quantity\": 1, \"measureURI\": \"" + measure + "\", \"foodId\": \"" + foodID + "\"}]}";
 
             StringEntity entity = new StringEntity(body, ContentType.APPLICATION_JSON);
@@ -114,6 +116,8 @@ public class FoodDatabaseOnline implements FoodDatabase {
             String out = readInputStream(stream);
 
             Nutrition nutrition = new NutritionImpl((JSONObject) new JSONParser().parse(out));
+
+            client.close();
 
             return nutrition;
         } catch (IOException e) {
