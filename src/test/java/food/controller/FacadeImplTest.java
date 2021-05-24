@@ -118,7 +118,17 @@ public class FacadeImplTest {
 
     @Test
     public void sendMessageNormal() {
+        when(twilio.sendMessage("Hello world")).thenReturn(true);
+
         assertTrue(facade.sendMessage("Hello world"));
+        verify(twilio, times(1)).sendMessage("Hello world");
+    }
+
+    @Test
+    public void sendMessageNormalFail() {
+        when(twilio.sendMessage("Hello world")).thenReturn(false);
+
+        assertFalse(facade.sendMessage("Hello world"));
         verify(twilio, times(1)).sendMessage("Hello world");
     }
 
