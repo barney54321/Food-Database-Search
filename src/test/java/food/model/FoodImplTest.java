@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.Map;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import static org.junit.Assert.*;
@@ -19,7 +20,7 @@ public class FoodImplTest {
     private FoodImpl food;
 
     private Nutrition nutrition;
-    private Function<String, Nutrition> function;
+    private BiFunction<String, String, Nutrition> function;
 
     @Before
     @SuppressWarnings("unchecked")
@@ -30,10 +31,10 @@ public class FoodImplTest {
 
         JSONObject json = (JSONObject) parser.parse(reader);
 
-        this.function = (Function<String, Nutrition>) mock(Function.class);
+        this.function = (BiFunction<String, String, Nutrition>) mock(BiFunction.class);
         this.nutrition = mock(Nutrition.class);
 
-        when(function.apply(anyString())).thenReturn(this.nutrition);
+        when(function.apply(anyString(), anyString())).thenReturn(this.nutrition);
 
         this.food = new FoodImpl(json, function);
     }
@@ -105,15 +106,15 @@ public class FoodImplTest {
 
     @Test
     public void getNutritionOnce() {
-        assertEquals(nutrition, food.getNutrition());
-        verify(function, times(1)).apply("food_bn4bryqayjl958auu03k3bxf6ja8");
+        assertEquals(nutrition, food.getNutrition("size1"));
+        verify(function, times(1)).apply("food_bn4bryqayjl958auu03k3bxf6ja8", "size1");
     }
 
     @Test
     public void getNutritionMultipleTimes() {
-        assertEquals(nutrition, food.getNutrition());
-        assertEquals(nutrition, food.getNutrition());
-        assertEquals(nutrition, food.getNutrition());
-        verify(function, times(1)).apply("food_bn4bryqayjl958auu03k3bxf6ja8");
+        assertEquals(nutrition, food.getNutrition("size1"));
+        assertEquals(nutrition, food.getNutrition("size1"));
+        assertEquals(nutrition, food.getNutrition("size1"));
+        verify(function, times(1)).apply("food_bn4bryqayjl958auu03k3bxf6ja8", "size1");
     }
 }

@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
@@ -64,22 +65,22 @@ public class FoodImpl implements Food {
     private Map<String, String> measures;
 
     /**
-     * The Food item's association Nutrition object.
-     * Using Optional because there may not be an associated Nutrition object.
+     * The Food item's associated Nutrition objects.
+     * String key represents the size for the nutrition object.
      */
-    private Optional<Nutrition> nutrition;
+    private Map<String, Nutrition> nutritionMap;
 
     /**
      * The method for loading in the associated Nutrition object.
      */
-    private Function<String, Nutrition> loader;
+    private BiFunction<String, String, Nutrition> loader;
 
     /**
      * Creates a new FoodImpl object based on the provided JSONObject.
      * @param json The JSONObject to base the Food item off of.
      * @param loader How to retrieve the lazy loaded attributes.
      */
-    public FoodImpl(JSONObject json, Function<String, Nutrition> loader) {
+    public FoodImpl(JSONObject json, BiFunction<String, String, Nutrition> loader) {
         JSONObject food = (JSONObject) json.get("food");
 
         this.id = (String) food.get("foodId");
@@ -111,6 +112,8 @@ public class FoodImpl implements Food {
         }
 
         this.loader = loader;
+
+        this.nutritionMap = new HashMap<>();
     }
 
     @Override
@@ -164,11 +167,7 @@ public class FoodImpl implements Food {
     }
 
     @Override
-    public Nutrition getNutrition() {
-        if (this.nutrition == null) {
-            this.nutrition = Optional.ofNullable(loader.apply(this.id));
-        }
-
-        return this.nutrition.get();
+    public Nutrition getNutrition(String size) {
+        return null;
     }
 }

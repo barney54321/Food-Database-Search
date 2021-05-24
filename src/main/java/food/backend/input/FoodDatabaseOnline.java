@@ -67,7 +67,7 @@ public class FoodDatabaseOnline implements FoodDatabase {
             List<Food> res = new ArrayList<>();
 
             for (Object o : results) {
-                res.add(new FoodImpl((JSONObject) o, (foodID) -> this.getNutrition(foodID, "http://www.edamam.com/ontologies/edamam.owl#Measure_unit")));
+                res.add(new FoodImpl((JSONObject) o, (foodID, size) -> this.getNutrition(foodID, size)));
             }
 
             return res;

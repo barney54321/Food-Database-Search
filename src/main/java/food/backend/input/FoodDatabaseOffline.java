@@ -46,7 +46,7 @@ public class FoodDatabaseOffline implements FoodDatabase {
             JSONArray results = (JSONArray) json.get("hints");
 
             for (Object o : results) {
-                res.add(new FoodImpl((JSONObject) o, (foodID) -> this.getNutrition(foodID, "http://www.edamam.com/ontologies/edamam.owl#Measure_unit")));
+                res.add(new FoodImpl((JSONObject) o, (foodID, size) -> this.getNutrition(foodID, "http://www.edamam.com/ontologies/edamam.owl#Measure_unit")));
             }
 
             return res;

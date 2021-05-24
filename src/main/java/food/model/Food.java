@@ -68,7 +68,8 @@ public interface Food {
 
     /**
      * Returns the associated Nutrition object for the item.
+     * @param size The size for the Nutrition object.
      * @return The associated nutrition object.
      */
-    Nutrition getNutrition();
+    Nutrition getNutrition(String size);
 }
