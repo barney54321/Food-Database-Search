@@ -1,9 +1,13 @@
 package food.controller;
 
+import food.model.ModelFacade;
 import food.model.input.FoodDatabase;
 import food.model.output.Twilio;
 import food.model.models.Food;
 import food.model.models.Nutrition;
+import food.view.observers.FoodListObserver;
+import food.view.observers.MessageObserver;
+import food.view.observers.NutritionObserver;
 
 import java.util.List;
 
@@ -12,44 +16,22 @@ import java.util.List;
  */
 public class ControllerImpl implements Controller {
 
-    private FoodDatabase foodDatabase;
-    private Twilio twilio;
+    public ControllerImpl(ModelFacade facade) {
 
-    public ControllerImpl(FoodDatabase foodDatabase, Twilio twilio) {
-        this.foodDatabase = foodDatabase;
-        this.twilio = twilio;
     }
 
     @Override
-    public List<Food> search(String term) throws IllegalArgumentException {
-        if (term == null || term.equals("")) {
-            throw new IllegalArgumentException("Search term cannot be empty");
-        }
+    public void search(String term, FoodListObserver observer) {
 
-        return this.foodDatabase.search(term);
     }
 
     @Override
-    public Nutrition getNutrition(String foodID, String measure) throws IllegalArgumentException {
-        if (foodID == null || foodID.equals("")) {
-            throw new IllegalArgumentException("ID cannot be empty");
-        } else if (measure == null || measure.equals("")) {
-            throw new IllegalArgumentException("Measure cannot be empty");
-        }
+    public void getNutrition(Food food, String measure, NutritionObserver observer) {
 
-        return this.foodDatabase.getNutrition(foodID, measure);
     }
 
     @Override
-    public boolean sendMessage(Food food, String size) throws IllegalArgumentException {
-        if (food == null || size == null || size.equals("")) {
-            throw new IllegalArgumentException("Arguments cannot be empty");
-        }
+    public void sendMessage(Food food, String size, MessageObserver observer) {
 
-        try {
-            return this.twilio.sendMessage(food.generateReport(size));
-        } catch (IllegalStateException e) {
-            throw new IllegalArgumentException("Size doesn't exist");
-        }
     }
 }

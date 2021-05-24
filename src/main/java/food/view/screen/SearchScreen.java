@@ -30,13 +30,13 @@ public class SearchScreen extends AbstractScreen {
         this.searchBar = addTextField(40, 80, 440, 10, "Search term");
 
         addButton("Search", 490, 80, 70, 10, event -> {
-            try {
-                List<Food> foods = this.window.getController().search(this.searchBar.getText());
-                setupResultButtons(foods);
-            } catch (Exception e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
-                alert.show();
-            }
+//            try {
+//                List<Food> foods = this.window.getController().search(this.searchBar.getText());
+//                setupResultButtons(foods);
+//            } catch (Exception e) {
+//                Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
+//                alert.show();
+//            }
         });
     }
 

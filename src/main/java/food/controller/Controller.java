@@ -1,9 +1,9 @@
 package food.controller;
 
 import food.model.models.Food;
-import food.model.models.Nutrition;
-
-import java.util.List;
+import food.view.observers.FoodListObserver;
+import food.view.observers.MessageObserver;
+import food.view.observers.NutritionObserver;
 
 /**
  * The base Controller interface.
@@ -12,28 +12,28 @@ import java.util.List;
 public interface Controller {
 
     /**
-     * Searches the input API for food items based on the given search term.
-     * @param term The search term to search on.
-     * @return The list of matching Food objects.
-     * @throws IllegalArgumentException If the search term is empty or null.
+     * Delegates searching for item to Model and passes along the observer.
+     * Updates observer with exception if term is empty or null.
+     * @param term The term to search on.
+     * @param observer The observer the model will update.
      */
-    List<Food> search(String term) throws IllegalArgumentException;
+    void search(String term, FoodListObserver observer);
 
     /**
-     * Returns the Nutrition object associated with the given foodID, based on result from input API.
-     * @param foodID The foodID to search on.
-     * @param measure The url for the measurement unit to search on.
-     * @return The corresponding foodID.
-     * @throws IllegalArgumentException If the id or measure is empty or null.
+     * Delegates retrieving nutrition to the Model and passes along the observer.
+     * Updates observer with exception if food or measure is empty or null.
+     * @param food The food item to retrieve nutritional information for.
+     * @param measure The size to use.
+     * @param observer The observer the model will update.
      */
-    Nutrition getNutrition(String foodID, String measure) throws IllegalArgumentException;
+    void getNutrition(Food food, String measure, NutritionObserver observer);
 
     /**
-     * Sends the Food objects report by SMS, using Twilio.
-     * @param food The Food object to generate a report for.
-     * @param size The size to use for the food.
-     * @return Whether the message is successfully sent.
-     * @throws IllegalArgumentException If the food object or size is missing or invalid.
+     * Delegates sending messages to the Model and passes along the observer.
+     * Updates observer with exception if food or size is empty or null.
+     * @param food The food item to generate the report for.
+     * @param size The size for the nutritional information.
+     * @param observer The observer the model will update.
      */
-    boolean sendMessage(Food food, String size) throws IllegalArgumentException;
+    void sendMessage(Food food, String size, MessageObserver observer);
 }

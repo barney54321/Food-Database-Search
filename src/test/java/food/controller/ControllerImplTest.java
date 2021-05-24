@@ -1,9 +1,13 @@
 package food.controller;
 
+import food.model.ModelFacade;
 import food.model.input.FoodDatabase;
 import food.model.output.Twilio;
 import food.model.models.Food;
 import food.model.models.Nutrition;
+import food.view.observers.FoodListObserver;
+import food.view.observers.MessageObserver;
+import food.view.observers.NutritionObserver;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,146 +21,111 @@ public class ControllerImplTest {
 
     private Controller controller;
 
-    private FoodDatabase foodDatabase;
+    private ModelFacade facade;
 
-    private Twilio twilio;
+    private FoodListObserver foodListObserver;
+    private NutritionObserver nutritionObserver;
+    private MessageObserver messageObserver;
 
     @Before
     public void setUp() {
+        this.facade = mock(ModelFacade.class);
+        this.foodListObserver = mock(FoodListObserver.class);
+        this.nutritionObserver = mock(NutritionObserver.class);
+        this.messageObserver = mock(MessageObserver.class);
 
-        this.foodDatabase = mock(FoodDatabase.class);
-        this.twilio = mock(Twilio.class);
-
-        this.controller = new ControllerImpl(foodDatabase, twilio);
+        this.controller = new ControllerImpl(facade);
     }
 
     @Test
     public void searchNormal() {
-        List<Food> list = new ArrayList<>();
+        controller.search("Apple", foodListObserver);
 
-        list.add(mock(Food.class));
-
-        when(foodDatabase.search("Pizza")).thenReturn(list);
-
-        assertEquals(list, controller.search("Pizza"));
-
-        verify(foodDatabase, times(1)).search("Pizza");
+        verify(facade, times(1)).search("Apple", foodListObserver);
     }
 
     @Test
     public void searchEmpty() {
-        assertThrows(IllegalArgumentException.class, () -> controller.search(""));
-        verify(foodDatabase, never()).search(anyString());
+        controller.search("", foodListObserver);
+
+        verify(facade, times(0)).search("", foodListObserver);
+        verify(foodListObserver, times(1)).update(eq(new Exception()));
     }
 
     @Test
     public void searchNull() {
-        assertThrows(IllegalArgumentException.class, () -> controller.search(null));
-        verify(foodDatabase, never()).search(anyString());
-    }
+        controller.search(null, foodListObserver);
 
-    @Test
-    public void searchEmptyResult() {
-        List<Food> list = new ArrayList<>();
-
-        when(foodDatabase.search("Orange")).thenReturn(list);
-
-        assertEquals(list, controller.search("Orange"));
-
-        verify(foodDatabase, times(1)).search(anyString());
+        verify(facade, times(0)).search(null, foodListObserver);
+        verify(foodListObserver, times(1)).update(eq(new Exception()));
     }
 
     @Test
     public void getNutritionNormal() {
-        Nutrition nutrition = mock(Nutrition.class);
+        Food mock = mock(Food.class);
 
-        when(foodDatabase.getNutrition("1234", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit")).thenReturn(nutrition);
+        when(mock.getID()).thenReturn("1234");
 
-        assertEquals(nutrition, controller.getNutrition("1234", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit"));
+        controller.getNutrition(mock, "size1", nutritionObserver);
 
-        verify(foodDatabase, times(1)).getNutrition("1234", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit");
+        verify(facade, times(1)).getNutrition("1234", "size1", nutritionObserver);
     }
 
     @Test
-    public void getNutritionNullResult() {
-        when(foodDatabase.getNutrition("2345", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit")).thenReturn(null);
+    public void getNutritionNullFood() {
+        controller.getNutrition(null, "size1", nutritionObserver);
 
-        assertNull(controller.getNutrition("2345", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit"));
-
-        verify(foodDatabase, times(1)).getNutrition("2345", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit");
-    }
-
-    @Test
-    public void getNutritionEmptyID() {
-        assertThrows(IllegalArgumentException.class, () -> controller.getNutrition("", "http://www.edamam.com/ontologies/edamam.owl#Measure_unit"));
-
-        verify(foodDatabase, never()).getNutrition(anyString(), anyString());
-    }
-
-    @Test
-    public void getNutritionNullID() {
-        assertThrows(IllegalArgumentException.class, () -> controller.getNutrition(null, "http://www.edamam.com/ontologies/edamam.owl#Measure_unit"));
-
-        verify(foodDatabase, never()).getNutrition(anyString(), anyString());
+        verify(nutritionObserver, times(1)).update(eq(new Exception()));
     }
 
     @Test
     public void getNutritionEmptyMeasure() {
-        assertThrows(IllegalArgumentException.class, () -> controller.getNutrition("1234", ""));
+        Food mock = mock(Food.class);
+        controller.getNutrition(mock, "", nutritionObserver);
 
-        verify(foodDatabase, never()).getNutrition(anyString(), anyString());
+        verify(nutritionObserver, times(1)).update(eq(new Exception()));
     }
 
     @Test
     public void getNutritionNullMeasure() {
-        assertThrows(IllegalArgumentException.class, () -> controller.getNutrition("1234", null));
+        Food mock = mock(Food.class);
+        controller.getNutrition(mock, null, nutritionObserver);
 
-        verify(foodDatabase, never()).getNutrition(anyString(), anyString());
+        verify(nutritionObserver, times(1)).update(eq(new Exception()));
     }
 
     @Test
     public void sendMessageNormal() {
-        Food food = mock(Food.class);
-        when(food.generateReport("size1")).thenReturn("Hello world");
-        when(twilio.sendMessage("Hello world")).thenReturn(true);
+        Food mock = mock(Food.class);
+        when(mock.generateReport("size1")).thenReturn("Hello world");
 
-        assertTrue(controller.sendMessage(food, "size1"));
-        verify(twilio, times(1)).sendMessage("Hello world");
-    }
+        controller.sendMessage(mock, "size1", messageObserver);
 
-    @Test
-    public void sendMessageNormalFail() {
-        Food food = mock(Food.class);
-        when(food.generateReport("size1")).thenReturn("Hello world");
-        when(twilio.sendMessage("Hello world")).thenReturn(false);
-
-        assertFalse(controller.sendMessage(food, "size1"));
-        verify(twilio, times(1)).sendMessage("Hello world");
+        verify(facade, times(1)).sendMessage("Hello world", messageObserver);
     }
 
     @Test
     public void sendMessageNullFood() {
-        assertThrows(IllegalArgumentException.class, () -> controller.sendMessage(null, "size1"));
-        verify(twilio, never()).sendMessage(anyString());
-    }
+        controller.sendMessage(null, "size1", messageObserver);
 
-    @Test
-    public void sendMessageNullSize() {
-        Food food = mock(Food.class);
-        when(food.generateReport("size1")).thenReturn("Hello world");
-        when(twilio.sendMessage("Hello world")).thenReturn(false);
-
-        assertThrows(IllegalArgumentException.class, () -> controller.sendMessage(food, null));
-        verify(twilio, never()).sendMessage(anyString());
+        verify(messageObserver, times(1)).update(eq(new Exception()));
     }
 
     @Test
     public void sendMessageEmptySize() {
-        Food food = mock(Food.class);
-        when(food.generateReport("")).thenThrow(new IllegalStateException());
-        when(twilio.sendMessage("Hello world")).thenReturn(false);
+        Food mock = mock(Food.class);
+        when(mock.generateReport("")).thenReturn("Hello world");
+        controller.sendMessage(mock, "", messageObserver);
 
-        assertThrows(IllegalArgumentException.class, () -> controller.sendMessage(food, ""));
-        verify(twilio, never()).sendMessage(anyString());
+        verify(messageObserver, times(1)).update(eq(new Exception()));
+    }
+
+    @Test
+    public void sendMessageNullSize() {
+        Food mock = mock(Food.class);
+        when(mock.generateReport(null)).thenReturn("Hello world");
+        controller.sendMessage(mock, null, messageObserver);
+
+        verify(messageObserver, times(1)).update(eq(new Exception()));
     }
 }

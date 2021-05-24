@@ -1,6 +1,6 @@
 package food.view.observers;
 
-public interface MessageObserver {
+public interface MessageObserver extends BaseObserver {
 
     void update(boolean messageSuccess);
 }
