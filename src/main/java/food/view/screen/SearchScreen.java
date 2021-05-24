@@ -2,6 +2,7 @@ package food.view.screen;
 
 import food.model.models.Food;
 import food.view.FoodWindow;
+import food.view.observers.FoodListObserver;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -11,14 +12,30 @@ import javafx.scene.text.TextAlignment;
 
 import java.util.List;
 
-public class SearchScreen extends AbstractScreen {
+/**
+ * The Screen where users can search for Food items.
+ */
+public class SearchScreen extends AbstractScreen implements FoodListObserver {
 
+    /**
+     * The number of results shown per page.
+     */
     private static final int RESULTS_PER_PAGE = 10;
 
+    /**
+     * The search bar at the top of the screen.
+     */
     private TextField searchBar;
 
+    /**
+     * The list of results.
+     */
     private Pagination results;
 
+    /**
+     * Creates a new SearchScreen object.
+     * @param window The encompassing window.
+     */
     public SearchScreen(FoodWindow window) {
         super(window);
     }
@@ -30,17 +47,12 @@ public class SearchScreen extends AbstractScreen {
         this.searchBar = addTextField(40, 80, 440, 10, "Search term");
 
         addButton("Search", 490, 80, 70, 10, event -> {
-//            try {
-//                List<Food> foods = this.window.getController().search(this.searchBar.getText());
-//                setupResultButtons(foods);
-//            } catch (Exception e) {
-//                Alert alert = new Alert(Alert.AlertType.ERROR, e.getMessage(), ButtonType.OK);
-//                alert.show();
-//            }
+            this.window.getController().search(this.searchBar.getText(), this);
         });
     }
 
-    private void setupResultButtons(List<Food> foods) {
+    @Override
+    public void update(List<Food> foods) {
         if (this.results != null) {
             this.nodes.remove(this.results);
         }
@@ -79,5 +91,11 @@ public class SearchScreen extends AbstractScreen {
         }
 
         this.window.refresh();
+    }
+
+    @Override
+    public void update(Exception exception) {
+        Alert alert = new Alert(Alert.AlertType.ERROR, exception.getMessage(), ButtonType.OK);
+        alert.show();
     }
 }

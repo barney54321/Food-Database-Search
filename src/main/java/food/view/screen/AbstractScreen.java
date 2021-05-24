@@ -5,8 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -32,14 +30,31 @@ public abstract class AbstractScreen implements Screen {
      */
     protected FoodWindow window;
 
+    /**
+     * Creates a new Abstract Screen object.
+     * @param window The encompassing window.
+     */
     public AbstractScreen(FoodWindow window) {
         this.window = window;
         this.nodes = new ArrayList<>();
         setupNodes();
     }
 
+    /**
+     * Sets up the JavaFX nodes on the screen.
+     */
     protected abstract void setupNodes();
 
+    /**
+     * Creates a Text object and adds it to the Screen.
+     * @param str The text of the object.
+     * @param font The font used for the Text.
+     * @param alignment How the text should be aligned.
+     * @param color The colour of the text.
+     * @param x The x-coordinate.
+     * @param y The y-coordinate.
+     * @return The created Text object.
+     */
     protected Text addText(String str, Font font, TextAlignment alignment, Color color, double x, double y) {
         Text text = new Text();
         text.setText(str);
@@ -52,6 +67,15 @@ public abstract class AbstractScreen implements Screen {
         return text;
     }
 
+    /**
+     * Creates a TextField object the user can type in and adds it to the Screen.
+     * @param x The x-coordinate.
+     * @param y The y-coordinate.
+     * @param width The width of the field.
+     * @param height The height of the field.
+     * @param prompt The prompt within the field.
+     * @return The created TextField.
+     */
     protected TextField addTextField(double x, double y, double width, double height, String prompt) {
         TextField field = new TextField();
         field.setLayoutX(x);
@@ -63,16 +87,16 @@ public abstract class AbstractScreen implements Screen {
         return field;
     }
 
-    protected Label addLabel(String str, Font font, double x, double y) {
-        Label label = new Label();
-        label.setText(str);
-        label.setFont(font);
-        label.setLayoutX(x);
-        label.setLayoutY(y);
-        this.nodes.add(label);
-        return label;
-    }
-
+    /**
+     * Creates a Button and adds it to the Screen.
+     * @param text The button prompt.
+     * @param x The x-coordinate.
+     * @param y The y-coordinate.
+     * @param width The width of the button.
+     * @param height The height of the button.
+     * @param method The event handler for the button.
+     * @return The created Button.
+     */
     protected Button addButton(String text, double x, double y, double width, double height, EventHandler<ActionEvent> method) {
         Button button = new Button();
         button.setText(text);
@@ -83,19 +107,6 @@ public abstract class AbstractScreen implements Screen {
         button.setOnAction(method);
         this.nodes.add(button);
         return button;
-    }
-
-    protected TextArea addReadOnlyTextArea(String text, double x, double y, double width, double height, int rows) {
-        TextArea area = new TextArea();
-        area.setText(text);
-        area.setLayoutX(x);
-        area.setLayoutY(y);
-        area.maxWidth(width);
-        area.maxHeight(height);
-        area.setPrefRowCount(rows);
-        area.setEditable(false);
-        this.nodes.add(area);
-        return area;
     }
 
     @Override
