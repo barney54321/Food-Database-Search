@@ -51,6 +51,8 @@ public class ControllerImpl implements Controller {
             observer.update(new IllegalArgumentException("Food cannot be null"));
         } else if (size == null || size.equals("")) {
             observer.update(new IllegalArgumentException("Size cannot be empty"));
+        } else if (nutrition == null) {
+            observer.update(new IllegalArgumentException("Nutrition cannot be null"));
         } else if (!food.getMeasures().containsKey(size)) {
             System.out.println(food.getMeasures());
             observer.update(new IllegalArgumentException("Invalid size"));
