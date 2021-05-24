@@ -1,4 +1,4 @@
-package food.backend.output;
+package food.model.output;
 
 import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.HttpPost;

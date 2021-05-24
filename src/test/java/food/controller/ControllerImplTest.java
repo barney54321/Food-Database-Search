@@ -1,7 +1,7 @@
 package food.controller;
 
-import food.backend.input.FoodDatabase;
-import food.backend.output.Twilio;
+import food.model.input.FoodDatabase;
+import food.model.output.Twilio;
 import food.model.Food;
 import food.model.Nutrition;
 import org.junit.Before;

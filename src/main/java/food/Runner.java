@@ -1,11 +1,11 @@
 package food;
 
-import food.backend.input.FoodDatabase;
-import food.backend.input.FoodDatabaseOffline;
-import food.backend.input.FoodDatabaseOnline;
-import food.backend.output.Twilio;
-import food.backend.output.TwilioOffline;
-import food.backend.output.TwilioOnline;
+import food.model.input.FoodDatabase;
+import food.model.input.FoodDatabaseOffline;
+import food.model.input.FoodDatabaseOnline;
+import food.model.output.Twilio;
+import food.model.output.TwilioOffline;
+import food.model.output.TwilioOnline;
 import food.controller.Controller;
 import food.controller.ControllerImpl;
 import food.view.FoodWindow;

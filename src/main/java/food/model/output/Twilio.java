@@ -1,4 +1,4 @@
-package food.backend.output;
+package food.model.output;
 
 /**
  * Interface outlining the behaviour of a Twilio object.

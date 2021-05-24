@@ -1,4 +1,4 @@
-package food.backend.input;
+package food.model.input;
 
 import food.model.Food;
 import food.model.FoodImpl;

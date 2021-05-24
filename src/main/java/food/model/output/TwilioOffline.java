@@ -1,4 +1,4 @@
-package food.backend.output;
+package food.model.output;
 
 /**
  * Offline implementation of the Twilio interface.
