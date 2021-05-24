@@ -63,10 +63,6 @@ public class FoodScreen extends AbstractScreen {
             this.window.setScreen(nutritionScreen);
         });
 
-        addButton("Generate\nReport", 500, 90, 90, 50, event -> {
-
-        });
-
         if (this.food != null) {
 
             if (this.food.getImagePath() != null) {

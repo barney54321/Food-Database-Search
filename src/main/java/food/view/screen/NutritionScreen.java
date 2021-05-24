@@ -40,6 +40,15 @@ public class NutritionScreen extends AbstractScreen {
             this.window.setScreen(this.parent);
         });
 
+        addButton("Generate\nReport", 500, 50, 90, 50, event -> {
+            if (this.nutrition == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Select a size", ButtonType.OK);
+                alert.show();
+            } else {
+
+            }
+        });
+
         if (this.food != null) {
             if (this.food.getLabel().length() > 50) {
                 addText(this.food.getLabel().substring(0, 50) + "...", Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 30);
