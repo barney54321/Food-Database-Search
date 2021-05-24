@@ -1,7 +1,6 @@
 package food.view.screen;
 
 import food.model.Food;
-import food.model.Nutrient;
 import food.view.FoodWindow;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
@@ -15,7 +14,6 @@ import javafx.scene.text.TextAlignment;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Map;
 
 public class FoodScreen extends AbstractScreen {
