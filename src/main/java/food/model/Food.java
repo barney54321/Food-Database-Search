@@ -72,4 +72,11 @@ public interface Food {
      * @return The associated nutrition object.
      */
     Nutrition getNutrition(String size);
+
+    /**
+     * Generates a report for the given Food item.
+     * @return The String report to send out via SMS.
+     * @throws IllegalStateException If the item hasn't generated its Nutrition information yet.
+     */
+    String generateReport() throws IllegalStateException;
 }

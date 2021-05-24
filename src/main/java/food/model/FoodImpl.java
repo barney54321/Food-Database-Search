@@ -170,4 +170,9 @@ public class FoodImpl implements Food {
     public Nutrition getNutrition(String size) {
         return this.nutritionMap.computeIfAbsent(size, (str) -> loader.apply(this.id, str));
     }
+
+    @Override
+    public String generateReport() throws IllegalStateException {
+        return null;
+    }
 }
