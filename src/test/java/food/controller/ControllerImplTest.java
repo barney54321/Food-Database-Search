@@ -49,7 +49,7 @@ public class ControllerImplTest {
         controller.search("", foodListObserver);
 
         verify(facade, times(0)).search("", foodListObserver);
-        verify(foodListObserver, times(1)).update(eq(new Exception()));
+        verify(foodListObserver, times(1)).update(any(Exception.class));
     }
 
     @Test
@@ -57,7 +57,7 @@ public class ControllerImplTest {
         controller.search(null, foodListObserver);
 
         verify(facade, times(0)).search(null, foodListObserver);
-        verify(foodListObserver, times(1)).update(eq(new Exception()));
+        verify(foodListObserver, times(1)).update(any(Exception.class));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class ControllerImplTest {
     public void getNutritionNullFood() {
         controller.getNutrition(null, "size1", nutritionObserver);
 
-        verify(nutritionObserver, times(1)).update(eq(new Exception()));
+        verify(nutritionObserver, times(1)).update(any(Exception.class));
     }
 
     @Test
@@ -83,7 +83,7 @@ public class ControllerImplTest {
         Food mock = mock(Food.class);
         controller.getNutrition(mock, "", nutritionObserver);
 
-        verify(nutritionObserver, times(1)).update(eq(new Exception()));
+        verify(nutritionObserver, times(1)).update(any(Exception.class));
     }
 
     @Test
@@ -91,7 +91,7 @@ public class ControllerImplTest {
         Food mock = mock(Food.class);
         controller.getNutrition(mock, null, nutritionObserver);
 
-        verify(nutritionObserver, times(1)).update(eq(new Exception()));
+        verify(nutritionObserver, times(1)).update(any(Exception.class));
     }
 
     @Test
@@ -108,7 +108,7 @@ public class ControllerImplTest {
     public void sendMessageNullFood() {
         controller.sendMessage(null, "size1", messageObserver);
 
-        verify(messageObserver, times(1)).update(eq(new Exception()));
+        verify(messageObserver, times(1)).update(any(Exception.class));
     }
 
     @Test
@@ -117,7 +117,7 @@ public class ControllerImplTest {
         when(mock.generateReport("")).thenReturn("Hello world");
         controller.sendMessage(mock, "", messageObserver);
 
-        verify(messageObserver, times(1)).update(eq(new Exception()));
+        verify(messageObserver, times(1)).update(any(Exception.class));
     }
 
     @Test
@@ -126,6 +126,6 @@ public class ControllerImplTest {
         when(mock.generateReport(null)).thenReturn("Hello world");
         controller.sendMessage(mock, null, messageObserver);
 
-        verify(messageObserver, times(1)).update(eq(new Exception()));
+        verify(messageObserver, times(1)).update(any(Exception.class));
     }
 }
