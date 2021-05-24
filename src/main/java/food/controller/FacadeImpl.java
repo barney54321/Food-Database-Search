@@ -42,6 +42,14 @@ public class FacadeImpl implements Facade {
 
     @Override
     public boolean sendMessage(Food food, String size) throws IllegalArgumentException {
-        return false;
+        if (food == null || size == null || size.equals("")) {
+            throw new IllegalArgumentException("Arguments cannot be empty");
+        }
+
+        try {
+            return this.twilio.sendMessage(food.generateReport(size));
+        } catch (IllegalStateException e) {
+            throw new IllegalArgumentException("Size doesn't exist");
+        }
     }
 }
