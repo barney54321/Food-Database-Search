@@ -45,7 +45,7 @@ public class NutritionScreen extends AbstractScreen {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "Select a size", ButtonType.OK);
                 alert.show();
             } else {
-                boolean result = true;
+                boolean result = this.window.getController().sendMessage(this.food, this.food.getMeasures().get(options.getValue()));
                 if (result) {
                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Message sent", ButtonType.OK);
                     alert.show();
@@ -77,7 +77,7 @@ public class NutritionScreen extends AbstractScreen {
 
             addButton("Search", 320, 50, 100, 10, event -> {
                 String measure = this.food.getMeasures().get(this.options.getValue());
-                this.nutrition = this.window.getController().getNutrition(food.getID(), measure);
+                this.nutrition = food.getNutrition(measure);
                 this.setupNutrition();
                 this.window.refresh();
             });
