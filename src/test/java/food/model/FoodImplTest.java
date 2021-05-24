@@ -125,11 +125,11 @@ public class FoodImplTest {
         expected += "Food ID: food_bn4bryqayjl958auu03k3bxf6ja8\n";
         expected += "Label: Ferrero Rocher Ferrero Eggs, Cocoa\n";
         expected += "Brand: Ferrero Rocher\n";
-        expected += "Servings per container: 0.01\n";
+        expected += "Servings per container: 2.5\n";
         expected += "Size: size1\n";
         expected += "Calories: 100\n";
-        expected += "Diet labes: [Gluten Free]\n";
-        expected += "Health labels: [Halal, Vegetarian]\n\n";
+        expected += "Diet labels: [GLUTEN FREE]\n";
+        expected += "Health labels: [HALAL, VEGETARIAN]\n\n";
         expected += "Nutrients: \n";
         expected += "ENERC_KCAL: 573.0\n";
         expected += "PROCNT: 5.0\n";
