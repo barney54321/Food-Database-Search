@@ -42,6 +42,10 @@ public class FacadeImpl implements Facade {
 
     @Override
     public boolean sendMessage(String message) throws IllegalArgumentException {
-        return false;
+        if (message == null || message.equals("")) {
+            throw new IllegalArgumentException("Message cannot be empty");
+        }
+
+        return this.twilio.sendMessage(message);
     }
 }
