@@ -1,9 +1,9 @@
 package food.model.input;
 
-import food.model.Food;
-import food.model.FoodImpl;
-import food.model.Nutrition;
-import food.model.NutritionImpl;
+import food.model.models.Food;
+import food.model.models.FoodImpl;
+import food.model.models.Nutrition;
+import food.model.models.NutritionImpl;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

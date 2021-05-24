@@ -1,7 +1,7 @@
 package food.model.input;
 
-import food.model.Food;
-import food.model.Nutrition;
+import food.model.models.Food;
+import food.model.models.Nutrition;
 
 import java.util.List;
 

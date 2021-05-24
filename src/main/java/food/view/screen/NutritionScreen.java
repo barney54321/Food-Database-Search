@@ -1,8 +1,8 @@
 package food.view.screen;
 
-import food.model.Food;
-import food.model.Nutrient;
-import food.model.Nutrition;
+import food.model.models.Food;
+import food.model.models.Nutrient;
+import food.model.models.Nutrition;
 import food.view.FoodWindow;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;

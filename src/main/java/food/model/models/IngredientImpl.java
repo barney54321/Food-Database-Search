@@ -1,4 +1,4 @@
-package food.model;
+package food.model.models;
 
 import org.json.simple.JSONObject;
 

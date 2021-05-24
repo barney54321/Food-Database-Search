@@ -1,9 +1,6 @@
-package food.model;
+package food.model.models;
 
 import org.json.simple.JSONObject;
-
-import java.util.List;
-import java.util.Map;
 
 public class NutrientImpl implements Nutrient {
 

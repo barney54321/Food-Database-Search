@@ -1,4 +1,4 @@
-package food.model;
+package food.model.models;
 
 import java.util.Map;
 

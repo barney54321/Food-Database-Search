@@ -1,5 +1,6 @@
 package food.model;
 
+import food.model.models.IngredientImpl;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.junit.Before;
