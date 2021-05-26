@@ -1,6 +1,5 @@
 package food.model;
 
-import food.model.models.Ingredient;
 import food.model.models.Nutrient;
 import food.model.models.Nutrition;
 import food.model.models.NutritionImpl;
@@ -102,19 +101,5 @@ public class NutritionImplTest {
         assertEquals("Fat", fat.getLabel());
         assertEquals(0.37846153846153846, fat.getQuantity(), 0.00001);
         assertEquals("%", fat.getUnit());
-    }
-
-    @Test
-    public void getIngredients() {
-        List<Ingredient> ingredients = nutrition.getIngredients();
-
-        assertEquals(1, ingredients.size());
-
-        Ingredient hazelnut = ingredients.get(0);
-
-        assertEquals(1.0, hazelnut.getQuantity(), 0.01);
-        assertEquals("whole", hazelnut.getMeasure());
-        assertEquals("Ferrero Rocher Hazelnut Chocolate", hazelnut.getFood());
-        assertEquals("food_al1do7ybtx5mz5b85twtradho1lj", hazelnut.getFoodID());
     }
 }

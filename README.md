@@ -19,10 +19,6 @@ SID: 480394196
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/7c51b3eaec322e88e10baac2075cde650e3af15c
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/a87c6a33237cec16bd2395b8e3bccc6a96649a5f
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/ef27d3bd9b6b0de1544b6a779807798ced72eb6b
-* Ingredient
-    * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/24fad954f287c716eecec2947e7e690cc64a921f
-    * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/8ebf54a5311e505f3ac570d4ed14961dc3d36e4a
-    * **REFACTOR**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/79001e9ce30646a2393a67dc2ce0a34b51ad234f
 * Nutrient
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/9ca2a2037ba899ed7f48b8ff513c3ce7e9ea2500
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/1fec3f053597b5747e7a32c978fb099fe8642024

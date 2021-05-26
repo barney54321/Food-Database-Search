@@ -54,11 +54,6 @@ public class NutritionImpl implements Nutrition {
     private Map<String, Nutrient> totalDaily;
 
     /**
-     * The list of ingredients present in the food item.
-     */
-    private List<Ingredient> ingredients;
-
-    /**
      * Creates a Nutrient object.
      * @param json The JSONObject to base the Nutrition off of.
      */
@@ -108,20 +103,6 @@ public class NutritionImpl implements Nutrition {
             String nut = (String) o;
             totalDaily.put(nut, new NutrientImpl((JSONObject) daily.get(nut)));
         }
-
-        this.ingredients = new ArrayList<>();
-
-        JSONArray ingredients = (JSONArray) json.get("ingredients");
-
-        if (ingredients.size() > 0) {
-            JSONObject ingredient = (JSONObject) ingredients.get(0);
-
-            JSONArray parsed = (JSONArray) ingredient.get("parsed");
-
-            for (Object o : parsed) {
-                this.ingredients.add(new IngredientImpl((JSONObject) o));
-            }
-        }
     }
 
     @Override
@@ -162,10 +143,5 @@ public class NutritionImpl implements Nutrition {
     @Override
     public Map<String, Nutrient> getTotalDaily() {
         return this.totalDaily;
-    }
-
-    @Override
-    public List<Ingredient> getIngredients() {
-        return this.ingredients;
     }
 }
