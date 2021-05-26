@@ -9,12 +9,6 @@ import java.util.Map;
 public interface Nutrition {
 
     /**
-     * Returns the URL for the item.
-     * @return The URL.
-     */
-    String getURI();
-
-    /**
      * Returns the number of calories in the item.
      * @return The number of calories.
      */

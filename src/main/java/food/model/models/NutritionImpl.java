@@ -14,11 +14,6 @@ import java.util.Map;
 public class NutritionImpl implements Nutrition {
 
     /**
-     * THe Ontology identifier.
-     */
-    private String url;
-
-    /**
      * The total energy in kcal.
      */
     private Integer calories;
@@ -58,7 +53,6 @@ public class NutritionImpl implements Nutrition {
      * @param json The JSONObject to base the Nutrition off of.
      */
     public NutritionImpl(JSONObject json) {
-        this.url = (String) json.get("uri");
         this.calories = ((Long) json.get("calories")).intValue();
         this.totalWeight = (Double) json.get("totalWeight");
 
@@ -103,11 +97,6 @@ public class NutritionImpl implements Nutrition {
             String nut = (String) o;
             totalDaily.put(nut, new NutrientImpl((JSONObject) daily.get(nut)));
         }
-    }
-
-    @Override
-    public String getURI() {
-        return this.url;
     }
 
     @Override

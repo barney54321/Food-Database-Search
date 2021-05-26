@@ -31,11 +31,6 @@ public class NutritionImplTest {
     }
 
     @Test
-    public void getURI() {
-        assertEquals("http://www.edamam.com/ontologies/edamam.owl#c7b90d7e-cfd8-4eab-9717-a8a2fff9acd1", nutrition.getURI());
-    }
-
-    @Test
     public void getCalories() {
         assertEquals((Integer) 10, nutrition.getCalories());
     }
