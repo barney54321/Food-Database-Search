@@ -2,11 +2,9 @@ package food;
 
 import food.model.ModelFacade;
 import food.model.ModelFacadeImpl;
-import food.model.cache.Database;
-import food.model.cache.DatabaseImpl;
-import food.model.input.FoodDatabase;
-import food.model.input.FoodDatabaseOffline;
-import food.model.input.FoodDatabaseOnline;
+import food.model.input.*;
+import food.model.input.cache.Database;
+import food.model.input.cache.DatabaseImpl;
 import food.model.output.Twilio;
 import food.model.output.TwilioOffline;
 import food.model.output.TwilioOnline;
@@ -85,7 +83,8 @@ public class Runner extends Application {
         if (Runner.mode.equals("online")) {
             String appID = Runner.credentials.get("food-id");
             String appKey = Runner.credentials.get("food-key");
-            FoodDatabase online = new FoodDatabaseOnline(appID, appKey);
+            FoodStrategy online = new FoodDatabaseOnline(appID, appKey);
+            FoodAPI api = new FoodAPIImpl(database, online);
 
             String twilioSID = Runner.credentials.get("twilio-sid");
             String twilioKey = Runner.credentials.get("twilio-token");
@@ -93,16 +92,18 @@ public class Runner extends Application {
             String twilioFrom = Runner.credentials.get("twilio-phone-from");
             Twilio twilio = new TwilioOnline(twilioSID, twilioKey, twilioFrom, twilioTo);
 
-            ModelFacade facade = new ModelFacadeImpl(online, twilio);
+            ModelFacade facade = new ModelFacadeImpl(api, twilio);
 
             Controller controller = new ControllerImpl(facade);
             this.window = new FoodWindowImpl(controller);
         } else if (Runner.mode.equals("offline")) {
 
-            FoodDatabase offline = new FoodDatabaseOffline();
+            FoodStrategy offline = new FoodDatabaseOffline();
+            FoodAPI api = new FoodAPIImpl(database, offline);
+
             Twilio twilio = new TwilioOffline();
 
-            ModelFacade facade = new ModelFacadeImpl(offline, twilio);
+            ModelFacade facade = new ModelFacadeImpl(api, twilio);
 
             Controller controller = new ControllerImpl(facade);
             this.window = new FoodWindowImpl(controller);

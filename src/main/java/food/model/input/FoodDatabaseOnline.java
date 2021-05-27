@@ -24,7 +24,7 @@ import java.util.Scanner;
 /**
  * Online extension of FoodDatabase template.
  */
-public class FoodDatabaseOnline extends FoodDatabaseTemplate {
+public class FoodDatabaseOnline implements FoodStrategy {
 
     /**
      * The HtppClient used for connections.

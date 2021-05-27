@@ -19,7 +19,7 @@ import java.util.Scanner;
  * Offline extension of FoodDatabase template.
  * Note that search only works with "Hawaiian Pizza".
  */
-public class FoodDatabaseOffline extends FoodDatabaseTemplate {
+public class FoodDatabaseOffline implements FoodStrategy {
     @Override
     public String searchFood(String term) {
         try {

@@ -1,6 +1,7 @@
 package food.model;
 
-import food.model.input.FoodDatabase;
+import food.model.input.FoodAPI;
+import food.model.input.FoodStrategy;
 import food.model.models.Food;
 import food.model.models.Nutrition;
 import food.model.output.Twilio;
@@ -13,14 +14,13 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class ModelFacadeImplTest {
 
     private ModelFacade facade;
 
-    private FoodDatabase database;
+    private FoodAPI database;
     private Twilio twilio;
 
     private FoodListObserver list;
@@ -30,7 +30,7 @@ public class ModelFacadeImplTest {
     @Before
     public void setUp() {
         this.twilio = mock(Twilio.class);
-        this.database = mock(FoodDatabase.class);
+        this.database = mock(FoodAPI.class);
 
         this.list = mock(FoodListObserver.class);
         this.nutrition = mock(NutritionObserver.class);
