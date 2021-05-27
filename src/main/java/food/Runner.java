@@ -2,6 +2,8 @@ package food;
 
 import food.model.ModelFacade;
 import food.model.ModelFacadeImpl;
+import food.model.cache.Database;
+import food.model.cache.DatabaseImpl;
 import food.model.input.FoodDatabase;
 import food.model.input.FoodDatabaseOffline;
 import food.model.input.FoodDatabaseOnline;
@@ -45,10 +47,26 @@ public class Runner extends Application {
     private static Map<String, String> credentials;
 
     /**
+     * The database used for caching.
+     * Needs to be initialised here so that program can be stopped if caching not possible.
+     */
+    private static Database database;
+
+    /**
      * Runs the program.
      * @param args Command line arguments.
      */
     public static void main(String[] args) {
+
+        database = new DatabaseImpl();
+
+        try {
+            database.setup();
+        } catch (IllegalStateException e) {
+            System.err.println("Database unable to be connected to");
+            return;
+        }
+
         Runner.credentials = credentialsParser("credentials.json");
 
         if (Runner.credentials == null) {
@@ -95,6 +113,11 @@ public class Runner extends Application {
         primaryStage.setTitle("Food Database");
         primaryStage.setScene(this.window.getScene());
         primaryStage.show();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        database.close();
     }
 
     /**

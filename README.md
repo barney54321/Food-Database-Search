@@ -90,6 +90,7 @@ conditions or dealing with resource contention.
 
 ## References
 * Placeholder image: https://socialistmodernism.com/placeholder-image/
+* SQLite-JDBC usage inspired by: https://github.com/xerial/sqlite-jdbc#usage
 
 ## Style
 The code abides by the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).
