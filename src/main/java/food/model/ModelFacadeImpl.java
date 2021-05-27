@@ -38,16 +38,16 @@ public class ModelFacadeImpl implements ModelFacade {
 
     @Override
     public void search(String term, FoodListObserver observer) {
-        List<Food> list = database.search(term);
-
-        observer.update(list);
+//        List<Food> list = database.search(term);
+//
+//        observer.update(list);
     }
 
     @Override
     public void getNutrition(String foodID, String measure, NutritionObserver observer) {
-        Nutrition nutrition = database.getNutrition(foodID, measure);
-
-        observer.update(nutrition);
+//        Nutrition nutrition = database.getNutrition(foodID, measure);
+//
+//        observer.update(nutrition);
     }
 
     @Override
