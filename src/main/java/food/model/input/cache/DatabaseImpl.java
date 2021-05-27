@@ -1,6 +1,9 @@
 package food.model.input.cache;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Inspired by https://github.com/xerial/sqlite-jdbc#usage
@@ -45,16 +48,6 @@ public class DatabaseImpl implements Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void executeUpdate(String update) throws SQLException {
-        statement.executeUpdate(update);
-    }
-
-    @Override
-    public ResultSet executeQuery(String query) throws SQLException {
-        return statement.executeQuery(query);
     }
 
     @Override
