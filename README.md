@@ -49,6 +49,7 @@ SID: 480394196
 * Replace the value for "twilio-token" with the Twilio Application Token
 * Replace the value for "twilio-phone-from" with the Twilio source phone number
 * Replace the value for "twilio-phone-to" with your mobile number including country code (e.g. +61123456789)
+* Download SQLite, following [this tutorial or similar](https://www.tutorialspoint.com/sqlite/sqlite_installation.htm)
     
 ## How to Run
 * Use command `gradle run --args="offline"` to run in Offline mode
