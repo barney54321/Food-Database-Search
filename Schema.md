@@ -7,7 +7,7 @@
 * food: TEXT
 * measure: TEXT
 * quantity: INTEGER
-* id: COMPOSITE(foodID, measure, quantity)
+* id: COMPOSITE(foodID, measure)
 * response: TEXT
 
 ## Creation Code
@@ -20,8 +20,7 @@ CREATE TABLE IF NOT EXISTS Search (
 CREATE TABLE IF NOT EXISTS Nutrition (
     food TEXT NOT NULL,
     measure TEXT NOT NULL,
-    quantity INTEGER NOT NULL,
     response TEXT,
-    PRIMARY KEY(food, measure, quantity)
+    PRIMARY KEY(food, measure)
 );
 ```
