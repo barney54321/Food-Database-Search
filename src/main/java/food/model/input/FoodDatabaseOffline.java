@@ -21,16 +21,8 @@ import java.util.Scanner;
  */
 public class FoodDatabaseOffline extends FoodDatabaseTemplate {
     @Override
-    public List<Food> searchFood(String term) {
-
-        List<Food> res = new ArrayList<>();
-
-        if (!term.equalsIgnoreCase("hawaiian pizza")) {
-            return res;
-        }
-
+    public String searchFood(String term) {
         try {
-
             FileReader reader = new FileReader("src/main/resources/hawaiian_pizza.json");
 
             Scanner sc = new Scanner(reader);
@@ -41,25 +33,14 @@ public class FoodDatabaseOffline extends FoodDatabaseTemplate {
                 out += sc.nextLine();
             }
 
-            JSONObject json = (JSONObject) new JSONParser().parse(out);
-
-            JSONArray results = (JSONArray) json.get("hints");
-
-            for (Object o : results) {
-                res.add(new FoodImpl((JSONObject) o, (foodID, size) -> this.getNutrition(foodID, "http://www.edamam.com/ontologies/edamam.owl#Measure_unit")));
-            }
-
-            return res;
-
+            return out;
         } catch (IOException e) {
-            return null;
-        } catch (ParseException e) {
             return null;
         }
     }
 
     @Override
-    public Nutrition searchNutrition(String foodID, String measure) {
+    public String searchNutrition(String foodID, String measure) {
         try {
             FileReader reader = new FileReader("src/main/resources/hawaiian_nutrition.json");
 
@@ -71,13 +52,9 @@ public class FoodDatabaseOffline extends FoodDatabaseTemplate {
                 out += sc.nextLine();
             }
 
-            JSONObject json = (JSONObject) new JSONParser().parse(out);
-
-            return new NutritionImpl(json);
+            return out;
 
         } catch (IOException e) {
-            return null;
-        } catch (ParseException e) {
             return null;
         }
     }

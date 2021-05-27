@@ -53,7 +53,7 @@ public class FoodDatabaseOnline extends FoodDatabaseTemplate {
     }
 
     @Override
-    public List<Food> searchFood(String term) {
+    public String searchFood(String term) {
         try {
             term = term.replace(" ", "%20");
 
@@ -65,21 +65,8 @@ public class FoodDatabaseOnline extends FoodDatabaseTemplate {
 
             String out = readInputStream(stream);
 
-            JSONObject json = (JSONObject) new JSONParser().parse(out);
-
-            JSONArray results = (JSONArray) json.get("hints");
-
-            List<Food> res = new ArrayList<>();
-
-            for (Object o : results) {
-                res.add(new FoodImpl((JSONObject) o, (foodID, size) -> this.getNutrition(foodID, size)));
-            }
-
-            return res;
-
+            return out;
         } catch (IOException e) {
-            return null;
-        } catch (ParseException e) {
             return null;
         }
     }
@@ -102,9 +89,8 @@ public class FoodDatabaseOnline extends FoodDatabaseTemplate {
     }
 
     @Override
-    public Nutrition searchNutrition(String foodID, String measure) {
+    public String searchNutrition(String foodID, String measure) {
         try {
-
             CloseableHttpClient client = HttpClients.createDefault();
 
             String body = "{\"ingredients\": [{\"quantity\": 1, \"measureURI\": \"" + measure + "\", \"foodId\": \"" + foodID + "\"}]}";
@@ -120,14 +106,11 @@ public class FoodDatabaseOnline extends FoodDatabaseTemplate {
 
             String out = readInputStream(stream);
 
-            Nutrition nutrition = new NutritionImpl((JSONObject) new JSONParser().parse(out));
-
             client.close();
 
-            return nutrition;
+            return out;
         } catch (IOException e) {
-            return null;
-        } catch (ParseException e) {
+            e.printStackTrace();
             return null;
         }
     }
