@@ -1,8 +1,6 @@
 package food.controller;
 
 import food.model.ModelFacade;
-import food.model.input.FoodDatabase;
-import food.model.output.Twilio;
 import food.model.models.Food;
 import food.model.models.Nutrition;
 import food.view.observers.FoodListObserver;
@@ -11,11 +9,8 @@ import food.view.observers.NutritionObserver;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 public class ControllerImplTest {

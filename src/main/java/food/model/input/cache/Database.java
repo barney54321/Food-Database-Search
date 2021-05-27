@@ -1,4 +1,4 @@
-package food.model.cache;
+package food.model.input.cache;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
