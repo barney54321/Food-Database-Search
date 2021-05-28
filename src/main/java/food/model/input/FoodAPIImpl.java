@@ -30,16 +30,18 @@ public class FoodAPIImpl implements FoodAPI {
 
         String response = null;
 
-        // Try searching database
-        term = term.toLowerCase();
-        String query = "select response from Search where term like '%" + term + "%'";
+        if (useCache) {
+            // Try searching database
+            term = term.toLowerCase();
+            String query = "select response from Search where term like '%" + term + "%'";
 
-        try {
-            ResultSet set = this.cache.executeQuery(query);
-            response = set.getString("response");
-        } catch (SQLException e) {
-            // Nothing
-            System.out.println(e);
+            try {
+                ResultSet set = this.cache.executeQuery(query);
+                response = set.getString("response");
+            } catch (SQLException e) {
+                // Nothing
+                System.out.println(e);
+            }
         }
 
         if (response == null) {

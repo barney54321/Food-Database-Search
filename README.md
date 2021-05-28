@@ -49,6 +49,8 @@ SID: 480394196
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/a0e075d64216d2d6045d40844b928e2455dbb8db
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/2e61dc4ed169f173067b878cee10cd1ab9cb0fbb
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/edb4ac401a9e6ed618bd87e1cd5f73bca9cb83c2
+    * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/012129a3537e83794d41a2c2630a13a0af2f5651
+    * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/b4b365ba9319e609ab2db6c8229afa3cb48bdced
     
 ## Setup
 * Copy *credentials.json.example* and name the copy *credentials.json*
