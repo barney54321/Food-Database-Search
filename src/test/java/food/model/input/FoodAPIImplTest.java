@@ -78,7 +78,7 @@ public class FoodAPIImplTest {
 
     @Test
     public void searchCacheSuccess() throws SQLException {
-        String query = "select response from Search where term lke '%hawaiian pizza%'";
+        String query = "select response from Search where term like '%hawaiian pizza%'";
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(hawaiianSuccess);
@@ -97,7 +97,7 @@ public class FoodAPIImplTest {
 
     @Test
     public void searchAPISuccess() throws SQLException {
-        String query = "select response from Search where term lke '%hawaiian pizza%'";
+        String query = "select response from Search where term like '%hawaiian pizza%'";
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(null);
@@ -119,7 +119,7 @@ public class FoodAPIImplTest {
 
     @Test
     public void getNutritionDatabaseSuccess() throws SQLException {
-        String query = "select response from Nutrition where food lke '%food_id_1%' and measure like '%measure%'";
+        String query = "select response from Nutrition where food like '%food_id_1%' and measure like '%measure%'";
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(nutritionSuccess);
