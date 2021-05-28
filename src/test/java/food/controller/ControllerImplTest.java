@@ -34,25 +34,32 @@ public class ControllerImplTest {
     }
 
     @Test
-    public void searchNormal() {
-        controller.search("Apple", foodListObserver);
+    public void searchNormalTrue() {
+        controller.search("Apple", true, foodListObserver);
 
-        verify(facade, times(1)).search("Apple", foodListObserver);
+        verify(facade, times(1)).search("Apple", true, foodListObserver);
+    }
+
+    @Test
+    public void searchNormalFalse() {
+        controller.search("Apple", false, foodListObserver);
+
+        verify(facade, times(1)).search("Apple", false, foodListObserver);
     }
 
     @Test
     public void searchEmpty() {
-        controller.search("", foodListObserver);
+        controller.search("", true, foodListObserver);
 
-        verify(facade, times(0)).search("", foodListObserver);
+        verify(facade, times(0)).search("", true, foodListObserver);
         verify(foodListObserver, times(1)).update(any(Exception.class));
     }
 
     @Test
     public void searchNull() {
-        controller.search(null, foodListObserver);
+        controller.search(null, true, foodListObserver);
 
-        verify(facade, times(0)).search(null, foodListObserver);
+        verify(facade, times(0)).search(null, true, foodListObserver);
         verify(foodListObserver, times(1)).update(any(Exception.class));
     }
 

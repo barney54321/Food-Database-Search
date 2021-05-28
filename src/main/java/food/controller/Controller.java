@@ -16,9 +16,10 @@ public interface Controller {
      * Delegates searching for item to Model and passes along the observer.
      * Updates observer with exception if term is empty or null.
      * @param term The term to search on.
+     * @param useCache Whether to use cached data.
      * @param observer The observer the model will update.
      */
-    void search(String term, FoodListObserver observer);
+    void search(String term, boolean useCache, FoodListObserver observer);
 
     /**
      * Delegates retrieving nutrition to the Model and passes along the observer.

@@ -12,9 +12,10 @@ public interface ModelFacade {
     /**
      * Searches for matching food items and updates the observer.
      * @param term The term to search on.
+     * @param useCache Whether to use cached data.
      * @param observer The observer to update.
      */
-    void search(String term, FoodListObserver observer);
+    void search(String term, boolean useCache, FoodListObserver observer);
 
     /**
      * Retrieves the nutritional information for the given food item and updates the observer.

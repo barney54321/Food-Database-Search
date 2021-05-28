@@ -47,7 +47,7 @@ public class ModelFacadeImplTest {
 
         when(database.search("Apple")).thenReturn(Arrays.asList(food1, food2, food3));
 
-        facade.search("Apple", list);
+        facade.search("Apple", true, list);
 
         verify(list, times(1)).update(eq(Arrays.asList(food1, food2, food3)));
     }
@@ -56,7 +56,7 @@ public class ModelFacadeImplTest {
     public void searchEmpty() {
         when(database.search("Apple")).thenReturn(new ArrayList<Food>());
 
-        facade.search("Apple", list);
+        facade.search("Apple", true, list);
 
         verify(list, times(1)).update(eq(new ArrayList<Food>()));
     }

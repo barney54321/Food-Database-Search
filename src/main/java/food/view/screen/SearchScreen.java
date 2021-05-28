@@ -52,7 +52,7 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
         this.searchBar = addTextField(40, 60, 440, 10, "Search term");
 
         addButton("Search", 490, 60, 70, 10, event -> {
-            this.window.getController().search(this.searchBar.getText(), this);
+            this.window.getController().search(this.searchBar.getText(), this.checkbox.isSelected(), this);
         });
 
         this.checkbox = new CheckBox("Use cache if possible");

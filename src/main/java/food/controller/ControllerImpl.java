@@ -26,11 +26,11 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void search(String term, FoodListObserver observer) {
+    public void search(String term, boolean useCache, FoodListObserver observer) {
         if (term == null || term.equals("")) {
             observer.update(new IllegalArgumentException("Search term cannot be empty"));
         } else {
-            this.facade.search(term, observer);
+            this.facade.search(term, true, observer);
         }
     }
 
