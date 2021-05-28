@@ -38,7 +38,7 @@ public class FoodImplTest {
 
         when(function.apply(anyString(), anyString())).thenReturn(this.nutrition);
 
-        this.food = new FoodImpl(json, function);
+        this.food = new FoodImpl(json);
     }
 
     @Test

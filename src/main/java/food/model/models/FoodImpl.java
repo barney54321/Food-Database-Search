@@ -64,16 +64,10 @@ public class FoodImpl implements Food {
     private Map<String, String> measures;
 
     /**
-     * The method for loading in the associated Nutrition object.
-     */
-    private BiFunction<String, String, Nutrition> loader;
-
-    /**
      * Creates a new FoodImpl object based on the provided JSONObject.
      * @param json The JSONObject to base the Food item off of.
-     * @param loader How to retrieve the lazy loaded attributes.
      */
-    public FoodImpl(JSONObject json, BiFunction<String, String, Nutrition> loader) {
+    public FoodImpl(JSONObject json) {
         JSONObject food = (JSONObject) json.get("food");
 
         this.id = (String) food.get("foodId");
@@ -103,8 +97,6 @@ public class FoodImpl implements Food {
             JSONObject measure = (JSONObject) o;
             this.measures.put((String) measure.get("label"), (String) measure.get("uri"));
         }
-
-        this.loader = loader;
     }
 
     @Override
