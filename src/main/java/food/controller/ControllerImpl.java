@@ -41,7 +41,7 @@ public class ControllerImpl implements Controller {
         } else if (measure == null || measure.equals("")) {
             observer.update(new IllegalArgumentException("Measure cannot be empty"));
         } else {
-            this.facade.getNutrition(food.getID(), measure, true, observer);
+            this.facade.getNutrition(food.getID(), measure, useCache, observer);
         }
     }
 
