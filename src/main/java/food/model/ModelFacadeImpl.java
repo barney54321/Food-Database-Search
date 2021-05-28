@@ -10,6 +10,7 @@ import food.view.observers.MessageObserver;
 import food.view.observers.NutritionObserver;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Concrete implementation of the ModelFacade class.
@@ -45,9 +46,13 @@ public class ModelFacadeImpl implements ModelFacade {
 
     @Override
     public void getNutrition(String foodID, String measure, boolean useCache, NutritionObserver observer) {
-        Nutrition nutrition = database.getNutrition(foodID, measure, true);
+        Nutrition nutrition = database.getNutrition(foodID, measure, useCache);
 
-        observer.update(nutrition);
+        if (nutrition == null) {
+            observer.update(new NoSuchElementException("No matching nutrition object"));
+        } else {
+            observer.update(nutrition);
+        }
     }
 
     @Override
