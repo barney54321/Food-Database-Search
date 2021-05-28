@@ -165,7 +165,7 @@ public class FoodAPIImplTest {
     }
 
     @Test
-    public void getNutritionDatabaseSuccess() throws SQLException {
+    public void getNutritionDatabaseSuccessTrue() throws SQLException {
         String query = "select response from Nutrition where food like '%food_id_1%' and measure like '%measure%'";
 
         ResultSet set = mock(ResultSet.class);
@@ -181,10 +181,13 @@ public class FoodAPIImplTest {
         assertEquals(sampleNutrition.getDietLabels(), nut.getDietLabels());
         assertEquals(sampleNutrition.getHealthLabels(), nut.getHealthLabels());
         assertEquals(sampleNutrition.getCautions(), nut.getCautions());
+
+        verify(cache, times(1)).executeQuery(query);
+        verify(strategy, never()).searchNutrition(anyString(), anyString());
     }
 
     @Test
-    public void getNutritionAPISuccess() throws SQLException {
+    public void getNutritionAPISuccessTrue() throws SQLException {
         String query = "select response from Nutrition where food lke '%food_id_1%' and measure like '%measure%'";
 
         ResultSet set = mock(ResultSet.class);
@@ -203,5 +206,33 @@ public class FoodAPIImplTest {
 
         String update = "insert into Nutrition values('food_id_1', 'measure', '" + nutritionSuccess + "')";
         verify(cache, times(1)).executeUpdate(update);
+
+        verify(cache, times(1)).executeQuery(query);
+        verify(strategy, never()).searchNutrition(anyString(), anyString());
+    }
+
+    @Test
+    public void getNutritionAPISuccessFalse() throws SQLException {
+        String query = "select response from Nutrition where food lke '%food_id_1%' and measure like '%measure%'";
+
+        ResultSet set = mock(ResultSet.class);
+        when(set.getString("response")).thenReturn(null);
+
+        when(cache.executeQuery(query)).thenReturn(set);
+        when(strategy.searchNutrition(anyString(), anyString())).thenReturn(nutritionSuccess);
+
+        Nutrition nut = api.getNutrition("food_id_1", "measure", false);
+
+        assertEquals(sampleNutrition.getCalories(), nut.getCalories());
+        assertEquals(sampleNutrition.getTotalWeight(), nut.getTotalWeight(), 0.01);
+        assertEquals(sampleNutrition.getDietLabels(), nut.getDietLabels());
+        assertEquals(sampleNutrition.getHealthLabels(), nut.getHealthLabels());
+        assertEquals(sampleNutrition.getCautions(), nut.getCautions());
+
+        String update = "insert into Nutrition values('food_id_1', 'measure', '" + nutritionSuccess + "')";
+        verify(cache, times(1)).executeUpdate(update);
+
+        verify(cache, never()).executeQuery(query);
+        verify(strategy, times(1)).searchNutrition(anyString(), anyString());
     }
 }
