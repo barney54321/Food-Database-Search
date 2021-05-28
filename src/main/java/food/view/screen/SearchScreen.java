@@ -28,6 +28,11 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
     private TextField searchBar;
 
     /**
+     * The checkbox for selecting whether cache should be used.
+     */
+    private CheckBox checkbox;
+
+    /**
      * The list of results.
      */
     private Pagination results;
@@ -42,13 +47,19 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
 
     @Override
     protected void setupNodes() {
-        addText("Food Database", Font.font(30), TextAlignment.LEFT, Color.BLACK, 200, 50);
+        addText("Food Database", Font.font(30), TextAlignment.LEFT, Color.BLACK, 200, 40);
 
-        this.searchBar = addTextField(40, 80, 440, 10, "Search term");
+        this.searchBar = addTextField(40, 60, 440, 10, "Search term");
 
-        addButton("Search", 490, 80, 70, 10, event -> {
+        addButton("Search", 490, 60, 70, 10, event -> {
             this.window.getController().search(this.searchBar.getText(), this);
         });
+
+        this.checkbox = new CheckBox("Use cache if possible");
+        this.checkbox.setLayoutX(40);
+        this.checkbox.setLayoutY(90);
+        this.checkbox.setSelected(true);
+        this.nodes.add(this.checkbox);
     }
 
     @Override
