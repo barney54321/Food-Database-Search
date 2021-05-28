@@ -40,7 +40,6 @@ public class FoodAPIImpl implements FoodAPI {
                 response = set.getString("response");
             } catch (SQLException e) {
                 // Nothing
-                System.out.println(e);
             }
         }
 
@@ -50,7 +49,8 @@ public class FoodAPIImpl implements FoodAPI {
 
             try {
                 if (response != null) {
-                    String update = "insert into Search values('" + term + "', '" + response + "')";
+                    response = response.replace("'", "");
+                    String update = "insert into Search (term, response) values('" + term + "', '" + response + "')";
                     this.cache.executeUpdate(update);
                 }
             } catch (SQLException e) {

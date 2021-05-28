@@ -39,8 +39,8 @@ public class DatabaseImpl implements Database {
                     "    PRIMARY KEY(food, measure)\n" +
                     ")";
 
-            statement.executeUpdate(createSearch);
-            statement.executeUpdate(createNutrition);
+            connection.createStatement().executeUpdate(createSearch);
+            connection.createStatement().executeUpdate(createNutrition);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -49,12 +49,12 @@ public class DatabaseImpl implements Database {
 
     @Override
     public void executeUpdate(String update) throws SQLException {
-        statement.executeUpdate(update);
+        connection.createStatement().executeUpdate(update);
     }
 
     @Override
     public ResultSet executeQuery(String query) throws SQLException {
-        return statement.executeQuery(query);
+        return connection.createStatement().executeQuery(query);
     }
 
     @Override
