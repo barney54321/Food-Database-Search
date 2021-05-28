@@ -17,9 +17,10 @@ public interface FoodAPI {
     /**
      * Searches the database based on the given search term.
      * @param term The search term to search on.
+     * @param useCache Whether cached data should be used.
      * @return The list of matching Food objects.
      */
-    List<Food> search(String term);
+    List<Food> search(String term, boolean useCache);
 
     /**
      * Returns the Nutrition object associated with the given foodID.

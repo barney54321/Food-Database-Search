@@ -40,12 +40,12 @@ public class ModelFacadeImplTest {
     }
 
     @Test
-    public void search() {
+    public void searchTrue() {
         Food food1 = mock(Food.class);
         Food food2 = mock(Food.class);
         Food food3 = mock(Food.class);
 
-        when(database.search("Apple")).thenReturn(Arrays.asList(food1, food2, food3));
+        when(database.search("Apple", true)).thenReturn(Arrays.asList(food1, food2, food3));
 
         facade.search("Apple", true, list);
 
@@ -53,8 +53,30 @@ public class ModelFacadeImplTest {
     }
 
     @Test
-    public void searchEmpty() {
-        when(database.search("Apple")).thenReturn(new ArrayList<Food>());
+    public void searchFalse() {
+        Food food1 = mock(Food.class);
+        Food food2 = mock(Food.class);
+        Food food3 = mock(Food.class);
+
+        when(database.search("Apple", false)).thenReturn(Arrays.asList(food1, food2, food3));
+
+        facade.search("Apple", false, list);
+
+        verify(list, times(1)).update(eq(Arrays.asList(food1, food2, food3)));
+    }
+
+    @Test
+    public void searchEmptyTrue() {
+        when(database.search("Apple", true)).thenReturn(new ArrayList<Food>());
+
+        facade.search("Apple", true, list);
+
+        verify(list, times(1)).update(eq(new ArrayList<Food>()));
+    }
+
+    @Test
+    public void searchEmptyFalse() {
+        when(database.search("Apple", false)).thenReturn(new ArrayList<Food>());
 
         facade.search("Apple", true, list);
 

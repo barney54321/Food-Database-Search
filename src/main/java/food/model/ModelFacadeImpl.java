@@ -38,7 +38,7 @@ public class ModelFacadeImpl implements ModelFacade {
 
     @Override
     public void search(String term, boolean useCache, FoodListObserver observer) {
-        List<Food> list = database.search(term);
+        List<Food> list = database.search(term, true);
 
         observer.update(list);
     }

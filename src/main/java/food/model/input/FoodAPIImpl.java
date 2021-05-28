@@ -26,7 +26,7 @@ public class FoodAPIImpl implements FoodAPI {
     }
 
     @Override
-    public List<Food> search(String term) {
+    public List<Food> search(String term, boolean useCache) {
 
         String response = null;
 

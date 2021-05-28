@@ -86,7 +86,7 @@ public class FoodAPIImplTest {
         when(cache.executeQuery(query)).thenReturn(set);
         when(strategy.searchFood("hawaiian pizza")).thenReturn(null);
 
-        List<Food> res = api.search("hawaiian pizza");
+        List<Food> res = api.search("hawaiian pizza", true);
 
         assertEquals(20, res.size());
 
@@ -105,7 +105,7 @@ public class FoodAPIImplTest {
         when(cache.executeQuery(query)).thenReturn(set);
         when(strategy.searchFood("hawaiian pizza")).thenReturn(hawaiianSuccess);
 
-        List<Food> res = api.search("hawaiian pizza");
+        List<Food> res = api.search("hawaiian pizza", true);
 
         assertEquals(20, res.size());
 
