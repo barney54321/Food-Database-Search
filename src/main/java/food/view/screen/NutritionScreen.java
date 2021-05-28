@@ -46,6 +46,11 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
     private Pagination pagination;
 
     /**
+     * The checkbox used to select whether the cache should be used.
+     */
+    private CheckBox checkbox;
+
+    /**
      * Creates a new NutritionScreen object.
      * @param window The encompassing window.
      * @param parent The parent Screen object.
@@ -93,6 +98,12 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
                 String measure = this.food.getMeasures().get(this.options.getValue());
                 this.window.getController().getNutrition(this.food, measure, this);
             });
+
+            this.checkbox = new CheckBox("Use cache if possible");
+            this.checkbox.setLayoutX(10);
+            this.checkbox.setLayoutY(80);
+            this.checkbox.setSelected(true);
+            this.nodes.add(this.checkbox);
         }
     }
 
@@ -107,11 +118,11 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         this.pagination = new Pagination(3);
 
         pagination.setLayoutX(10);
-        pagination.setLayoutY(90);
+        pagination.setLayoutY(100);
         pagination.setMaxWidth(580);
         pagination.setPrefWidth(580);
-        pagination.setMaxHeight(400);
-        pagination.setPrefHeight(400);
+        pagination.setMaxHeight(390);
+        pagination.setPrefHeight(390);
 
         pagination.setPageFactory(index -> {
             if (index == 0) {
@@ -155,7 +166,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         TextArea diet = new TextArea();
         diet.setText(dietStr);
         diet.maxWidth(160);
-        diet.setPrefRowCount(6);
+        diet.setPrefRowCount(5);
         diet.setEditable(false);
 
         Text healthLabel = new Text();
@@ -222,7 +233,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         totalNutrients.getColumns().add(quantityCol);
         totalNutrients.getColumns().add(unitCol);
         totalNutrients.setEditable(false);
-        totalNutrients.setMaxHeight(250);
+        totalNutrients.setMaxHeight(240);
         totalNutrients.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         return new VBox(5, cautionLabels, cautions, totalNutrientsLabel, totalNutrients);
