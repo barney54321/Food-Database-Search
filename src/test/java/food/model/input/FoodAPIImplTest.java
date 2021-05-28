@@ -136,7 +136,7 @@ public class FoodAPIImplTest {
 
         pizzaCheck(pizza);
 
-        String update = "insert into Search values('hawaiian pizza', '" + hawaiianSuccess + "')";
+        String update = "insert into Search (term, response) values('hawaiian pizza', '" + hawaiianSuccess.replace("'", "") + "')";
         verify(cache, times(1)).executeUpdate(update);
         verify(cache, times(1)).executeQuery(query);
     }
@@ -159,7 +159,7 @@ public class FoodAPIImplTest {
 
         pizzaCheck(pizza);
 
-        String update = "insert into Search values('hawaiian pizza', '" + hawaiianSuccess + "')";
+        String update = "insert into Search (term, response) values('hawaiian pizza', '" + hawaiianSuccess.replace("'", "") + "')";
         verify(cache, times(1)).executeUpdate(update);
         verify(cache, never()).executeQuery(query);
     }
