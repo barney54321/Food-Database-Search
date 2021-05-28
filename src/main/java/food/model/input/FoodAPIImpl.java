@@ -32,13 +32,14 @@ public class FoodAPIImpl implements FoodAPI {
 
         // Try searching database
         term = term.toLowerCase();
-        String query = "select response from Search where term lke '%" + term + "%'";
+        String query = "select response from Search where term like '%" + term + "%'";
 
         try {
             ResultSet set = this.cache.executeQuery(query);
             response = set.getString("response");
         } catch (SQLException e) {
             // Nothing
+            System.out.println(e);
         }
 
         if (response == null) {
@@ -82,12 +83,14 @@ public class FoodAPIImpl implements FoodAPI {
         String response = null;
 
         // Try searching database
-        String query = "select response from Nutrition where food lke '%" + foodID + "%' and measure like '%" + measure + "%'";
+        String query = "select response from Nutrition where food like '%" + foodID + "%' and measure like '%" + measure + "%'";
 
         try {
             ResultSet set = this.cache.executeQuery(query);
             response = set.getString("response");
         } catch (SQLException e) {
+            // Nothing
+        } catch (NullPointerException e) {
             // Nothing
         }
 
