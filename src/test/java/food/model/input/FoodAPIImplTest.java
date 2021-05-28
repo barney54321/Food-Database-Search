@@ -77,7 +77,7 @@ public class FoodAPIImplTest {
     }
 
     @Test
-    public void searchCacheSuccess() throws SQLException {
+    public void searchCacheSuccessTrue() throws SQLException {
         String query = "select response from Search where term like '%hawaiian pizza%'";
 
         ResultSet set = mock(ResultSet.class);
@@ -93,10 +93,33 @@ public class FoodAPIImplTest {
         Food pizza = res.get(0);
 
         pizzaCheck(pizza);
+
+        verify(strategy, never()).searchFood("hawaiian pizza");
     }
 
     @Test
-    public void searchAPISuccess() throws SQLException {
+    public void searchCacheSuccessFalse() throws SQLException {
+        String query = "select response from Search where term like '%hawaiian pizza%'";
+
+        ResultSet set = mock(ResultSet.class);
+        when(set.getString("response")).thenReturn(hawaiianSuccess);
+
+        when(cache.executeQuery(query)).thenReturn(set);
+        when(strategy.searchFood("hawaiian pizza")).thenReturn(hawaiianSuccess);
+
+        List<Food> res = api.search("hawaiian pizza", false);
+
+        assertEquals(20, res.size());
+
+        Food pizza = res.get(0);
+
+        pizzaCheck(pizza);
+
+        verify(strategy, times(1)).searchFood("hawaiian pizza");
+    }
+
+    @Test
+    public void searchAPISuccessTrue() throws SQLException {
         String query = "select response from Search where term like '%hawaiian pizza%'";
 
         ResultSet set = mock(ResultSet.class);
@@ -115,6 +138,30 @@ public class FoodAPIImplTest {
 
         String update = "insert into Search values('hawaiian pizza', '" + hawaiianSuccess + "')";
         verify(cache, times(1)).executeUpdate(update);
+        verify(cache, times(1)).executeQuery(query);
+    }
+
+    @Test
+    public void searchAPISuccessFalse() throws SQLException {
+        String query = "select response from Search where term like '%hawaiian pizza%'";
+
+        ResultSet set = mock(ResultSet.class);
+        when(set.getString("response")).thenReturn(null);
+
+        when(cache.executeQuery(query)).thenReturn(set);
+        when(strategy.searchFood("hawaiian pizza")).thenReturn(hawaiianSuccess);
+
+        List<Food> res = api.search("hawaiian pizza", false);
+
+        assertEquals(20, res.size());
+
+        Food pizza = res.get(0);
+
+        pizzaCheck(pizza);
+
+        String update = "insert into Search values('hawaiian pizza', '" + hawaiianSuccess + "')";
+        verify(cache, times(1)).executeUpdate(update);
+        verify(cache, never()).executeQuery(query);
     }
 
     @Test
