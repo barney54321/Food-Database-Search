@@ -78,7 +78,7 @@ public class FoodAPIImplTest {
 
     @Test
     public void searchCacheSuccess() throws SQLException {
-        String query = "select response from Search where term lke %hawaiian pizza%";
+        String query = "select response from Search where term lke '%hawaiian pizza%'";
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(hawaiianSuccess);
@@ -97,7 +97,7 @@ public class FoodAPIImplTest {
 
     @Test
     public void searchAPISuccess() throws SQLException {
-        String query = "select response from Search where term lke %hawaiian pizza%";
+        String query = "select response from Search where term lke '%hawaiian pizza%'";
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(null);
