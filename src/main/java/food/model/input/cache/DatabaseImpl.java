@@ -12,11 +12,6 @@ public class DatabaseImpl implements Database {
      */
     private Connection connection;
 
-    /**
-     * Object used for executing statements.
-     */
-    private Statement statement;
-
     @Override
     public void setup() throws IllegalStateException {
         String launchPath = System.getProperty("user.dir");
@@ -24,7 +19,6 @@ public class DatabaseImpl implements Database {
 
         try {
             connection = DriverManager.getConnection(databasePath);
-            statement = connection.createStatement();
 
             // Create tables if not present
             String createSearch = "CREATE TABLE IF NOT EXISTS Search (\n" +
