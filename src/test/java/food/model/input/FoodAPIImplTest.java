@@ -134,8 +134,6 @@ public class FoodAPIImplTest {
         assertEquals(sampleNutrition.getDietLabels(), nut.getDietLabels());
         assertEquals(sampleNutrition.getHealthLabels(), nut.getHealthLabels());
         assertEquals(sampleNutrition.getCautions(), nut.getCautions());
-        assertEquals(sampleNutrition.getTotalNutrients(), nut.getTotalNutrients());
-        assertEquals(sampleNutrition.getTotalDaily(), nut.getTotalDaily());
     }
 
     @Test
@@ -155,8 +153,6 @@ public class FoodAPIImplTest {
         assertEquals(sampleNutrition.getDietLabels(), nut.getDietLabels());
         assertEquals(sampleNutrition.getHealthLabels(), nut.getHealthLabels());
         assertEquals(sampleNutrition.getCautions(), nut.getCautions());
-        assertEquals(sampleNutrition.getTotalNutrients(), nut.getTotalNutrients());
-        assertEquals(sampleNutrition.getTotalDaily(), nut.getTotalDaily());
 
         String update = "insert into Nutrition values('food_id_1', 'measure', '" + hawaiianSuccess + "')";
         verify(cache, times(1)).executeUpdate(update);
