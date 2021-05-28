@@ -154,7 +154,7 @@ public class FoodAPIImplTest {
         assertEquals(sampleNutrition.getHealthLabels(), nut.getHealthLabels());
         assertEquals(sampleNutrition.getCautions(), nut.getCautions());
 
-        String update = "insert into Nutrition values('food_id_1', 'measure', '" + hawaiianSuccess + "')";
+        String update = "insert into Nutrition values('food_id_1', 'measure', '" + nutritionSuccess + "')";
         verify(cache, times(1)).executeUpdate(update);
     }
 }
