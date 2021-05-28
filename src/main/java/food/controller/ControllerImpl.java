@@ -30,7 +30,7 @@ public class ControllerImpl implements Controller {
         if (term == null || term.equals("")) {
             observer.update(new IllegalArgumentException("Search term cannot be empty"));
         } else {
-            this.facade.search(term, true, observer);
+            this.facade.search(term, useCache, observer);
         }
     }
 
