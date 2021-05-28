@@ -174,7 +174,7 @@ public class FoodAPIImplTest {
         when(cache.executeQuery(query)).thenReturn(set);
         when(strategy.searchNutrition(anyString(), anyString())).thenReturn(null);
 
-        Nutrition nut = api.getNutrition("food_id_1", "measure");
+        Nutrition nut = api.getNutrition("food_id_1", "measure", true);
 
         assertEquals(sampleNutrition.getCalories(), nut.getCalories());
         assertEquals(sampleNutrition.getTotalWeight(), nut.getTotalWeight(), 0.01);
@@ -193,7 +193,7 @@ public class FoodAPIImplTest {
         when(cache.executeQuery(query)).thenReturn(set);
         when(strategy.searchNutrition(anyString(), anyString())).thenReturn(nutritionSuccess);
 
-        Nutrition nut = api.getNutrition("food_id_1", "measure");
+        Nutrition nut = api.getNutrition("food_id_1", "measure", true);
 
         assertEquals(sampleNutrition.getCalories(), nut.getCalories());
         assertEquals(sampleNutrition.getTotalWeight(), nut.getTotalWeight(), 0.01);

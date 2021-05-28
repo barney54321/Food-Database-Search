@@ -26,7 +26,8 @@ public interface FoodAPI {
      * Returns the Nutrition object associated with the given foodID.
      * @param foodID The foodID to search on.
      * @param measure The url for the measurement unit to search on.
+     * @param useCache Whether cached data should be used.
      * @return The corresponding foodID.
      */
-    Nutrition getNutrition(String foodID, String measure);
+    Nutrition getNutrition(String foodID, String measure, boolean useCache);
 }

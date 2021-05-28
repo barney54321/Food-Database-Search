@@ -84,14 +84,43 @@ public class ModelFacadeImplTest {
     }
 
     @Test
-    public void getNutrition() {
+    public void getNutritionTrue() {
         Nutrition mock = mock(Nutrition.class);
 
-        when(database.getNutrition("1234", "size1")).thenReturn(mock);
+        when(database.getNutrition("1234", "size1", true)).thenReturn(mock);
 
         facade.getNutrition("1234", "size1", true, nutrition);
 
         verify(nutrition, times(1)).update(mock);
+    }
+
+    @Test
+    public void getNutritionFalse() {
+        Nutrition mock = mock(Nutrition.class);
+
+        when(database.getNutrition("1234", "size1", false)).thenReturn(mock);
+
+        facade.getNutrition("1234", "size1", false, nutrition);
+
+        verify(nutrition, times(1)).update(mock);
+    }
+
+    @Test
+    public void getNutritionFailTrue() {
+        when(database.getNutrition("1234", "size1", true)).thenReturn(null);
+
+        facade.getNutrition("1234", "size1", true, nutrition);
+
+        verify(nutrition, times(1)).update(any(Exception.class));
+    }
+
+    @Test
+    public void getNutritionFailFalse() {
+        when(database.getNutrition("1234", "size1", false)).thenReturn(null);
+
+        facade.getNutrition("1234", "size1", false, nutrition);
+
+        verify(nutrition, times(1)).update(any(Exception.class));
     }
 
     @Test

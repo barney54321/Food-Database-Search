@@ -81,7 +81,7 @@ public class FoodAPIImpl implements FoodAPI {
     }
 
     @Override
-    public Nutrition getNutrition(String foodID, String measure) {
+    public Nutrition getNutrition(String foodID, String measure, boolean useCache) {
         String response = null;
 
         // Try searching database
