@@ -6,7 +6,6 @@
 ## Nutrition
 * food: TEXT
 * measure: TEXT
-* quantity: INTEGER
 * id: COMPOSITE(foodID, measure)
 * response: TEXT
 
