@@ -21,9 +21,10 @@ public interface ModelFacade {
      * Retrieves the nutritional information for the given food item and updates the observer.
      * @param foodID The associated food item.
      * @param measure The size of the nutritional information.
+     * @param useCache Whether to use cached data.
      * @param observer The observer to update.
      */
-    void getNutrition(String foodID, String measure, NutritionObserver observer);
+    void getNutrition(String foodID, String measure, boolean useCache, NutritionObserver observer);
 
     /**
      * Sends the provided message and updates the observer on the outcome.

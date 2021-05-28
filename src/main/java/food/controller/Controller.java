@@ -26,9 +26,10 @@ public interface Controller {
      * Updates observer with exception if food or measure is empty or null.
      * @param food The food item to retrieve nutritional information for.
      * @param measure The size to use.
+     * @param useCache Whether to use cached data.
      * @param observer The observer the model will update.
      */
-    void getNutrition(Food food, String measure, NutritionObserver observer);
+    void getNutrition(Food food, String measure, boolean useCache, NutritionObserver observer);
 
     /**
      * Delegates sending messages to the Model and passes along the observer.

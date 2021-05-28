@@ -35,13 +35,13 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void getNutrition(Food food, String measure, NutritionObserver observer) {
+    public void getNutrition(Food food, String measure, boolean useCache, NutritionObserver observer) {
         if (food == null) {
             observer.update(new IllegalArgumentException("Food cannot be null"));
         } else if (measure == null || measure.equals("")) {
             observer.update(new IllegalArgumentException("Measure cannot be empty"));
         } else {
-            this.facade.getNutrition(food.getID(), measure, observer);
+            this.facade.getNutrition(food.getID(), measure, true, observer);
         }
     }
 

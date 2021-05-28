@@ -44,7 +44,7 @@ public class ModelFacadeImpl implements ModelFacade {
     }
 
     @Override
-    public void getNutrition(String foodID, String measure, NutritionObserver observer) {
+    public void getNutrition(String foodID, String measure, boolean useCache, NutritionObserver observer) {
         Nutrition nutrition = database.getNutrition(foodID, measure);
 
         observer.update(nutrition);

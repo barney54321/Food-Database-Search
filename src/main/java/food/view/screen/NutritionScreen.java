@@ -96,7 +96,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
 
             addButton("Search", 320, 50, 100, 10, event -> {
                 String measure = this.food.getMeasures().get(this.options.getValue());
-                this.window.getController().getNutrition(this.food, measure, this);
+                this.window.getController().getNutrition(this.food, measure, this.checkbox.isSelected(), this);
             });
 
             this.checkbox = new CheckBox("Use cache if possible");

@@ -64,19 +64,30 @@ public class ControllerImplTest {
     }
 
     @Test
-    public void getNutritionNormal() {
+    public void getNutritionNormalTrue() {
         Food mock = mock(Food.class);
 
         when(mock.getID()).thenReturn("1234");
 
-        controller.getNutrition(mock, "size1", nutritionObserver);
+        controller.getNutrition(mock, "size1", true, nutritionObserver);
 
-        verify(facade, times(1)).getNutrition("1234", "size1", nutritionObserver);
+        verify(facade, times(1)).getNutrition("1234", "size1", true, nutritionObserver);
+    }
+
+    @Test
+    public void getNutritionNormalFalse() {
+        Food mock = mock(Food.class);
+
+        when(mock.getID()).thenReturn("1234");
+
+        controller.getNutrition(mock, "size1", false, nutritionObserver);
+
+        verify(facade, times(1)).getNutrition("1234", "size1", false, nutritionObserver);
     }
 
     @Test
     public void getNutritionNullFood() {
-        controller.getNutrition(null, "size1", nutritionObserver);
+        controller.getNutrition(null, "size1", true, nutritionObserver);
 
         verify(nutritionObserver, times(1)).update(any(Exception.class));
     }
@@ -84,7 +95,7 @@ public class ControllerImplTest {
     @Test
     public void getNutritionEmptyMeasure() {
         Food mock = mock(Food.class);
-        controller.getNutrition(mock, "", nutritionObserver);
+        controller.getNutrition(mock, "", true, nutritionObserver);
 
         verify(nutritionObserver, times(1)).update(any(Exception.class));
     }
@@ -92,7 +103,7 @@ public class ControllerImplTest {
     @Test
     public void getNutritionNullMeasure() {
         Food mock = mock(Food.class);
-        controller.getNutrition(mock, null, nutritionObserver);
+        controller.getNutrition(mock, null, true, nutritionObserver);
 
         verify(nutritionObserver, times(1)).update(any(Exception.class));
     }

@@ -89,7 +89,7 @@ public class ModelFacadeImplTest {
 
         when(database.getNutrition("1234", "size1")).thenReturn(mock);
 
-        facade.getNutrition("1234", "size1", nutrition);
+        facade.getNutrition("1234", "size1", true, nutrition);
 
         verify(nutrition, times(1)).update(mock);
     }
