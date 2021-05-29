@@ -1,10 +1,5 @@
 package food.model.input;
 
-import food.model.models.Food;
-import food.model.models.Nutrition;
-
-import java.util.List;
-
 /**
  * Interface outlining the behaviours of a FoodDatabase Strategy object.
  */

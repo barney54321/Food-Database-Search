@@ -15,11 +15,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Concrete implementation of FoodAPI.
+ * Outsources API requests to Database and then FoodStrategy.
+ */
 public class FoodAPIImpl implements FoodAPI {
 
+    /**
+     * The database cache.
+     */
     private Database cache;
+
+    /**
+     * The FoodStrategy object that defines behaviour (offline/online)
+     */
     private FoodStrategy strategy;
 
+    /**
+     * Creates a new FoodAPI object.
+     * @param cache The database cache to use.
+     * @param strategy The strategy object to use.
+     */
     public FoodAPIImpl(Database cache, FoodStrategy strategy) {
         this.cache = cache;
         this.strategy = strategy;
@@ -87,7 +103,6 @@ public class FoodAPIImpl implements FoodAPI {
         if (useCache) {
             // Try searching database
             String query = "select response from Nutrition where food like '%" + foodID + "%' and measure like '%" + measure + "%'";
-            System.out.println(query);
 
             try {
                 ResultSet set = this.cache.executeQuery(query);
