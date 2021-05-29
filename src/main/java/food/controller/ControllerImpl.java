@@ -30,7 +30,7 @@ public class ControllerImpl implements Controller {
         if (term == null || term.equals("")) {
             observer.update(new IllegalArgumentException("Search term cannot be empty"));
         } else {
-            this.facade.search(term, useCache, observer);
+            this.facade.queueSearch(term, useCache, observer);
         }
     }
 
@@ -41,7 +41,7 @@ public class ControllerImpl implements Controller {
         } else if (measure == null || measure.equals("")) {
             observer.update(new IllegalArgumentException("Measure cannot be empty"));
         } else {
-            this.facade.getNutrition(food.getID(), measure, useCache, observer);
+            this.facade.queueGetNutrition(food.getID(), measure, useCache, observer);
         }
     }
 
@@ -57,7 +57,7 @@ public class ControllerImpl implements Controller {
             System.out.println(food.getMeasures());
             observer.update(new IllegalArgumentException("Invalid size"));
         } else {
-            this.facade.sendMessage(food.generateReport(size, nutrition), observer);
+            this.facade.queueSendMessage(food.generateReport(size, nutrition), observer);
         }
     }
 }
