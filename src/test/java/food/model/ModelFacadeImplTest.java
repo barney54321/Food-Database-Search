@@ -140,4 +140,115 @@ public class ModelFacadeImplTest {
 
         verify(message, times(1)).update(false);
     }
+
+    @Test(timeout = 2000)
+    public void runSimple() {
+        // Just ensure that no exceptions are raised and the test doesn't infinite loop
+        Thread thread = new Thread(facade::run);
+        thread.start();
+
+        try {
+            Thread.sleep(100);
+            facade.stop();
+            thread.join();
+        } catch (InterruptedException e) {
+            // Not sure whether to fail this?
+        }
+    }
+
+    @Test(timeout = 2000)
+    public void queueSearchSimple() {
+        Food food1 = mock(Food.class);
+        Food food2 = mock(Food.class);
+        Food food3 = mock(Food.class);
+
+        when(database.search("Apple", true)).thenReturn(Arrays.asList(food1, food2, food3));
+
+        Thread thread = new Thread(facade::run);
+        thread.start();
+
+        try {
+            facade.queueSearch("Apple", true, list);
+            Thread.sleep(100);
+            facade.stop();
+            thread.join();
+        } catch (InterruptedException e) {
+            // Not sure whether to fail this?
+        }
+
+        verify(list, times(1)).update(eq(Arrays.asList(food1, food2, food3)));
+    }
+
+    @Test(timeout = 2000)
+    public void queueNutritionSimple() {
+        Nutrition mock = mock(Nutrition.class);
+
+        when(database.getNutrition("1234", "size1", true)).thenReturn(mock);
+
+        Thread thread = new Thread(facade::run);
+        thread.start();
+
+        try {
+            facade.queueGetNutrition("1234", "size1", true, nutrition);
+            Thread.sleep(100);
+            facade.stop();
+            thread.join();
+        } catch (InterruptedException e) {
+            // Not sure whether to fail this?
+        }
+
+        verify(nutrition, times(1)).update(mock);
+    }
+
+    @Test(timeout = 2000)
+    public void queueSendMessageSimple() {
+        when(twilio.sendMessage("Hello world")).thenReturn(true);
+
+        Thread thread = new Thread(facade::run);
+        thread.start();
+
+        try {
+            facade.queueSendMessage("Hello world", message);
+            Thread.sleep(100);
+            facade.stop();
+            thread.join();
+        } catch (InterruptedException e) {
+            // Not sure whether to fail this?
+        }
+
+        verify(message, times(1)).update(true);
+    }
+
+    @Test(timeout = 2000)
+    public void queueCompound() {
+        Food food1 = mock(Food.class);
+        Food food2 = mock(Food.class);
+        Food food3 = mock(Food.class);
+
+        when(database.search("Apple", true)).thenReturn(Arrays.asList(food1, food2, food3));
+
+        Nutrition mock = mock(Nutrition.class);
+
+        when(database.getNutrition("1234", "size1", true)).thenReturn(mock);
+
+        when(twilio.sendMessage("Hello world")).thenReturn(true);
+
+        Thread thread = new Thread(facade::run);
+        thread.start();
+
+        try {
+            facade.queueSearch("Apple", true, list);
+            facade.queueSendMessage("Hello world", message);
+            facade.queueGetNutrition("1234", "size1", true, nutrition);
+            Thread.sleep(200);
+            facade.stop();
+            thread.join();
+        } catch (InterruptedException e) {
+            // Not sure whether to fail this?
+        }
+
+        verify(nutrition, times(1)).update(mock);
+        verify(list, times(1)).update(eq(Arrays.asList(food1, food2, food3)));
+        verify(message, times(1)).update(true);
+    }
 }

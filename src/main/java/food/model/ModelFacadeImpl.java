@@ -61,4 +61,29 @@ public class ModelFacadeImpl implements ModelFacade {
 
         observer.update(result);
     }
+
+    @Override
+    public void run() {
+
+    }
+
+    @Override
+    public void stop() {
+
+    }
+
+    @Override
+    public void queueSearch(String term, boolean useCache, FoodListObserver observer) {
+
+    }
+
+    @Override
+    public void queueGetNutrition(String foodID, String measure, boolean useCache, NutritionObserver observer) {
+
+    }
+
+    @Override
+    public void queueSendMessage(String message, MessageObserver observer) {
+
+    }
 }
