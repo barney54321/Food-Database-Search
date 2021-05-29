@@ -84,16 +84,19 @@ public class FoodAPIImpl implements FoodAPI {
     public Nutrition getNutrition(String foodID, String measure, boolean useCache) {
         String response = null;
 
-        // Try searching database
-        String query = "select response from Nutrition where food like '%" + foodID + "%' and measure like '%" + measure + "%'";
+        if (useCache) {
+            // Try searching database
+            String query = "select response from Nutrition where food like '%" + foodID + "%' and measure like '%" + measure + "%'";
+            System.out.println(query);
 
-        try {
-            ResultSet set = this.cache.executeQuery(query);
-            response = set.getString("response");
-        } catch (SQLException e) {
-            // Nothing
-        } catch (NullPointerException e) {
-            // Nothing
+            try {
+                ResultSet set = this.cache.executeQuery(query);
+                response = set.getString("response");
+            } catch (SQLException e) {
+                // Nothing
+            } catch (NullPointerException e) {
+                // Nothing
+            }
         }
 
         if (response == null) {
