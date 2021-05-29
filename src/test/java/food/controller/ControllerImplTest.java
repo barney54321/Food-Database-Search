@@ -37,21 +37,21 @@ public class ControllerImplTest {
     public void searchNormalTrue() {
         controller.search("Apple", true, foodListObserver);
 
-        verify(facade, times(1)).search("Apple", true, foodListObserver);
+        verify(facade, times(1)).queueSearch("Apple", true, foodListObserver);
     }
 
     @Test
     public void searchNormalFalse() {
         controller.search("Apple", false, foodListObserver);
 
-        verify(facade, times(1)).search("Apple", false, foodListObserver);
+        verify(facade, times(1)).queueSearch("Apple", false, foodListObserver);
     }
 
     @Test
     public void searchEmpty() {
         controller.search("", true, foodListObserver);
 
-        verify(facade, times(0)).search("", true, foodListObserver);
+        verify(facade, times(0)).queueSearch("", true, foodListObserver);
         verify(foodListObserver, times(1)).update(any(Exception.class));
     }
 
@@ -59,7 +59,7 @@ public class ControllerImplTest {
     public void searchNull() {
         controller.search(null, true, foodListObserver);
 
-        verify(facade, times(0)).search(null, true, foodListObserver);
+        verify(facade, times(0)).queueSearch(null, true, foodListObserver);
         verify(foodListObserver, times(1)).update(any(Exception.class));
     }
 
@@ -71,7 +71,7 @@ public class ControllerImplTest {
 
         controller.getNutrition(mock, "size1", true, nutritionObserver);
 
-        verify(facade, times(1)).getNutrition("1234", "size1", true, nutritionObserver);
+        verify(facade, times(1)).queueGetNutrition("1234", "size1", true, nutritionObserver);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class ControllerImplTest {
 
         controller.getNutrition(mock, "size1", false, nutritionObserver);
 
-        verify(facade, times(1)).getNutrition("1234", "size1", false, nutritionObserver);
+        verify(facade, times(1)).queueGetNutrition("1234", "size1", false, nutritionObserver);
     }
 
     @Test
@@ -122,7 +122,7 @@ public class ControllerImplTest {
 
         controller.sendMessage(mock, nutrition, "size1", messageObserver);
 
-        verify(facade, times(1)).sendMessage("Hello world", messageObserver);
+        verify(facade, times(1)).queueSendMessage("Hello world", messageObserver);
     }
 
     @Test
