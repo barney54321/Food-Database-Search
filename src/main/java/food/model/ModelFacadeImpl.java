@@ -8,6 +8,7 @@ import food.model.output.Twilio;
 import food.view.observers.FoodListObserver;
 import food.view.observers.MessageObserver;
 import food.view.observers.NutritionObserver;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,9 +53,10 @@ public class ModelFacadeImpl implements ModelFacade {
 
     @Override
     public void search(String term, boolean useCache, FoodListObserver observer) {
+        System.out.println("SEARCH");
         List<Food> list = database.search(term, useCache);
 
-        observer.update(list);
+        Platform.runLater(() -> observer.update(list));
     }
 
     @Override
@@ -62,9 +64,9 @@ public class ModelFacadeImpl implements ModelFacade {
         Nutrition nutrition = database.getNutrition(foodID, measure, useCache);
 
         if (nutrition == null) {
-            observer.update(new NoSuchElementException("No matching nutrition object"));
+            Platform.runLater(() -> observer.update(new NoSuchElementException("No matching nutrition object")));
         } else {
-            observer.update(nutrition);
+            Platform.runLater(() -> observer.update(nutrition));
         }
     }
 
@@ -72,7 +74,7 @@ public class ModelFacadeImpl implements ModelFacade {
     public void sendMessage(String message, MessageObserver observer) {
         boolean result = twilio.sendMessage(message);
 
-        observer.update(result);
+        Platform.runLater(() -> observer.update(result));
     }
 
     @Override
