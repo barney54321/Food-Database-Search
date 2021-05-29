@@ -188,7 +188,7 @@ public class FoodAPIImplTest {
 
     @Test
     public void getNutritionAPISuccessTrue() throws SQLException {
-        String query = "select response from Nutrition where food lke '%food_id_1%' and measure like '%measure%'";
+        String query = "select response from Nutrition where food like '%food_id_1%' and measure like '%measure%'";
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(null);
@@ -208,12 +208,12 @@ public class FoodAPIImplTest {
         verify(cache, times(1)).executeUpdate(update);
 
         verify(cache, times(1)).executeQuery(query);
-        verify(strategy, never()).searchNutrition(anyString(), anyString());
+        verify(strategy, times(1)).searchNutrition(anyString(), anyString());
     }
 
     @Test
     public void getNutritionAPISuccessFalse() throws SQLException {
-        String query = "select response from Nutrition where food lke '%food_id_1%' and measure like '%measure%'";
+        String query = "select response from Nutrition where food like '%food_id_1%' and measure like '%measure%'";
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(null);
