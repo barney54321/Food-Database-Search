@@ -8,15 +8,21 @@ import food.model.output.Twilio;
 import food.view.observers.FoodListObserver;
 import food.view.observers.MessageObserver;
 import food.view.observers.NutritionObserver;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.stage.Stage;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.mockito.AdditionalMatchers;
+import org.mockito.MockedStatic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.mockito.Mockito.*;
 
-public class ModelFacadeImplTest {
+public class ModelFacadeImplTest extends Application {
 
     private ModelFacade facade;
 
@@ -26,6 +32,16 @@ public class ModelFacadeImplTest {
     private FoodListObserver list;
     private NutritionObserver nutrition;
     private MessageObserver message;
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        // No op
+    }
+
+    @BeforeClass
+    public static void setUpJavaFX() {
+        new Thread(() -> Application.launch(new String[0])).start();
+    }
 
     @Before
     public void setUp() {
@@ -39,6 +55,14 @@ public class ModelFacadeImplTest {
         this.facade = new ModelFacadeImpl(database, twilio);
     }
 
+    private void waitForPlatformRunLater() {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            ;
+        }
+    }
+
     @Test
     public void searchTrue() {
         Food food1 = mock(Food.class);
@@ -48,6 +72,8 @@ public class ModelFacadeImplTest {
         when(database.search("Apple", true)).thenReturn(Arrays.asList(food1, food2, food3));
 
         facade.search("Apple", true, list);
+
+        waitForPlatformRunLater();
 
         verify(list, times(1)).update(eq(Arrays.asList(food1, food2, food3)));
     }
@@ -62,6 +88,8 @@ public class ModelFacadeImplTest {
 
         facade.search("Apple", false, list);
 
+        waitForPlatformRunLater();
+
         verify(list, times(1)).update(eq(Arrays.asList(food1, food2, food3)));
     }
 
@@ -71,6 +99,8 @@ public class ModelFacadeImplTest {
 
         facade.search("Apple", true, list);
 
+        waitForPlatformRunLater();
+
         verify(list, times(1)).update(eq(new ArrayList<Food>()));
     }
 
@@ -79,6 +109,8 @@ public class ModelFacadeImplTest {
         when(database.search("Apple", false)).thenReturn(new ArrayList<Food>());
 
         facade.search("Apple", true, list);
+
+        waitForPlatformRunLater();
 
         verify(list, times(1)).update(eq(new ArrayList<Food>()));
     }
@@ -91,6 +123,8 @@ public class ModelFacadeImplTest {
 
         facade.getNutrition("1234", "size1", true, nutrition);
 
+        waitForPlatformRunLater();
+
         verify(nutrition, times(1)).update(mock);
     }
 
@@ -102,6 +136,8 @@ public class ModelFacadeImplTest {
 
         facade.getNutrition("1234", "size1", false, nutrition);
 
+        waitForPlatformRunLater();
+
         verify(nutrition, times(1)).update(mock);
     }
 
@@ -110,6 +146,8 @@ public class ModelFacadeImplTest {
         when(database.getNutrition("1234", "size1", true)).thenReturn(null);
 
         facade.getNutrition("1234", "size1", true, nutrition);
+
+        waitForPlatformRunLater();
 
         verify(nutrition, times(1)).update(any(Exception.class));
     }
@@ -120,6 +158,8 @@ public class ModelFacadeImplTest {
 
         facade.getNutrition("1234", "size1", false, nutrition);
 
+        waitForPlatformRunLater();
+
         verify(nutrition, times(1)).update(any(Exception.class));
     }
 
@@ -129,6 +169,8 @@ public class ModelFacadeImplTest {
 
         facade.sendMessage("Hello world", message);
 
+        waitForPlatformRunLater();
+
         verify(message, times(1)).update(true);
     }
 
@@ -137,6 +179,8 @@ public class ModelFacadeImplTest {
         when(twilio.sendMessage("Hello world")).thenReturn(false);
 
         facade.sendMessage("Hello world", message);
+
+        waitForPlatformRunLater();
 
         verify(message, times(1)).update(false);
     }
@@ -176,7 +220,7 @@ public class ModelFacadeImplTest {
             // Not sure whether to fail this?
         }
 
-        verify(list, times(1)).update(eq(Arrays.asList(food1, food2, food3)));
+        verify(list, times( 1)).update(eq(Arrays.asList(food1, food2, food3)));
     }
 
     @Test(timeout = 2000)

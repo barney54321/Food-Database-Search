@@ -35,6 +35,16 @@ public class Runner extends Application {
     private FoodWindow window;
 
     /**
+     * The Model thread.
+     */
+    private Thread thread;
+
+    /**
+     * The Model.
+     */
+    private ModelFacade facade;
+
+    /**
      * The mode the application is running in.
      */
     private static String mode;
@@ -80,6 +90,7 @@ public class Runner extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         if (Runner.mode.equals("online")) {
             String appID = Runner.credentials.get("food-id");
             String appKey = Runner.credentials.get("food-key");
@@ -92,7 +103,7 @@ public class Runner extends Application {
             String twilioFrom = Runner.credentials.get("twilio-phone-from");
             Twilio twilio = new TwilioOnline(twilioSID, twilioKey, twilioFrom, twilioTo);
 
-            ModelFacade facade = new ModelFacadeImpl(api, twilio);
+            facade = new ModelFacadeImpl(api, twilio);
 
             Controller controller = new ControllerImpl(facade);
             this.window = new FoodWindowImpl(controller);
@@ -103,13 +114,17 @@ public class Runner extends Application {
 
             Twilio twilio = new TwilioOffline();
 
-            ModelFacade facade = new ModelFacadeImpl(api, twilio);
+            facade = new ModelFacadeImpl(api, twilio);
 
             Controller controller = new ControllerImpl(facade);
             this.window = new FoodWindowImpl(controller);
         } else {
             throw new IllegalStateException("No mode specified");
         }
+
+        // Setup facade thread
+        thread = new Thread(facade::run);
+        thread.start();
 
         primaryStage.setTitle("Food Database");
         primaryStage.setScene(this.window.getScene());
@@ -119,6 +134,8 @@ public class Runner extends Application {
     @Override
     public void stop() throws Exception {
         database.close();
+        facade.stop();
+        thread.join();
     }
 
     /**
