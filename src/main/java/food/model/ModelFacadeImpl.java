@@ -89,7 +89,7 @@ public class ModelFacadeImpl implements ModelFacade {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException e) {
-                ;
+                // No op
             }
         }
     }

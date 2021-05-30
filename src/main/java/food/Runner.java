@@ -30,11 +30,6 @@ import java.util.Map;
 public class Runner extends Application {
 
     /**
-     * The Window for JavaFX.
-     */
-    private FoodWindow window;
-
-    /**
      * The Model thread.
      */
     private Thread thread;
@@ -61,6 +56,11 @@ public class Runner extends Application {
     private static Database database;
 
     /**
+     * The name of the file storing credentials.
+     */
+    private final static String CREDENTIAL_FILE = "credentials.json";
+
+    /**
      * Runs the program.
      *
      * @param args Command line arguments.
@@ -76,7 +76,7 @@ public class Runner extends Application {
             return;
         }
 
-        Runner.credentials = credentialsParser("credentials.json");
+        Runner.credentials = credentialsParser();
 
         if (Runner.credentials == null) {
             return;
@@ -90,7 +90,8 @@ public class Runner extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
+        FoodWindow window;
 
         if (Runner.mode.equals("online")) {
             String appID = Runner.credentials.get("food-id");
@@ -107,7 +108,7 @@ public class Runner extends Application {
             facade = new ModelFacadeImpl(api, twilio);
 
             Controller controller = new ControllerImpl(facade);
-            this.window = new FoodWindowImpl(controller);
+            window = new FoodWindowImpl(controller);
         } else if (Runner.mode.equals("offline")) {
 
             FoodStrategy offline = new FoodDatabaseOffline();
@@ -118,7 +119,7 @@ public class Runner extends Application {
             facade = new ModelFacadeImpl(api, twilio);
 
             Controller controller = new ControllerImpl(facade);
-            this.window = new FoodWindowImpl(controller);
+            window = new FoodWindowImpl(controller);
         } else {
             throw new IllegalStateException("No mode specified");
         }
@@ -128,7 +129,7 @@ public class Runner extends Application {
         thread.start();
 
         primaryStage.setTitle("Food Database");
-        primaryStage.setScene(this.window.getScene());
+        primaryStage.setScene(window.getScene());
         primaryStage.show();
     }
 
@@ -142,13 +143,12 @@ public class Runner extends Application {
     /**
      * Parses the credentials file.
      *
-     * @param file The credentials file.
      * @return The map of credentials.
      */
-    private static Map<String, String> credentialsParser(String file) {
+    private static Map<String, String> credentialsParser() {
         try {
             JSONParser parser = new JSONParser();
-            Reader reader = new FileReader(file);
+            Reader reader = new FileReader(CREDENTIAL_FILE);
 
             JSONObject json = (JSONObject) parser.parse(reader);
 
@@ -167,10 +167,7 @@ public class Runner extends Application {
             }
 
             return res;
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-            return null;
-        } catch (ParseException e) {
+        } catch (IOException | ParseException e) {
             System.err.println(e.getMessage());
             return null;
         }

@@ -55,9 +55,7 @@ public class FoodDatabaseOnline implements FoodStrategy {
 
             InputStream stream = client.execute(getter).getEntity().getContent();
 
-            String out = readInputStream(stream);
-
-            return out;
+            return readInputStream(stream);
         } catch (IOException e) {
             return null;
         }

@@ -22,7 +22,6 @@ public class FoodImplTest {
     private FoodImpl food;
 
     private Nutrition nutrition;
-    private BiFunction<String, String, Nutrition> function;
 
     @Before
     @SuppressWarnings("unchecked")
@@ -33,10 +32,7 @@ public class FoodImplTest {
 
         JSONObject json = (JSONObject) parser.parse(reader);
 
-        this.function = (BiFunction<String, String, Nutrition>) mock(BiFunction.class);
         this.nutrition = mock(Nutrition.class);
-
-        when(function.apply(anyString(), anyString())).thenReturn(this.nutrition);
 
         this.food = new FoodImpl(json);
     }

@@ -82,11 +82,7 @@ public class TwilioOnline implements Twilio {
                 output += sc.nextLine();
             }
 
-            if (output.contains("Exception")) {
-                return false;
-            }
-
-            return true;
+            return !output.contains("Exception");
         } catch (IOException e) {
             return false;
         }
