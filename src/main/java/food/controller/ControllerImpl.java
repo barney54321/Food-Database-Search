@@ -13,6 +13,11 @@ import food.view.observers.NutritionObserver;
 public class ControllerImpl implements Controller {
 
     /**
+     * Characters not allowed to be present in search terms
+     */
+    private final static String[] ILLEGAL_CHARS = {"\0", "'", "\"", "\r", "\b", "\\", "%", "_", ";"};
+
+    /**
      * The Facade to interact with.
      */
     private ModelFacade facade;
@@ -34,11 +39,11 @@ public class ControllerImpl implements Controller {
             return;
         }
 
-        if (term.contains("\0") || term.contains("'") || term.contains("\"") || term.contains("\r") ||
-            term.contains("\b") || term.contains("\\") || term.contains("%") || term.contains("_") ||
-            term.contains(";")) {
-            observer.update(new IllegalArgumentException("Illegal characters present in search term"));
-            return;
+        for (String illegal : ILLEGAL_CHARS) {
+            if (term.contains(illegal)) {
+                observer.update(new IllegalArgumentException("Illegal characters present in search term"));
+                return;
+            }
         }
 
         this.facade.queueSearch(term, useCache, observer);
