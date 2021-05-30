@@ -64,6 +64,22 @@ public class ControllerImplTest {
     }
 
     @Test
+    public void searchInjection() {
+        controller.search("hello\0 world", true, foodListObserver);
+        controller.search("hello' world", true, foodListObserver);
+        controller.search("hello\" world", true, foodListObserver);
+        controller.search("hello\r world", true, foodListObserver);
+        controller.search("hello\b world", true, foodListObserver);
+        controller.search("hello\\ world", true, foodListObserver);
+        controller.search("hello% world", true, foodListObserver);
+        controller.search("hello_ world", true, foodListObserver);
+        controller.search("hello; world", true, foodListObserver);
+
+        verify(facade, times(0)).queueSearch(null, true, foodListObserver);
+        verify(foodListObserver, times(9)).update(any(Exception.class));
+    }
+
+    @Test
     public void getNutritionNormalTrue() {
         Food mock = mock(Food.class);
 
