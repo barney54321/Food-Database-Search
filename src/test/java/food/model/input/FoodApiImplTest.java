@@ -118,7 +118,7 @@ public class FoodApiImplTest {
 
     @Test
     public void searchAPISuccessTrue() throws SQLException {
-        String query = "replace response from Search where term like '%hawaiian pizza%'";
+        String query = "select response from Search where term like '%hawaiian pizza%'";
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(null);

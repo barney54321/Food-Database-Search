@@ -62,6 +62,8 @@ SID: 480394196
 * Adding useCache to getNutrition()
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/2afdba5bc760dc788f841b3a770e83e029b5e42c
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/4cb80fff7dbe2ff6cf40320230d1aa8bc8a4ab46
+* Using "replace" instead of "insert" for SQL queries
+    * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/8ca2f4671b10349b04a95727f745e454ba6fbf48
 ### Food
 * Initial Food class
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/0ddf24701827e199d4133b342f608d7414448afc
