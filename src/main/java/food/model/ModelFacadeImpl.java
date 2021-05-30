@@ -12,6 +12,7 @@ import javafx.application.Platform;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * Concrete implementation of the ModelFacade class.
@@ -30,8 +31,9 @@ public class ModelFacadeImpl implements ModelFacade {
 
     /**
      * Whether the run() method should continue running.
+     * AtomicBoolean is a thread-safe wrapper for Boolean.
      */
-    private boolean run;
+    private AtomicBoolean run;
 
     /**
      * The list of tasks to be executed within run().
@@ -47,7 +49,7 @@ public class ModelFacadeImpl implements ModelFacade {
     public ModelFacadeImpl(FoodApi database, Twilio twilio) {
         this.database = database;
         this.twilio = twilio;
-        this.run = true;
+        this.run = new AtomicBoolean(true);
         this.tasks = new CopyOnWriteArrayList<>();
     }
 
@@ -78,25 +80,17 @@ public class ModelFacadeImpl implements ModelFacade {
 
     @Override
     public void run() {
-        while (run) {
-
+        while (run.get()) {
             if (this.tasks.size() > 0) {
                 Runnable task = tasks.remove(0);
                 task.run();
-            }
-
-            // This is just here so that the loop doesn't cache run
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                // No op
             }
         }
     }
 
     @Override
     public void stop() {
-        this.run = false;
+        this.run.set(false);
     }
 
     @Override

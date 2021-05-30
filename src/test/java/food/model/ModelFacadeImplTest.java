@@ -37,6 +37,12 @@ public class ModelFacadeImplTest extends Application {
     @BeforeClass
     public static void setUpJavaFX() {
         new Thread(() -> Application.launch(new String[0])).start();
+
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+
+        }
     }
 
     @Before
@@ -209,7 +215,7 @@ public class ModelFacadeImplTest extends Application {
 
         try {
             facade.queueSearch("Apple", true, list);
-            Thread.sleep(100);
+            Thread.sleep(300);
             facade.stop();
             thread.join();
         } catch (InterruptedException e) {
