@@ -28,11 +28,20 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void search(String term, boolean useCache, FoodListObserver observer) {
+
         if (term == null || term.equals("")) {
             observer.update(new IllegalArgumentException("Search term cannot be empty"));
-        } else {
-            this.facade.queueSearch(term, useCache, observer);
+            return;
         }
+
+        if (term.contains("\0") || term.contains("'") || term.contains("\"") || term.contains("\r") ||
+            term.contains("\b") || term.contains("\\") || term.contains("%") || term.contains("_") ||
+            term.contains(";")) {
+            observer.update(new IllegalArgumentException("Illegal characters present in search term"));
+            return;
+        }
+
+        this.facade.queueSearch(term, useCache, observer);
     }
 
     @Override
