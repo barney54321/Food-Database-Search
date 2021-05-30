@@ -67,7 +67,7 @@ public class FoodApiImpl implements FoodApi {
             try {
                 if (response != null) {
                     response = response.replace("'", "");
-                    String update = "insert into Search (term, response) values('" + term + "', '" + response + "')";
+                    String update = "replace into Search (term, response) values('" + term + "', '" + response + "')";
                     this.cache.executeUpdate(update);
                 }
             } catch (SQLException e) {
@@ -124,7 +124,7 @@ public class FoodApiImpl implements FoodApi {
             try {
                 if (response != null) {
                     String values = "values('" + foodID + "', '" + measure + "', '" + response + "')";
-                    String update = "insert into Nutrition " + values;
+                    String update = "replace into Nutrition " + values;
                     this.cache.executeUpdate(update);
                 }
             } catch (SQLException e) {
