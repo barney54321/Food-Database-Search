@@ -64,6 +64,7 @@ public class FoodImpl implements Food {
 
     /**
      * Creates a new FoodImpl object based on the provided JSONObject.
+     *
      * @param json The JSONObject to base the Food item off of.
      */
     public FoodImpl(JSONObject json) {
@@ -159,8 +160,17 @@ public class FoodImpl implements Food {
         res += "Servings per container: " + this.getServingsPerContainer() + "\n";
         res += "Size: " + size + "\n";
         res += "Calories: " + nutrition.getCalories() + "\n";
-        res += "Diet labels: " + nutrition.getDietLabels().stream().map(x -> x.replace("_", " ")).collect(Collectors.toList()) + "\n";
-        res += "Health labels: " + nutrition.getHealthLabels().stream().map(x -> x.replace("_", " ")).collect(Collectors.toList()) + "\n\n";
+
+        String diet = nutrition.getDietLabels().stream().map(x -> x.replace("_", " "))
+                                                        .collect(Collectors.toList())
+                                                        .toString();
+
+        String health = nutrition.getHealthLabels().stream().map(x -> x.replace("_", " "))
+                                                            .collect(Collectors.toList())
+                                                            .toString();
+
+        res += "Diet labels: " + diet + "\n";
+        res += "Health labels: " + health + "\n\n";
         res += "Nutrients: \n";
         res += "ENERC_KCAL: " + this.nutrients.get("ENERC_KCAL") + "\n";
         res += "PROCNT: " + this.nutrients.get("PROCNT") + "\n";

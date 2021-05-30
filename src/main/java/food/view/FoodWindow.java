@@ -11,18 +11,21 @@ public interface FoodWindow {
 
     /**
      * Returns the Window's scene.
+     *
      * @return The current scene.
      */
     Scene getScene();
 
     /**
      * Returns the Window's controller.
+     *
      * @return The controller.
      */
     Controller getController();
 
     /**
      * Updates the Screen.
+     *
      * @param screen The new Screen.
      */
     void setScreen(Screen screen);

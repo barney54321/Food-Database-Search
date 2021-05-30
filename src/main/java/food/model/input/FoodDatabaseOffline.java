@@ -1,18 +1,7 @@
 package food.model.input;
 
-import food.model.models.Food;
-import food.model.models.FoodImpl;
-import food.model.models.Nutrition;
-import food.model.models.NutritionImpl;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**

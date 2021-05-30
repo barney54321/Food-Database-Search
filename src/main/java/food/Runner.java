@@ -62,6 +62,7 @@ public class Runner extends Application {
 
     /**
      * Runs the program.
+     *
      * @param args Command line arguments.
      */
     public static void main(String[] args) {
@@ -95,7 +96,7 @@ public class Runner extends Application {
             String appID = Runner.credentials.get("food-id");
             String appKey = Runner.credentials.get("food-key");
             FoodStrategy online = new FoodDatabaseOnline(appID, appKey);
-            FoodAPI api = new FoodAPIImpl(database, online);
+            FoodApi api = new FoodApiImpl(database, online);
 
             String twilioSID = Runner.credentials.get("twilio-sid");
             String twilioKey = Runner.credentials.get("twilio-token");
@@ -110,7 +111,7 @@ public class Runner extends Application {
         } else if (Runner.mode.equals("offline")) {
 
             FoodStrategy offline = new FoodDatabaseOffline();
-            FoodAPI api = new FoodAPIImpl(database, offline);
+            FoodApi api = new FoodApiImpl(database, offline);
 
             Twilio twilio = new TwilioOffline();
 
@@ -140,6 +141,7 @@ public class Runner extends Application {
 
     /**
      * Parses the credentials file.
+     *
      * @param file The credentials file.
      * @return The map of credentials.
      */

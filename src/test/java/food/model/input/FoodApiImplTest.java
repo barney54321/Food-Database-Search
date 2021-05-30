@@ -2,7 +2,6 @@ package food.model.input;
 
 import food.model.input.cache.Database;
 import food.model.models.Food;
-import food.model.models.Nutrient;
 import food.model.models.Nutrition;
 import food.model.models.NutritionImpl;
 import org.json.simple.JSONObject;
@@ -14,19 +13,18 @@ import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-public class FoodAPIImplTest {
+public class FoodApiImplTest {
 
     private Database cache;
 
     private FoodStrategy strategy;
 
-    private FoodAPI api;
+    private FoodApi api;
 
     private String hawaiianSuccess;
     private String nutritionSuccess;
@@ -37,7 +35,7 @@ public class FoodAPIImplTest {
         cache = mock(Database.class);
         strategy = mock(FoodStrategy.class);
 
-        api = new FoodAPIImpl(cache, strategy);
+        api = new FoodApiImpl(cache, strategy);
 
         hawaiianSuccess = "";
 

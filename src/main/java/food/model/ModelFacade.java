@@ -11,6 +11,7 @@ public interface ModelFacade {
 
     /**
      * Searches for matching food items and updates the observer.
+     *
      * @param term The term to search on.
      * @param useCache Whether to use cached data.
      * @param observer The observer to update.
@@ -19,6 +20,7 @@ public interface ModelFacade {
 
     /**
      * Retrieves the nutritional information for the given food item and updates the observer.
+     *
      * @param foodID The associated food item.
      * @param measure The size of the nutritional information.
      * @param useCache Whether to use cached data.
@@ -28,6 +30,7 @@ public interface ModelFacade {
 
     /**
      * Sends the provided message and updates the observer on the outcome.
+     *
      * @param message The message to send.
      * @param observer The observer to update.
      */
@@ -45,6 +48,7 @@ public interface ModelFacade {
 
     /**
      * Adds search() to the list of tasks to be executed.
+     *
      * @param term The term the task will use.
      * @param useCache Whether the task will use cached data.
      * @param observer The observer the task will update.
@@ -53,6 +57,7 @@ public interface ModelFacade {
 
     /**
      * Adds getNutrition() to the list of tasks to be executed.
+     *
      * @param foodID The food item the task will use.
      * @param measure The size the task will use.
      * @param useCache Whether the task will use cached data.
@@ -62,6 +67,7 @@ public interface ModelFacade {
 
     /**
      * Adds sendMessage() to the list of tasks to be executed.
+     *
      * @param message The message the task will send.
      * @param observer The observer the task will update.
      */

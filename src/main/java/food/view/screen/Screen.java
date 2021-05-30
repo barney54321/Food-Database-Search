@@ -11,6 +11,7 @@ public interface Screen {
 
     /**
      * Returns the nodes present in the Screen.
+     *
      * @return The list of nodes in the Screen.
      */
     List<Node> getNodes();

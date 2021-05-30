@@ -1,6 +1,6 @@
 package food.model;
 
-import food.model.input.FoodAPI;
+import food.model.input.FoodApi;
 import food.model.models.Food;
 import food.model.models.Nutrition;
 import food.model.output.Twilio;
@@ -21,7 +21,7 @@ public class ModelFacadeImpl implements ModelFacade {
     /**
      * The FoodDatabase API handler.
      */
-    private FoodAPI database;
+    private FoodApi database;
 
     /**
      * The Twilio API handler.
@@ -40,10 +40,11 @@ public class ModelFacadeImpl implements ModelFacade {
 
     /**
      * Creates a new ModelFacadeImpl object.
+     *
      * @param database The FoodDatabase the Facade will use.
      * @param twilio The Twilio the facade will use.
      */
-    public ModelFacadeImpl(FoodAPI database, Twilio twilio) {
+    public ModelFacadeImpl(FoodApi database, Twilio twilio) {
         this.database = database;
         this.twilio = twilio;
         this.run = true;

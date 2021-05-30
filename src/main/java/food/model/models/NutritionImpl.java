@@ -50,6 +50,7 @@ public class NutritionImpl implements Nutrition {
 
     /**
      * Creates a Nutrient object.
+     *
      * @param json The JSONObject to base the Nutrition off of.
      */
     public NutritionImpl(JSONObject json) {

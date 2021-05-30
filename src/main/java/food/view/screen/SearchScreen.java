@@ -39,6 +39,7 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
 
     /**
      * Creates a new SearchScreen object.
+     *
      * @param window The encompassing window.
      */
     public SearchScreen(FoodWindow window) {
@@ -77,7 +78,8 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
 
             // Use setPageFactory to set contents of Pagination
             this.results.setPageFactory(index -> {
-                List<Food> sublist = foods.subList(index * RESULTS_PER_PAGE, Math.min(foods.size(), (index + 1) * RESULTS_PER_PAGE));
+                int start = index * RESULTS_PER_PAGE;
+                List<Food> sublist = foods.subList(start, Math.min(foods.size(), (index + 1) * RESULTS_PER_PAGE));
 
                 Button[] foodButtons = new Button[RESULTS_PER_PAGE];
 

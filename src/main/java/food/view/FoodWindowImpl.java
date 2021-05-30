@@ -43,6 +43,7 @@ public class FoodWindowImpl implements FoodWindow {
 
     /**
      * Creates a FoodWindow object.
+     *
      * @param controller The controller all logic is handled by.
      */
     public FoodWindowImpl(Controller controller) {

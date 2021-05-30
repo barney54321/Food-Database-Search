@@ -52,6 +52,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
 
     /**
      * Creates a new NutritionScreen object.
+     *
      * @param window The encompassing window.
      * @param parent The parent Screen object.
      * @param food The Food object the Screen is based on.
@@ -77,7 +78,8 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
 
         if (this.food != null) {
             if (this.food.getLabel().length() > 50) {
-                addText(this.food.getLabel().substring(0, 50) + "...", Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 30);
+                String reducedLabel = this.food.getLabel().substring(0, 50) + "...";
+                addText(reducedLabel, Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 30);
             } else if (this.food.getLabel().length() > 25) {
                 addText(this.food.getLabel(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 30);
             } else {
@@ -141,6 +143,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
 
     /**
      * Creates Page 1 of Pagination.
+     *
      * @return The encompassing VBox.
      */
     private VBox setPageOne() {
@@ -191,6 +194,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
 
     /**
      * Creates Page 2 of Pagination.
+     *
      * @return The encompassing VBox.
      */
     private VBox setPageTwo() {
@@ -241,6 +245,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
 
     /**
      * Creates Page 3 of Pagination.
+     *
      * @return The encompassing VBox.
      */
     private VBox setPageThree() {

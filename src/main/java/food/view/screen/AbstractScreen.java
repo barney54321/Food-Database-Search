@@ -32,6 +32,7 @@ public abstract class AbstractScreen implements Screen {
 
     /**
      * Creates a new Abstract Screen object.
+     *
      * @param window The encompassing window.
      */
     public AbstractScreen(FoodWindow window) {
@@ -47,6 +48,7 @@ public abstract class AbstractScreen implements Screen {
 
     /**
      * Creates a Text object and adds it to the Screen.
+     *
      * @param str The text of the object.
      * @param font The font used for the Text.
      * @param alignment How the text should be aligned.
@@ -69,6 +71,7 @@ public abstract class AbstractScreen implements Screen {
 
     /**
      * Creates a TextField object the user can type in and adds it to the Screen.
+     *
      * @param x The x-coordinate.
      * @param y The y-coordinate.
      * @param width The width of the field.
@@ -89,6 +92,7 @@ public abstract class AbstractScreen implements Screen {
 
     /**
      * Creates a Button and adds it to the Screen.
+     *
      * @param text The button prompt.
      * @param x The x-coordinate.
      * @param y The y-coordinate.
@@ -97,7 +101,8 @@ public abstract class AbstractScreen implements Screen {
      * @param method The event handler for the button.
      * @return The created Button.
      */
-    protected Button addButton(String text, double x, double y, double width, double height, EventHandler<ActionEvent> method) {
+    protected Button addButton(String text, double x, double y,
+                               double width, double height, EventHandler<ActionEvent> method) {
         Button button = new Button();
         button.setText(text);
         button.setLayoutX(x);

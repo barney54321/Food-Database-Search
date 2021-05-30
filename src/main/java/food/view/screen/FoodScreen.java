@@ -34,6 +34,7 @@ public class FoodScreen extends AbstractScreen {
 
     /**
      * Creates a new FoodScreen object based on the provided Food object.
+     *
      * @param window The encompassing window.
      * @param parent The parent Screen object.
      * @param food The food object the screen represents.
@@ -64,6 +65,7 @@ public class FoodScreen extends AbstractScreen {
 
         /**
          * Creates a new NutrientMap object.
+         *
          * @param key The key the map is based on.
          * @param value The associated value.
          */
@@ -74,6 +76,7 @@ public class FoodScreen extends AbstractScreen {
 
         /**
          * Returns the stored key.
+         *
          * @return The key.
          */
         public String getKey() {
@@ -82,6 +85,7 @@ public class FoodScreen extends AbstractScreen {
 
         /**
          * Returns the stored value.
+         *
          * @return The value.
          */
         public Double getValue() {
@@ -140,8 +144,14 @@ public class FoodScreen extends AbstractScreen {
             }
 
             addText("Brand: " + this.food.getBrand(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 270);
-            addText("Category: " + this.food.getCategory(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 300);
-            addText("Servings per size: " + this.food.getServingsPerContainer(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 330);
+
+            String category = this.food.getCategory();
+
+            addText("Category: " + category, Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 300);
+
+            String servings = this.food.getServingsPerContainer() + "";
+
+            addText("Servings per size: " + servings, Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 330);
 
             TableView<NutrientMap> nutrients = new TableView<>();
             ObservableList<NutrientMap> list = nutrients.getItems();

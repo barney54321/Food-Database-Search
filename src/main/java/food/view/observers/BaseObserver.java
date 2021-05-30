@@ -7,6 +7,7 @@ public interface BaseObserver {
 
     /**
      * Updates the observer based on the provided exception.
+     *
      * @param exception The exception thrown.
      */
     void update(Exception exception);

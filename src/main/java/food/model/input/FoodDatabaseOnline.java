@@ -33,6 +33,7 @@ public class FoodDatabaseOnline implements FoodStrategy {
 
     /**
      * Creates a new FoodDatabase object.
+     *
      * @param appID The App ID.
      * @param appKey The App Key.
      */
@@ -47,7 +48,8 @@ public class FoodDatabaseOnline implements FoodStrategy {
         try {
             term = term.replace(" ", "%20");
 
-            String url = "https://api.edamam.com/api/food-database/v2/parser?ingr=" + term + "&app_id=" + appID + "&app_key=" + appKey;
+            String base = "https://api.edamam.com/api/food-database/v2/";
+            String url = base + "parser?ingr=" + term + "&app_id=" + appID + "&app_key=" + appKey;
 
             HttpGet getter = new HttpGet(url);
 
@@ -63,6 +65,7 @@ public class FoodDatabaseOnline implements FoodStrategy {
 
     /**
      * Converts an InputStream into a String.
+     *
      * @param stream The InputStream to read in.
      * @return The String representation of the InputStream.
      */
@@ -83,7 +86,8 @@ public class FoodDatabaseOnline implements FoodStrategy {
         try {
             CloseableHttpClient client = HttpClients.createDefault();
 
-            String body = "{\"ingredients\": [{\"quantity\": 1, \"measureURI\": \"" + measure + "\", \"foodId\": \"" + foodID + "\"}]}";
+            String body = "{\"ingredients\": [{\"quantity\": 1, \"measureURI\": \"";
+            body += measure + "\", \"foodId\": \"" + foodID + "\"}]}";
 
             StringEntity entity = new StringEntity(body, ContentType.APPLICATION_JSON);
 

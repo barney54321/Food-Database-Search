@@ -19,6 +19,7 @@ public class ControllerImpl implements Controller {
 
     /**
      * Creates a new Controller object.
+     *
      * @param facade The Facade to interact with.
      */
     public ControllerImpl(ModelFacade facade) {

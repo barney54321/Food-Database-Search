@@ -1,7 +1,6 @@
 package food.model;
 
-import food.model.input.FoodAPI;
-import food.model.input.FoodStrategy;
+import food.model.input.FoodApi;
 import food.model.models.Food;
 import food.model.models.Nutrition;
 import food.model.output.Twilio;
@@ -9,13 +8,10 @@ import food.view.observers.FoodListObserver;
 import food.view.observers.MessageObserver;
 import food.view.observers.NutritionObserver;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.stage.Stage;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.mockito.AdditionalMatchers;
-import org.mockito.MockedStatic;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +22,7 @@ public class ModelFacadeImplTest extends Application {
 
     private ModelFacade facade;
 
-    private FoodAPI database;
+    private FoodApi database;
     private Twilio twilio;
 
     private FoodListObserver list;
@@ -46,7 +42,7 @@ public class ModelFacadeImplTest extends Application {
     @Before
     public void setUp() {
         this.twilio = mock(Twilio.class);
-        this.database = mock(FoodAPI.class);
+        this.database = mock(FoodApi.class);
 
         this.list = mock(FoodListObserver.class);
         this.nutrition = mock(NutritionObserver.class);

@@ -16,10 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Concrete implementation of FoodAPI.
+ * Concrete implementation of FoodApi.
  * Outsources API requests to Database and then FoodStrategy.
  */
-public class FoodAPIImpl implements FoodAPI {
+public class FoodApiImpl implements FoodApi {
 
     /**
      * The database cache.
@@ -32,11 +32,12 @@ public class FoodAPIImpl implements FoodAPI {
     private FoodStrategy strategy;
 
     /**
-     * Creates a new FoodAPI object.
+     * Creates a new FoodApi object.
+     *
      * @param cache The database cache to use.
      * @param strategy The strategy object to use.
      */
-    public FoodAPIImpl(Database cache, FoodStrategy strategy) {
+    public FoodApiImpl(Database cache, FoodStrategy strategy) {
         this.cache = cache;
         this.strategy = strategy;
     }
@@ -102,7 +103,9 @@ public class FoodAPIImpl implements FoodAPI {
 
         if (useCache) {
             // Try searching database
-            String query = "select response from Nutrition where food like '%" + foodID + "%' and measure like '%" + measure + "%'";
+            String select = "select response from Nutrition";
+            String where = " where food like '%" + foodID + "%' and measure like '%" + measure + "%'";
+            String query = select + where;
 
             try {
                 ResultSet set = this.cache.executeQuery(query);
@@ -120,7 +123,8 @@ public class FoodAPIImpl implements FoodAPI {
 
             try {
                 if (response != null) {
-                    String update = "insert into Nutrition values('" + foodID + "', '" + measure + "', '" + response + "')";
+                    String values = "values('" + foodID + "', '" + measure + "', '" + response + "')";
+                    String update = "insert into Nutrition " + values;
                     this.cache.executeUpdate(update);
                 }
             } catch (SQLException e) {
@@ -134,9 +138,7 @@ public class FoodAPIImpl implements FoodAPI {
 
         try {
             JSONObject json = (JSONObject) new JSONParser().parse(response);
-
             return new NutritionImpl(json);
-
         } catch (ParseException e) {
             return null;
         }

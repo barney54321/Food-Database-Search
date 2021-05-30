@@ -24,6 +24,7 @@ public class NutrientImpl implements Nutrient {
 
     /**
      * Creates a Nutrient object.
+     *
      * @param json The JSONObject to base the Nutrient off of.
      */
     public NutrientImpl(JSONObject json) {
