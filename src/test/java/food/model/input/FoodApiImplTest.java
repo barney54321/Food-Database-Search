@@ -118,7 +118,7 @@ public class FoodApiImplTest {
 
     @Test
     public void searchAPISuccessTrue() throws SQLException {
-        String query = "select response from Search where term like '%hawaiian pizza%'";
+        String query = "replace response from Search where term like '%hawaiian pizza%'";
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(null);
@@ -134,7 +134,7 @@ public class FoodApiImplTest {
 
         pizzaCheck(pizza);
 
-        String update = "insert into Search (term, response) values('hawaiian pizza', '" + hawaiianSuccess.replace("'", "") + "')";
+        String update = "replace into Search (term, response) values('hawaiian pizza', '" + hawaiianSuccess.replace("'", "") + "')";
         verify(cache, times(1)).executeUpdate(update);
         verify(cache, times(1)).executeQuery(query);
     }
@@ -157,7 +157,7 @@ public class FoodApiImplTest {
 
         pizzaCheck(pizza);
 
-        String update = "insert into Search (term, response) values('hawaiian pizza', '" + hawaiianSuccess.replace("'", "") + "')";
+        String update = "replace into Search (term, response) values('hawaiian pizza', '" + hawaiianSuccess.replace("'", "") + "')";
         verify(cache, times(1)).executeUpdate(update);
         verify(cache, never()).executeQuery(query);
     }
@@ -202,7 +202,7 @@ public class FoodApiImplTest {
         assertEquals(sampleNutrition.getHealthLabels(), nut.getHealthLabels());
         assertEquals(sampleNutrition.getCautions(), nut.getCautions());
 
-        String update = "insert into Nutrition values('food_id_1', 'measure', '" + nutritionSuccess + "')";
+        String update = "replace into Nutrition values('food_id_1', 'measure', '" + nutritionSuccess + "')";
         verify(cache, times(1)).executeUpdate(update);
 
         verify(cache, times(1)).executeQuery(query);
@@ -227,7 +227,7 @@ public class FoodApiImplTest {
         assertEquals(sampleNutrition.getHealthLabels(), nut.getHealthLabels());
         assertEquals(sampleNutrition.getCautions(), nut.getCautions());
 
-        String update = "insert into Nutrition values('food_id_1', 'measure', '" + nutritionSuccess + "')";
+        String update = "replace into Nutrition values('food_id_1', 'measure', '" + nutritionSuccess + "')";
         verify(cache, times(1)).executeUpdate(update);
 
         verify(cache, never()).executeQuery(query);
