@@ -53,6 +53,7 @@ SID: 480394196
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/a031b627c26d815548fe0d6e343469f711584583
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/a5da6be217a5de8f1b742d9ab4290ed7d40ecc67
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/dac3700427269ab85837222af92d41be8912fa1b
+    * **REFACTOR**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/584e51faa0fdbf4ed2cf35832189cdf9fe3b2b59
 * FoodAPI:
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/a0e075d64216d2d6045d40844b928e2455dbb8db
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/2e61dc4ed169f173067b878cee10cd1ab9cb0fbb
@@ -79,36 +80,7 @@ SID: 480394196
 * Use command `gradle run --agrs="online"` to run in Online mode
 
 ## Level Implemented
-PASS (for now)
-
-### Credit
-Cached items: this is something you need to cache in your local SQLite database each time it is retrieved from
-the API. If a user requests a matching item, you need to ask the user if they would like to just use the cached
-version, or grab a fresh copy from the API (and update the DB version along with it). 
-
-For those wishing to achieve a Credit score for their exam or higher (65% and up) you will need to include a
-SQLite database as part of your application. You can use the [SQLite JDBC library](https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.34.0) to communicate with this
-database which has sample code [here](https://github.com/xerial/sqlite-jdbc). 
-
-You will need to decide on the database schema and other properties yourself. You can either have your
-application set this schema up on first run, or you may include a .SQL file to do this that your marker will run
-manually.
-Information on what to use this database for is dependent on your Input API and listed in that section. 
-
-### Distinction
-The distinction requirement is the same for all: you need to separate out the GUI thread from the API requests
-/ database access thread. The GUI must remain live and responsive during API request. It is suggested to use
-the provisions in your chosen GUI library to help with this.
-
-For those wishing to achieve a Distinction score for their exam or higher (75% and up) you will need to include
-some basic concurrency. This should allow the GUI/View to operate independently of the operations the
-Model is conducting. You should have the GUI drawing and events on 1 thread, and the Model operations
-occurring on another thread. Most GUI libraries include dedicated support for this paradigm, and will usually
-refer to the Model thread or threads as ‘Workers’.
-
-You do not need to achieve true concurrency in your Model for this requirement – a single thread GUI thread
-and a single thread handling Model calls is all that is required. This should limit the need for handling race
-conditions or dealing with resource contention. 
+Distinction
 
 ## References
 * Placeholder image: https://socialistmodernism.com/placeholder-image/

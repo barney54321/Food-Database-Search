@@ -149,7 +149,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         calories.setFont(Font.font(15));
 
         Text weight = new Text();
-        weight.setText("Total weight: " + nutrition.getTotalWeight() + "kg");
+        weight.setText("Total weight: " + nutrition.getTotalWeight() + "g");
         weight.setFont(Font.font(15));
 
         Text dietLabel = new Text();
