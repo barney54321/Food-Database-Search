@@ -1,7 +1,6 @@
 package food.model;
 
 import food.model.input.FoodAPI;
-import food.model.input.FoodStrategy;
 import food.model.models.Food;
 import food.model.models.Nutrition;
 import food.model.output.Twilio;
@@ -10,9 +9,9 @@ import food.view.observers.MessageObserver;
 import food.view.observers.NutritionObserver;
 import javafx.application.Platform;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Concrete implementation of the ModelFacade class.
@@ -48,12 +47,11 @@ public class ModelFacadeImpl implements ModelFacade {
         this.database = database;
         this.twilio = twilio;
         this.run = true;
-        this.tasks = new ArrayList<>();
+        this.tasks = new CopyOnWriteArrayList<>();
     }
 
     @Override
     public void search(String term, boolean useCache, FoodListObserver observer) {
-        System.out.println("SEARCH");
         List<Food> list = database.search(term, useCache);
 
         Platform.runLater(() -> observer.update(list));
