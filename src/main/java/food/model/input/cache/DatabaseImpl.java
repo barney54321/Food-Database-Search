@@ -43,11 +43,49 @@ public class DatabaseImpl implements Database {
 
     @Override
     public void executeUpdate(String update) throws SQLException {
+        if (connection == null) {
+            throw new SQLException("Null database");
+        }
+
         connection.createStatement().executeUpdate(update);
     }
 
     @Override
+    public void executeUpdate(String update, String[] params) throws SQLException {
+        if (connection == null) {
+            throw new SQLException("Null database");
+        }
+
+        PreparedStatement statement = connection.prepareStatement(update);
+
+        for (int i = 0; i < params.length; i++) {
+            statement.setObject(i + 1, params[i]);
+        }
+
+        statement.executeQuery();
+    }
+
+    @Override
+    public ResultSet executeQuery(String query, String[] params) throws SQLException {
+        if (connection == null) {
+            throw new SQLException("Null database");
+        }
+
+        PreparedStatement statement = connection.prepareStatement(query);
+
+        for (int i = 0; i < params.length; i++) {
+            statement.setObject(i + 1, params[i]);
+        }
+
+        return statement.executeQuery();
+    }
+
+    @Override
     public ResultSet executeQuery(String query) throws SQLException {
+        if (connection == null) {
+            throw new SQLException("Null database");
+        }
+
         return connection.createStatement().executeQuery(query);
     }
 

@@ -24,6 +24,23 @@ public interface Database {
     void executeUpdate(String update) throws SQLException;
 
     /**
+     * Updates the database with the provided parameterised string and array of objects.
+     * @param update The parameterised update string.
+     * @param params The objects to use within the update.
+     * @throws SQLException If there are any exceptions raised while updating the database.
+     */
+    void executeUpdate(String update, String[] params) throws SQLException;
+
+    /**
+     * Runs the provided parameterised query through the database.
+     * @param query The parameterised query string.
+     * @param params The objects to use within the query.
+     * @return The resulting set.
+     * @throws SQLException If there are any exceptions raised while querying the database.
+     */
+    ResultSet executeQuery(String query, String[] params) throws SQLException;
+
+    /**
      * Runs the provided query through the database.
      *
      * @param query The query to call.

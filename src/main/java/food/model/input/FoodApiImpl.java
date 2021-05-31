@@ -40,6 +40,8 @@ public class FoodApiImpl implements FoodApi {
     public FoodApiImpl(Database cache, FoodStrategy strategy) {
         this.cache = cache;
         this.strategy = strategy;
+
+        this.cache.setup();
     }
 
     @Override
@@ -51,7 +53,6 @@ public class FoodApiImpl implements FoodApi {
             // Try searching database
             term = term.toLowerCase();
             String query = "select response from Search where term like '%" + term + "%'";
-
             try {
                 ResultSet set = this.cache.executeQuery(query);
                 response = set.getString("response");

@@ -50,12 +50,6 @@ public class Runner extends Application {
     private static Map<String, String> credentials;
 
     /**
-     * The database used for caching.
-     * Needs to be initialised here so that program can be stopped if caching not possible.
-     */
-    private static Database database;
-
-    /**
      * The name of the file storing credentials.
      */
     private final static String CREDENTIAL_FILE = "credentials.json";
@@ -66,15 +60,6 @@ public class Runner extends Application {
      * @param args Command line arguments.
      */
     public static void main(String[] args) {
-
-        database = new DatabaseImpl();
-
-        try {
-            database.setup();
-        } catch (IllegalStateException e) {
-            System.err.println("Database unable to be connected to");
-            return;
-        }
 
         Runner.credentials = credentialsParser();
 
@@ -97,7 +82,7 @@ public class Runner extends Application {
             String appID = Runner.credentials.get("food-id");
             String appKey = Runner.credentials.get("food-key");
             FoodStrategy online = new FoodDatabaseOnline(appID, appKey);
-            FoodApi api = new FoodApiImpl(database, online);
+            FoodApi api = new FoodApiImpl(new DatabaseImpl(), online);
 
             String twilioSID = Runner.credentials.get("twilio-sid");
             String twilioKey = Runner.credentials.get("twilio-token");
@@ -112,7 +97,7 @@ public class Runner extends Application {
         } else if (Runner.mode.equals("offline")) {
 
             FoodStrategy offline = new FoodDatabaseOffline();
-            FoodApi api = new FoodApiImpl(database, offline);
+            FoodApi api = new FoodApiImpl(new DatabaseImpl(), offline);
 
             Twilio twilio = new TwilioOffline();
 
@@ -135,7 +120,6 @@ public class Runner extends Application {
 
     @Override
     public void stop() throws Exception {
-        database.close();
         facade.stop();
         thread.join();
     }

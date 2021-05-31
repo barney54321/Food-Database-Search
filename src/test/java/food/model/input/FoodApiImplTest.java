@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.AdditionalMatchers;
 
 import java.io.File;
 import java.sql.ResultSet;
@@ -76,12 +77,13 @@ public class FoodApiImplTest {
 
     @Test
     public void searchCacheSuccessTrue() throws SQLException {
-        String query = "select response from Search where term like '%hawaiian pizza%'";
+        String query = "select response from Search where term like ?";
+        String[] params = new String[] {"hawaiian pizza"};
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(hawaiianSuccess);
 
-        when(cache.executeQuery(query)).thenReturn(set);
+        when(cache.executeQuery(query, params)).thenReturn(set);
         when(strategy.searchFood("hawaiian pizza")).thenReturn(null);
 
         List<Food> res = api.search("hawaiian pizza", true);
@@ -97,12 +99,13 @@ public class FoodApiImplTest {
 
     @Test
     public void searchCacheSuccessFalse() throws SQLException {
-        String query = "select response from Search where term like '%hawaiian pizza%'";
+        String query = "select response from Search where term like ?";
+        String[] params = new String[] {"hawaiian pizza"};
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(hawaiianSuccess);
 
-        when(cache.executeQuery(query)).thenReturn(set);
+        when(cache.executeQuery(query, params)).thenReturn(set);
         when(strategy.searchFood("hawaiian pizza")).thenReturn(hawaiianSuccess);
 
         List<Food> res = api.search("hawaiian pizza", false);
@@ -118,12 +121,13 @@ public class FoodApiImplTest {
 
     @Test
     public void searchAPISuccessTrue() throws SQLException {
-        String query = "select response from Search where term like '%hawaiian pizza%'";
+        String query = "select response from Search where term like ?";
+        String[] params = new String[] {"hawaiian pizza"};
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(null);
 
-        when(cache.executeQuery(query)).thenReturn(set);
+        when(cache.executeQuery(eq(query), AdditionalMatchers.aryEq(params))).thenReturn(set);
         when(strategy.searchFood("hawaiian pizza")).thenReturn(hawaiianSuccess);
 
         List<Food> res = api.search("hawaiian pizza", true);
@@ -134,19 +138,22 @@ public class FoodApiImplTest {
 
         pizzaCheck(pizza);
 
-        String update = "replace into Search (term, response) values('hawaiian pizza', '" + hawaiianSuccess.replace("'", "") + "')";
-        verify(cache, times(1)).executeUpdate(update);
-        verify(cache, times(1)).executeQuery(query);
+        String update = "replace into Search (term, response) values(?, ?)";
+        String[] terms = {"hawaiian pizza", hawaiianSuccess.replace("'", "")};
+
+        verify(cache, times(1)).executeUpdate(eq(update), AdditionalMatchers.aryEq(terms));
+        verify(cache, times(1)).executeQuery(eq(query), AdditionalMatchers.aryEq(params));
     }
 
     @Test
     public void searchAPISuccessFalse() throws SQLException {
-        String query = "select response from Search where term like '%hawaiian pizza%'";
+        String query = "select response from Search where term like ?";
+        String[] params = new String[] {"hawaiian pizza"};
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(null);
 
-        when(cache.executeQuery(query)).thenReturn(set);
+        when(cache.executeQuery(eq(query), AdditionalMatchers.aryEq(params))).thenReturn(set);
         when(strategy.searchFood("hawaiian pizza")).thenReturn(hawaiianSuccess);
 
         List<Food> res = api.search("hawaiian pizza", false);
@@ -157,19 +164,22 @@ public class FoodApiImplTest {
 
         pizzaCheck(pizza);
 
-        String update = "replace into Search (term, response) values('hawaiian pizza', '" + hawaiianSuccess.replace("'", "") + "')";
-        verify(cache, times(1)).executeUpdate(update);
-        verify(cache, never()).executeQuery(query);
+        String update = "replace into Search (term, response) values(?, ?)";
+        String[] terms = {"hawaiian pizza", hawaiianSuccess.replace("'", "")};
+
+        verify(cache, times(1)).executeUpdate(update, terms);
+        verify(cache, never()).executeQuery(eq(query), AdditionalMatchers.aryEq(params));
     }
 
     @Test
     public void getNutritionDatabaseSuccessTrue() throws SQLException {
-        String query = "select response from Nutrition where food like '%food_id_1%' and measure like '%measure%'";
+        String query = "select response from Nutrition where food like ? and measure like ?";
+        String[] params = {"food_id_1", "measure"};
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(nutritionSuccess);
 
-        when(cache.executeQuery(query)).thenReturn(set);
+        when(cache.executeQuery(eq(query), AdditionalMatchers.aryEq(params))).thenReturn(set);
         when(strategy.searchNutrition(anyString(), anyString())).thenReturn(null);
 
         Nutrition nut = api.getNutrition("food_id_1", "measure", true);
@@ -180,18 +190,19 @@ public class FoodApiImplTest {
         assertEquals(sampleNutrition.getHealthLabels(), nut.getHealthLabels());
         assertEquals(sampleNutrition.getCautions(), nut.getCautions());
 
-        verify(cache, times(1)).executeQuery(query);
+        verify(cache, times(1)).executeQuery(eq(query), AdditionalMatchers.aryEq(params));
         verify(strategy, never()).searchNutrition(anyString(), anyString());
     }
 
     @Test
     public void getNutritionAPISuccessTrue() throws SQLException {
-        String query = "select response from Nutrition where food like '%food_id_1%' and measure like '%measure%'";
+        String query = "select response from Nutrition where food like ? and measure like ?";
+        String[] params = {"food_id_1", "measure"};
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(null);
 
-        when(cache.executeQuery(query)).thenReturn(set);
+        when(cache.executeQuery(eq(query), AdditionalMatchers.aryEq(params))).thenReturn(set);
         when(strategy.searchNutrition(anyString(), anyString())).thenReturn(nutritionSuccess);
 
         Nutrition nut = api.getNutrition("food_id_1", "measure", true);
@@ -202,21 +213,23 @@ public class FoodApiImplTest {
         assertEquals(sampleNutrition.getHealthLabels(), nut.getHealthLabels());
         assertEquals(sampleNutrition.getCautions(), nut.getCautions());
 
-        String update = "replace into Nutrition values('food_id_1', 'measure', '" + nutritionSuccess + "')";
-        verify(cache, times(1)).executeUpdate(update);
+        String update = "replace into Nutrition values(?, ?, ?)";
+        String[] terms = {"food_id_1", "measure", nutritionSuccess};
+        verify(cache, times(1)).executeUpdate(update, terms);
 
-        verify(cache, times(1)).executeQuery(query);
+        verify(cache, times(1)).executeQuery(eq(query), AdditionalMatchers.aryEq(params));
         verify(strategy, times(1)).searchNutrition(anyString(), anyString());
     }
 
     @Test
     public void getNutritionAPISuccessFalse() throws SQLException {
-        String query = "select response from Nutrition where food like '%food_id_1%' and measure like '%measure%'";
+        String query = "select response from Nutrition where food like ? and measure like ?";
+        String[] params = {"food_id_1", "measure"};
 
         ResultSet set = mock(ResultSet.class);
         when(set.getString("response")).thenReturn(null);
 
-        when(cache.executeQuery(query)).thenReturn(set);
+        when(cache.executeQuery(eq(query), AdditionalMatchers.aryEq(params))).thenReturn(set);
         when(strategy.searchNutrition(anyString(), anyString())).thenReturn(nutritionSuccess);
 
         Nutrition nut = api.getNutrition("food_id_1", "measure", false);
@@ -227,10 +240,11 @@ public class FoodApiImplTest {
         assertEquals(sampleNutrition.getHealthLabels(), nut.getHealthLabels());
         assertEquals(sampleNutrition.getCautions(), nut.getCautions());
 
-        String update = "replace into Nutrition values('food_id_1', 'measure', '" + nutritionSuccess + "')";
-        verify(cache, times(1)).executeUpdate(update);
+        String update = "replace into Nutrition values(?, ?, ?)";
+        String[] terms = {"food_id_1", "measure", nutritionSuccess};
+        verify(cache, times(1)).executeUpdate(eq(update), AdditionalMatchers.aryEq(terms));
 
-        verify(cache, never()).executeQuery(query);
+        verify(cache, never()).executeQuery(eq(query), AdditionalMatchers.aryEq(params));
         verify(strategy, times(1)).searchNutrition(anyString(), anyString());
     }
 }
