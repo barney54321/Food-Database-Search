@@ -50,11 +50,9 @@ public class FoodApiImpl implements FoodApi {
         String response = null;
 
         if (useCache) {
-            // Try searching database
-            term = term.toLowerCase();
-            String query = "select response from Search where term like '%" + term + "%'";
             try {
-                ResultSet set = this.cache.executeQuery(query);
+                String[] params = {term.toLowerCase()};
+                ResultSet set = this.cache.executeQuery("select response from Search where term like ?", params);
                 response = set.getString("response");
             } catch (SQLException e) {
                 // Nothing
@@ -68,8 +66,9 @@ public class FoodApiImpl implements FoodApi {
             try {
                 if (response != null) {
                     response = response.replace("'", "");
-                    String update = "replace into Search (term, response) values('" + term + "', '" + response + "')";
-                    this.cache.executeUpdate(update);
+                    String update = "replace into Search (term, response) values(?, ?)";
+                    String[] terms = {term, response};
+                    this.cache.executeUpdate(update, terms);
                 }
             } catch (SQLException e) {
                 // Nothing
@@ -82,9 +81,7 @@ public class FoodApiImpl implements FoodApi {
 
         try {
             JSONObject json = (JSONObject) new JSONParser().parse(response);
-
             JSONArray array = (JSONArray) json.get("hints");
-
             List<Food> food = new ArrayList<>();
 
             for (Object object : array) {
@@ -104,12 +101,11 @@ public class FoodApiImpl implements FoodApi {
 
         if (useCache) {
             // Try searching database
-            String select = "select response from Nutrition";
-            String where = " where food like '%" + foodID + "%' and measure like '%" + measure + "%'";
-            String query = select + where;
+            String query = "select response from Nutrition where food like ? and measure like ?";
+            String[] terms = {foodID, measure};
 
             try {
-                ResultSet set = this.cache.executeQuery(query);
+                ResultSet set = this.cache.executeQuery(query, terms);
                 response = set.getString("response");
             } catch (SQLException e) {
                 // Nothing
@@ -124,9 +120,9 @@ public class FoodApiImpl implements FoodApi {
 
             try {
                 if (response != null) {
-                    String values = "values('" + foodID + "', '" + measure + "', '" + response + "')";
-                    String update = "replace into Nutrition " + values;
-                    this.cache.executeUpdate(update);
+                    String update = "replace into Nutrition values(?, ?, ?)";
+                    String[] terms = {foodID, measure, response};
+                    this.cache.executeUpdate(update, terms);
                 }
             } catch (SQLException e) {
                 // Nothing

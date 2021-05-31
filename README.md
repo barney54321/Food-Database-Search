@@ -66,6 +66,8 @@ SID: 480394196
 * Using "replace" instead of "insert" for SQL queries
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/8ca2f4671b10349b04a95727f745e454ba6fbf48
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/ef9b6fb4100c768afe20d2e6274f840f8bea9727
+* Using proper methods for preventing SQL injection
+    * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/fc1975289f8501f1e8ebfdd9f932839b5c6f727d
 ### Food
 * Initial Food class
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/0ddf24701827e199d4133b342f608d7414448afc
