@@ -65,7 +65,6 @@ public class ModelFacadeImpl implements ModelFacade {
             boolean match = false;
 
             for (Food food : list) {
-                System.out.println(food);
                 if (food.getLabel().equalsIgnoreCase(term)) {
                     match = true;
                     Platform.runLater(() -> observer.update(Arrays.asList(food)));

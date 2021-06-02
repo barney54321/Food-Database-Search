@@ -117,6 +117,11 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
         }
 
         this.window.refresh();
+
+        if (foods.size() == 1 && this.quick.isSelected()) {
+            Food food = foods.get(0);
+            this.window.setScreen(new FoodScreen(this.window, this, food));
+        }
     }
 
     @Override
