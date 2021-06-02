@@ -96,6 +96,17 @@ public class ModelFacadeImplTest extends Application {
     }
 
     @Test
+    public void searchFalseError() {
+        when(database.search("Apple", true)).thenReturn(null);
+
+        facade.search("Apple", true, list);
+
+        waitForPlatformRunLater();
+
+        verify(list, times(1)).update(any(Exception.class));
+    }
+
+    @Test
     public void searchEmptyTrue() {
         when(database.search("Apple", true)).thenReturn(new ArrayList<Food>());
 

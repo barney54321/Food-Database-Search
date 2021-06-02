@@ -68,6 +68,7 @@ SID: 480394196
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/ef9b6fb4100c768afe20d2e6274f840f8bea9727
 * Using proper methods for preventing SQL injection
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/fc1975289f8501f1e8ebfdd9f932839b5c6f727d
+    * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/c31b55799fd1e156ff91b097db7a1630d95f7b8c
 ### Food
 * Initial Food class
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/0ddf24701827e199d4133b342f608d7414448afc
@@ -113,7 +114,7 @@ SID: 480394196
 * Use command `gradle run --agrs="online"` to run in Online mode
 
 ## Level Implemented
-Distinction
+DISTINCTION
 
 ## References
 * Placeholder image: https://socialistmodernism.com/placeholder-image/

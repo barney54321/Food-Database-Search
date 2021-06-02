@@ -56,7 +56,7 @@ public class FoodDatabaseOnline implements FoodStrategy {
             InputStream stream = client.execute(getter).getEntity().getContent();
 
             return readInputStream(stream);
-        } catch (IOException e) {
+        } catch (IOException | IllegalArgumentException e) {
             return null;
         }
     }
@@ -101,7 +101,7 @@ public class FoodDatabaseOnline implements FoodStrategy {
             client.close();
 
             return out;
-        } catch (IOException e) {
+        } catch (IOException | IllegalArgumentException e) {
             e.printStackTrace();
             return null;
         }
