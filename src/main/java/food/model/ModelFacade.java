@@ -14,9 +14,10 @@ public interface ModelFacade {
      *
      * @param term The term to search on.
      * @param useCache Whether to use cached data.
+     * @param quick Whether to run a quick search.
      * @param observer The observer to update.
      */
-    void search(String term, boolean useCache, FoodListObserver observer);
+    void search(String term, boolean useCache, boolean quick, FoodListObserver observer);
 
     /**
      * Retrieves the nutritional information for the given food item and updates the observer.
@@ -51,9 +52,10 @@ public interface ModelFacade {
      *
      * @param term The term the task will use.
      * @param useCache Whether the task will use cached data.
+     * @param quick Whether the task will use a quick search.
      * @param observer The observer the task will update.
      */
-    void queueSearch(String term, boolean useCache, FoodListObserver observer);
+    void queueSearch(String term, boolean useCache, boolean quick, FoodListObserver observer);
 
     /**
      * Adds getNutrition() to the list of tasks to be executed.

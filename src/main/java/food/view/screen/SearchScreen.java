@@ -33,6 +33,11 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
     private CheckBox checkbox;
 
     /**
+     * The checkbox for selecting whether the quick search function should be used.
+     */
+    private CheckBox quick;
+
+    /**
      * The list of results.
      */
     private Pagination results;
@@ -53,7 +58,9 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
         this.searchBar = addTextField(40, 60, 440, 10, "Search term");
 
         addButton("Search", 490, 60, 70, 10, event -> {
-            this.window.getController().search(this.searchBar.getText(), this.checkbox.isSelected(), this);
+            boolean check = this.checkbox.isSelected();
+            boolean quick = this.quick.isSelected();
+            this.window.getController().search(this.searchBar.getText(), check, quick, this);
         });
 
         this.checkbox = new CheckBox("Use cache if possible");
@@ -61,6 +68,12 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
         this.checkbox.setLayoutY(90);
         this.checkbox.setSelected(true);
         this.nodes.add(this.checkbox);
+
+        this.quick = new CheckBox("Attempt quick search");
+        this.quick.setLayoutX(240);
+        this.quick.setLayoutY(90);
+        this.quick.setSelected(false);
+        this.nodes.add(this.quick);
     }
 
     @Override

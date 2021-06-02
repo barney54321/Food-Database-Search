@@ -19,9 +19,10 @@ public interface Controller {
      *
      * @param term The term to search on.
      * @param useCache Whether to use cached data.
+     * @param quick Whether to use quick search.
      * @param observer The observer the model will update.
      */
-    void search(String term, boolean useCache, FoodListObserver observer);
+    void search(String term, boolean useCache, boolean quick, FoodListObserver observer);
 
     /**
      * Delegates retrieving nutrition to the Model and passes along the observer.

@@ -34,48 +34,62 @@ public class ControllerImplTest {
     }
 
     @Test
-    public void searchNormalTrue() {
-        controller.search("Apple", true, foodListObserver);
+    public void searchNormalTrueTrue() {
+        controller.search("Apple", true, true, foodListObserver);
 
-        verify(facade, times(1)).queueSearch("Apple", true, foodListObserver);
+        verify(facade, times(1)).queueSearch("Apple", true, true, foodListObserver);
     }
 
     @Test
-    public void searchNormalFalse() {
-        controller.search("Apple", false, foodListObserver);
+    public void searchNormalTrueFalse() {
+        controller.search("Apple", true, false, foodListObserver);
 
-        verify(facade, times(1)).queueSearch("Apple", false, foodListObserver);
+        verify(facade, times(1)).queueSearch("Apple", true, false, foodListObserver);
+    }
+
+    @Test
+    public void searchNormalFalseTrue() {
+        controller.search("Apple", false, true, foodListObserver);
+
+        verify(facade, times(1)).queueSearch("Apple", false, true, foodListObserver);
+    }
+
+    @Test
+    public void searchNormalFalseFalse() {
+        controller.search("Apple", false, false, foodListObserver);
+
+        verify(facade, times(1)).queueSearch("Apple", false, false, foodListObserver);
     }
 
     @Test
     public void searchEmpty() {
-        controller.search("", true, foodListObserver);
+        controller.search("", true, true, foodListObserver);
 
-        verify(facade, times(0)).queueSearch("", true, foodListObserver);
+        verify(facade, times(0)).queueSearch("", true, true, foodListObserver);
         verify(foodListObserver, times(1)).update(any(Exception.class));
     }
 
     @Test
     public void searchNull() {
-        controller.search(null, true, foodListObserver);
+        controller.search(null, true, true, foodListObserver);
 
-        verify(facade, times(0)).queueSearch(null, true, foodListObserver);
+        verify(facade, times(0)).queueSearch(null, true, true, foodListObserver);
         verify(foodListObserver, times(1)).update(any(Exception.class));
     }
 
     @Test
     public void searchInjection() {
-        controller.search("hello\0 world", true, foodListObserver);
-        controller.search("hello' world", true, foodListObserver);
-        controller.search("hello\" world", true, foodListObserver);
-        controller.search("hello\r world", true, foodListObserver);
-        controller.search("hello\b world", true, foodListObserver);
-        controller.search("hello\\ world", true, foodListObserver);
-        controller.search("hello% world", true, foodListObserver);
-        controller.search("hello_ world", true, foodListObserver);
-        controller.search("hello; world", true, foodListObserver);
+        controller.search("hello\0 world", true, true, foodListObserver);
+        controller.search("hello' world", true, true, foodListObserver);
+        controller.search("hello\" world", true, true, foodListObserver);
+        controller.search("hello\r world", true, true, foodListObserver);
+        controller.search("hello\b world", true, true, foodListObserver);
+        controller.search("hello\\ world", true, true, foodListObserver);
+        controller.search("hello% world", true, true, foodListObserver);
+        controller.search("hello_ world", true, true, foodListObserver);
+        controller.search("hello; world", true, true, foodListObserver);
 
-        verify(facade, times(0)).queueSearch(null, true, foodListObserver);
+        verify(facade, times(0)).queueSearch(null, true, true, foodListObserver);
         verify(foodListObserver, times(9)).update(any(Exception.class));
     }
 

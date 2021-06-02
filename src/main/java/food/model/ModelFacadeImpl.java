@@ -54,7 +54,7 @@ public class ModelFacadeImpl implements ModelFacade {
     }
 
     @Override
-    public void search(String term, boolean useCache, FoodListObserver observer) {
+    public void search(String term, boolean useCache, boolean quick, FoodListObserver observer) {
         List<Food> list = database.search(term, useCache);
 
         if (list == null) {
@@ -98,8 +98,8 @@ public class ModelFacadeImpl implements ModelFacade {
     }
 
     @Override
-    public void queueSearch(String term, boolean useCache, FoodListObserver observer) {
-        this.tasks.add(() -> this.search(term, useCache, observer));
+    public void queueSearch(String term, boolean useCache, boolean quick, FoodListObserver observer) {
+        this.tasks.add(() -> this.search(term, useCache, quick, observer));
     }
 
     @Override

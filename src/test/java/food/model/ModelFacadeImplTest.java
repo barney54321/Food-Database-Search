@@ -73,7 +73,7 @@ public class ModelFacadeImplTest extends Application {
 
         when(database.search("Apple", true)).thenReturn(Arrays.asList(food1, food2, food3));
 
-        facade.search("Apple", true, list);
+        facade.search("Apple", true, true, list);
 
         waitForPlatformRunLater();
 
@@ -88,7 +88,7 @@ public class ModelFacadeImplTest extends Application {
 
         when(database.search("Apple", false)).thenReturn(Arrays.asList(food1, food2, food3));
 
-        facade.search("Apple", false, list);
+        facade.search("Apple", false, true, list);
 
         waitForPlatformRunLater();
 
@@ -99,7 +99,7 @@ public class ModelFacadeImplTest extends Application {
     public void searchFalseError() {
         when(database.search("Apple", true)).thenReturn(null);
 
-        facade.search("Apple", true, list);
+        facade.search("Apple", true, true, list);
 
         waitForPlatformRunLater();
 
@@ -110,7 +110,7 @@ public class ModelFacadeImplTest extends Application {
     public void searchEmptyTrue() {
         when(database.search("Apple", true)).thenReturn(new ArrayList<Food>());
 
-        facade.search("Apple", true, list);
+        facade.search("Apple", true, true, list);
 
         waitForPlatformRunLater();
 
@@ -121,7 +121,7 @@ public class ModelFacadeImplTest extends Application {
     public void searchEmptyFalse() {
         when(database.search("Apple", false)).thenReturn(new ArrayList<Food>());
 
-        facade.search("Apple", true, list);
+        facade.search("Apple", true, true, list);
 
         waitForPlatformRunLater();
 
@@ -225,7 +225,7 @@ public class ModelFacadeImplTest extends Application {
         thread.start();
 
         try {
-            facade.queueSearch("Apple", true, list);
+            facade.queueSearch("Apple", true, true, list);
             Thread.sleep(300);
             facade.stop();
             thread.join();
@@ -294,7 +294,7 @@ public class ModelFacadeImplTest extends Application {
         thread.start();
 
         try {
-            facade.queueSearch("Apple", true, list);
+            facade.queueSearch("Apple", true, true, list);
             facade.queueSendMessage("Hello world", message);
             facade.queueGetNutrition("1234", "size1", true, nutrition);
             Thread.sleep(200);
