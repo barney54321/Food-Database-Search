@@ -46,7 +46,7 @@ public class ControllerImpl implements Controller {
             }
         }
 
-        this.facade.queueSearch(term, useCache, true, observer);
+        this.facade.queueSearch(term, useCache, quick, observer);
     }
 
     @Override
