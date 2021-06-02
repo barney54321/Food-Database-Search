@@ -9,6 +9,7 @@ import food.view.observers.MessageObserver;
 import food.view.observers.NutritionObserver;
 import javafx.application.Platform;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -59,6 +60,23 @@ public class ModelFacadeImpl implements ModelFacade {
 
         if (list == null) {
             Platform.runLater(() -> observer.update(new NoSuchElementException("Unable to search cache or database")));
+        } else if (quick) {
+            // Check to see if quick search is possible
+            boolean match = false;
+
+            for (Food food : list) {
+                System.out.println(food);
+                if (food.getLabel().equalsIgnoreCase(term)) {
+                    match = true;
+                    Platform.runLater(() -> observer.update(Arrays.asList(food)));
+                    break;
+                }
+            }
+
+            // Quick search isn't possible
+            if (!match) {
+                Platform.runLater(() -> observer.update(list));
+            }
         } else {
             Platform.runLater(() -> observer.update(list));
         }
