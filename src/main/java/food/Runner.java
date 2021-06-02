@@ -60,7 +60,6 @@ public class Runner extends Application {
      * @param args Command line arguments.
      */
     public static void main(String[] args) {
-
         Runner.credentials = credentialsParser();
 
         if (Runner.credentials == null) {
@@ -76,38 +75,33 @@ public class Runner extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FoodWindow window;
+        Twilio twilio;
+        FoodStrategy strategy;
 
         if (Runner.mode.equals("online")) {
             String appID = Runner.credentials.get("food-id");
             String appKey = Runner.credentials.get("food-key");
-            FoodStrategy online = new FoodDatabaseOnline(appID, appKey);
-            FoodApi api = new FoodApiImpl(new DatabaseImpl(), online);
+            strategy = new FoodDatabaseOnline(appID, appKey);
 
             String twilioSID = Runner.credentials.get("twilio-sid");
             String twilioKey = Runner.credentials.get("twilio-token");
             String twilioTo = Runner.credentials.get("twilio-phone-to");
             String twilioFrom = Runner.credentials.get("twilio-phone-from");
-            Twilio twilio = new TwilioOnline(twilioSID, twilioKey, twilioFrom, twilioTo);
+            twilio = new TwilioOnline(twilioSID, twilioKey, twilioFrom, twilioTo);
 
-            facade = new ModelFacadeImpl(api, twilio);
-
-            Controller controller = new ControllerImpl(facade);
-            window = new FoodWindowImpl(controller);
         } else if (Runner.mode.equals("offline")) {
 
-            FoodStrategy offline = new FoodDatabaseOffline();
-            FoodApi api = new FoodApiImpl(new DatabaseImpl(), offline);
+            strategy = new FoodDatabaseOffline();
+            twilio = new TwilioOffline();
 
-            Twilio twilio = new TwilioOffline();
-
-            facade = new ModelFacadeImpl(api, twilio);
-
-            Controller controller = new ControllerImpl(facade);
-            window = new FoodWindowImpl(controller);
         } else {
             throw new IllegalStateException("No mode specified");
         }
+
+        FoodApi api = new FoodApiImpl(new DatabaseImpl(), strategy);
+        facade = new ModelFacadeImpl(api, twilio);
+        Controller controller = new ControllerImpl(facade);
+        FoodWindow window = new FoodWindowImpl(controller);
 
         // Setup facade thread
         thread = new Thread(facade::run);
@@ -144,11 +138,6 @@ public class Runner extends Application {
             res.put("twilio-token", (String) json.get("twilio-token"));
             res.put("twilio-phone-from", (String) json.get("twilio-phone-from"));
             res.put("twilio-phone-to", (String) json.get("twilio-phone-to"));
-
-            if (res.containsValue(null)) {
-                System.err.println("Credentials file missing field");
-                return null;
-            }
 
             return res;
         } catch (IOException | ParseException e) {
