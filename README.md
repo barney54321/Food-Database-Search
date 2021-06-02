@@ -37,6 +37,7 @@ SID: 480394196
     * **REFACTOR**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/57d33dc87659b7ac151d0ec6ee763a3af1d3e21b
 * Adding quick search
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/e2923307c34589217ce72ef06d01a9add316d1a2
+    * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/4e39f0fccf2dbfb4d7a942958c7f2c8cd5cfb7ac
 ### ModelFacade
 * Initial ModelFacade class
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/40fadd8ef9c6d46a086014bfaa8cdd6409fffbdd

@@ -66,10 +66,29 @@ public class ModelFacadeImplTest extends Application {
     }
 
     @Test
-    public void searchTrue() {
+    public void searchTrueFalse() {
         Food food1 = mock(Food.class);
         Food food2 = mock(Food.class);
         Food food3 = mock(Food.class);
+
+        when(database.search("Apple", true)).thenReturn(Arrays.asList(food1, food2, food3));
+
+        facade.search("Apple", true, false, list);
+
+        waitForPlatformRunLater();
+
+        verify(list, times(1)).update(eq(Arrays.asList(food1, food2, food3)));
+    }
+
+    @Test
+    public void searchTrueTrue() {
+        Food food1 = mock(Food.class);
+        Food food2 = mock(Food.class);
+        Food food3 = mock(Food.class);
+
+        when(food1.getLabel()).thenReturn("Orange");
+        when(food2.getLabel()).thenReturn("Apple");
+        when(food3.getLabel()).thenReturn("Mandarin");
 
         when(database.search("Apple", true)).thenReturn(Arrays.asList(food1, food2, food3));
 
@@ -77,18 +96,18 @@ public class ModelFacadeImplTest extends Application {
 
         waitForPlatformRunLater();
 
-        verify(list, times(1)).update(eq(Arrays.asList(food1, food2, food3)));
+        verify(list, times(1)).update(eq(Arrays.asList(food2)));
     }
 
     @Test
-    public void searchFalse() {
+    public void searchFalseFalse() {
         Food food1 = mock(Food.class);
         Food food2 = mock(Food.class);
         Food food3 = mock(Food.class);
 
         when(database.search("Apple", false)).thenReturn(Arrays.asList(food1, food2, food3));
 
-        facade.search("Apple", false, true, list);
+        facade.search("Apple", false, false, list);
 
         waitForPlatformRunLater();
 
@@ -96,10 +115,29 @@ public class ModelFacadeImplTest extends Application {
     }
 
     @Test
+    public void searchFalseTrue() {
+        Food food1 = mock(Food.class);
+        Food food2 = mock(Food.class);
+        Food food3 = mock(Food.class);
+
+        when(food1.getLabel()).thenReturn("Orange");
+        when(food2.getLabel()).thenReturn("Apple");
+        when(food3.getLabel()).thenReturn("Mandarin");
+
+        when(database.search("Apple", false)).thenReturn(Arrays.asList(food1, food2, food3));
+
+        facade.search("Apple", false, true, list);
+
+        waitForPlatformRunLater();
+
+        verify(list, times(1)).update(eq(Arrays.asList(food2)));
+    }
+
+    @Test
     public void searchFalseError() {
         when(database.search("Apple", true)).thenReturn(null);
 
-        facade.search("Apple", true, true, list);
+        facade.search("Apple", true, false, list);
 
         waitForPlatformRunLater();
 
@@ -110,7 +148,7 @@ public class ModelFacadeImplTest extends Application {
     public void searchEmptyTrue() {
         when(database.search("Apple", true)).thenReturn(new ArrayList<Food>());
 
-        facade.search("Apple", true, true, list);
+        facade.search("Apple", true, false, list);
 
         waitForPlatformRunLater();
 
@@ -121,7 +159,7 @@ public class ModelFacadeImplTest extends Application {
     public void searchEmptyFalse() {
         when(database.search("Apple", false)).thenReturn(new ArrayList<Food>());
 
-        facade.search("Apple", true, true, list);
+        facade.search("Apple", true, false, list);
 
         waitForPlatformRunLater();
 
