@@ -57,7 +57,11 @@ public class ModelFacadeImpl implements ModelFacade {
     public void search(String term, boolean useCache, FoodListObserver observer) {
         List<Food> list = database.search(term, useCache);
 
-        Platform.runLater(() -> observer.update(list));
+        if (list == null) {
+            Platform.runLater(() -> observer.update(new NoSuchElementException("Unable to search cache or database")));
+        } else {
+            Platform.runLater(() -> observer.update(list));
+        }
     }
 
     @Override

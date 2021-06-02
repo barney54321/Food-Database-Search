@@ -83,7 +83,7 @@ public class TwilioOnline implements Twilio {
             }
 
             return !output.contains("Exception");
-        } catch (IOException e) {
+        } catch (IOException | IllegalArgumentException e) {
             return false;
         }
     }
