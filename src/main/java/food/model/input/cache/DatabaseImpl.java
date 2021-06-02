@@ -62,7 +62,7 @@ public class DatabaseImpl implements Database {
             statement.setObject(i + 1, params[i]);
         }
 
-        statement.executeQuery();
+        statement.executeUpdate();
     }
 
     @Override
