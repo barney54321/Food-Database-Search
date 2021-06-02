@@ -56,6 +56,8 @@ SID: 480394196
 * Error handling for search()
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/57956af6a3315a2a5b6718f26a591d48b8ea6bb4
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/43063e3ab3247ab0e8476032fb1eeff1bd41b56e
+* Adding quick search
+    * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/972e3b298753dc1e1b432c3957aafd284f7fe3ca
 ### FoodApi:
 * Initial FoodApi class
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/a0e075d64216d2d6045d40844b928e2455dbb8db
