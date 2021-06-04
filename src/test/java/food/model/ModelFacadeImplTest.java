@@ -294,33 +294,6 @@ public class ModelFacadeImplTest extends Application {
         thread.start();
 
         try {
-            facade.queueSearch("Apple", true, false, list);
-            Thread.sleep(300);
-            facade.stop();
-            thread.join();
-        } catch (InterruptedException e) {
-            // Not sure whether to fail this?
-        }
-
-        verify(list, times( 1)).update(eq(Arrays.asList(food2)));
-    }
-
-    @Test(timeout = 2000)
-    public void queueSearchSimpleTrue() {
-        Food food1 = mock(Food.class);
-        Food food2 = mock(Food.class);
-        Food food3 = mock(Food.class);
-
-        when(food1.getLabel()).thenReturn("Orange");
-        when(food2.getLabel()).thenReturn("Apple");
-        when(food3.getLabel()).thenReturn("Mandarin");
-
-        when(database.search("Apple", true)).thenReturn(Arrays.asList(food1, food2, food3));
-
-        Thread thread = new Thread(facade::run);
-        thread.start();
-
-        try {
             facade.queueSearch("Apple", true, true, list);
             Thread.sleep(300);
             facade.stop();
