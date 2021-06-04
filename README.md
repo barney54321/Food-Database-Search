@@ -118,9 +118,10 @@ SID: 480394196
 * Download SQLite, following [this tutorial or similar](https://www.tutorialspoint.com/sqlite/sqlite_installation.htm)
     
 ## How to Run
-* Use command `gradle run --args="offline"` to run in Offline mode
+* Use command `gradle run --args="offline offline"` to run in Offline mode
     * Offline mode will only work with search term "Hawaiian Pizza"
-* Use command `gradle run --agrs="online"` to run in Online mode
+    * Offline mode for Twilio will print the message to terminal
+* Use command `gradle run --agrs="online online"` to run in Online mode
 
 ## Level Implemented
 DISTINCTION

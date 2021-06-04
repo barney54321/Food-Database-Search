@@ -39,9 +39,14 @@ public class Runner extends Application {
     private ModelFacade facade;
 
     /**
-     * The mode the application is running in.
+     * The mode the Food Database is running in.
      */
-    private static String mode;
+    private static String foodMode;
+
+    /**
+     * The mode the Twilio connection is running in.
+     */
+    private static String twilioMode;
 
     /**
      * The map of credentials.
@@ -63,11 +68,13 @@ public class Runner extends Application {
 
         if (Runner.credentials == null) {
             return;
-        } else if (args.length == 0) {
+        } else if (args.length < 2) {
+            System.err.println("Two arguments required");
             return;
         }
 
-        Runner.mode = args[0];
+        Runner.foodMode = args[0];
+        Runner.twilioMode = args[1];
 
         launch(args);
     }
@@ -77,24 +84,22 @@ public class Runner extends Application {
         Twilio twilio;
         FoodStrategy strategy;
 
-        if (Runner.mode.equals("online")) {
+        if (Runner.foodMode.equals("online")) {
             String appID = Runner.credentials.get("food-id");
             String appKey = Runner.credentials.get("food-key");
             strategy = new FoodDatabaseOnline(appID, appKey);
+        } else {
+            strategy = new FoodDatabaseOffline();
+        }
 
+        if (Runner.twilioMode.equals("online")) {
             String twilioSID = Runner.credentials.get("twilio-sid");
             String twilioKey = Runner.credentials.get("twilio-token");
             String twilioTo = Runner.credentials.get("twilio-phone-to");
             String twilioFrom = Runner.credentials.get("twilio-phone-from");
             twilio = new TwilioOnline(twilioSID, twilioKey, twilioFrom, twilioTo);
-
-        } else if (Runner.mode.equals("offline")) {
-
-            strategy = new FoodDatabaseOffline();
-            twilio = new TwilioOffline();
-
         } else {
-            throw new IllegalStateException("No mode specified");
+            twilio = new TwilioOffline();
         }
 
         FoodApi api = new FoodApiImpl(new DatabaseImpl(), strategy);
