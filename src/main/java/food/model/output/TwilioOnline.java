@@ -20,27 +20,27 @@ public class TwilioOnline implements Twilio {
     /**
      * The HttpClient that connects to the API.
      */
-    private CloseableHttpClient client;
+    private final CloseableHttpClient client;
 
     /**
      * The source phone number (Twilio).
      */
-    private String phoneFrom;
+    private final String phoneFrom;
 
     /**
      * The target phone number (yours).
      */
-    private String phoneTo;
+    private final String phoneTo;
 
     /**
      * The Twilio account SID.
      */
-    private String twilioSID;
+    private final String twilioSID;
 
     /**
      * The Twilio account token.
      */
-    private String twilioKey;
+    private final String twilioKey;
 
     /**
      * Creates a new TwilioOnline object.
@@ -76,13 +76,13 @@ public class TwilioOnline implements Twilio {
 
             Scanner sc = new Scanner(stream);
 
-            String output = "";
+            StringBuilder output = new StringBuilder();
 
             while (sc.hasNextLine()) {
-                output += sc.nextLine();
+                output.append(sc.nextLine());
             }
 
-            return !output.contains("Exception");
+            return !output.toString().contains("Exception");
         } catch (IOException | IllegalArgumentException e) {
             return false;
         }

@@ -6,7 +6,6 @@ import food.view.observers.FoodListObserver;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
@@ -53,7 +52,7 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
 
     @Override
     protected void setupNodes() {
-        addText("Food Database", Font.font(30), TextAlignment.LEFT, Color.BLACK, 200, 40);
+        addText("Food Database", Font.font(30), 200, 40);
 
         this.searchBar = addTextField(40, 60, 440, 10, "Search term");
 

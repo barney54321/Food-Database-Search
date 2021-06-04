@@ -10,17 +10,17 @@ public class NutrientImpl implements Nutrient {
     /**
      * The display label.
      */
-    private String label;
+    private final String label;
 
     /**
      * The quantity of specified units.
      */
-    private Double quantity;
+    private final Double quantity;
 
     /**
      * The unit of measurement for quantity.
      */
-    private String unit;
+    private final String unit;
 
     /**
      * Creates a Nutrient object.

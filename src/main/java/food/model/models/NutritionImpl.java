@@ -16,37 +16,37 @@ public class NutritionImpl implements Nutrition {
     /**
      * The total energy in kcal.
      */
-    private Integer calories;
+    private final Integer calories;
 
     /**
      * The total weight of the item.
      */
-    private Double totalWeight;
+    private final Double totalWeight;
 
     /**
      * The diet labels for the food item.
      */
-    private List<String> dietLabels;
+    private final List<String> dietLabels;
 
     /**
      * The health labels for the food item.
      */
-    private List<String> healthLabels;
+    private final List<String> healthLabels;
 
     /**
      * The cuations for the food item.
      */
-    private List<String> cautions;
+    private final List<String> cautions;
 
     /**
      * The Total nutrients present in the food item.
      */
-    private Map<String, Nutrient> totalNutrients;
+    private final Map<String, Nutrient> totalNutrients;
 
     /**
      * The nutrients as a percentage of daily intake.
      */
-    private Map<String, Nutrient> totalDaily;
+    private final Map<String, Nutrient> totalDaily;
 
     /**
      * Creates a Nutrient object.

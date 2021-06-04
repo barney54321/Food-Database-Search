@@ -8,9 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.TextAlignment;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -25,12 +23,12 @@ public class FoodScreen extends AbstractScreen {
      * The Screen which the user came to this Screen from.
      * Used for navigating without hitting API again.
      */
-    private Screen parent;
+    private final Screen parent;
 
     /**
      * The Food object this Screen represents.
      */
-    private Food food;
+    private final Food food;
 
     /**
      * Creates a new FoodScreen object based on the provided Food object.
@@ -56,12 +54,12 @@ public class FoodScreen extends AbstractScreen {
         /**
          * The key (nutrient name).
          */
-        public String key;
+        public final String key;
 
         /**
          * The value (nutrient amount).
          */
-        public Double value;
+        public final Double value;
 
         /**
          * Creates a new NutrientMap object.
@@ -136,22 +134,22 @@ public class FoodScreen extends AbstractScreen {
 
             if (this.food.getLabel().length() > 60) {
                 String text = this.food.getLabel().substring(0, 60) + "...";
-                addText(text, Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 240);
+                addText(text, Font.font(20), 10, 240);
             } else if (this.food.getLabel().length() > 30) {
-                addText(this.food.getLabel(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 240);
+                addText(this.food.getLabel(), Font.font(20), 10, 240);
             } else {
-                addText(this.food.getLabel(), Font.font(30), TextAlignment.LEFT, Color.BLACK, 10, 240);
+                addText(this.food.getLabel(), Font.font(30), 10, 240);
             }
 
-            addText("Brand: " + this.food.getBrand(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 270);
+            addText("Brand: " + this.food.getBrand(), Font.font(20), 10, 270);
 
             String category = this.food.getCategory();
 
-            addText("Category: " + category, Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 300);
+            addText("Category: " + category, Font.font(20), 10, 300);
 
             String servings = this.food.getServingsPerContainer() + "";
 
-            addText("Servings per size: " + servings, Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 330);
+            addText("Servings per size: " + servings, Font.font(20), 10, 330);
 
             TableView<NutrientMap> nutrients = new TableView<>();
             ObservableList<NutrientMap> list = nutrients.getItems();

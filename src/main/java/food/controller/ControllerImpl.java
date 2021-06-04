@@ -20,7 +20,7 @@ public class ControllerImpl implements Controller {
     /**
      * The Facade to interact with.
      */
-    private ModelFacade facade;
+    private final ModelFacade facade;
 
     /**
      * Creates a new Controller object.

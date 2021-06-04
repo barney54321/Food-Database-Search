@@ -10,6 +10,7 @@ import food.view.observers.NutritionObserver;
 import javafx.application.Platform;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -23,23 +24,23 @@ public class ModelFacadeImpl implements ModelFacade {
     /**
      * The FoodDatabase API handler.
      */
-    private FoodApi database;
+    private final FoodApi database;
 
     /**
      * The Twilio API handler.
      */
-    private Twilio twilio;
+    private final Twilio twilio;
 
     /**
      * Whether the run() method should continue running.
      * AtomicBoolean is a thread-safe wrapper for Boolean.
      */
-    private AtomicBoolean run;
+    private final AtomicBoolean run;
 
     /**
      * The list of tasks to be executed within run().
      */
-    private List<Runnable> tasks;
+    private final List<Runnable> tasks;
 
     /**
      * Creates a new ModelFacadeImpl object.
@@ -67,7 +68,7 @@ public class ModelFacadeImpl implements ModelFacade {
             for (Food food : list) {
                 if (food.getLabel().equalsIgnoreCase(term)) {
                     match = true;
-                    Platform.runLater(() -> observer.update(Arrays.asList(food)));
+                    Platform.runLater(() -> observer.update(Collections.singletonList(food)));
                     break;
                 }
             }

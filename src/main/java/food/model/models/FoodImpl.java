@@ -15,52 +15,52 @@ public class FoodImpl implements Food {
     /**
      * The Food id.
      */
-    private String id;
+    private final String id;
 
     /**
      * The label (name) of the food.
      */
-    private String label;
+    private final String label;
 
     /**
      * The nutrients present in the food.
      */
-    private Map<String, Double> nutrients;
+    private final Map<String, Double> nutrients;
 
     /**
      * The brand that produces the food.
      */
-    private String brand;
+    private final String brand;
 
     /**
      * The category of the food item.
      */
-    private String category;
+    private final String category;
 
     /**
      * The label of the category.
      */
-    private String categoryLabel;
+    private final String categoryLabel;
 
     /**
      * The contents of the food.
      */
-    private String foodContentsLabel;
+    private final String foodContentsLabel;
 
     /**
      * The image path for the food.
      */
-    private String imagePath;
+    private final String imagePath;
 
     /**
      * The number of servings per container.
      */
-    private Double servingsPerContainer;
+    private final Double servingsPerContainer;
 
     /**
      * The available measures for the food.
      */
-    private Map<String, String> measures;
+    private final Map<String, String> measures;
 
     /**
      * Creates a new FoodImpl object based on the provided JSONObject.

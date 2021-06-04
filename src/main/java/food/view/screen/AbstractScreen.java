@@ -28,7 +28,7 @@ public abstract class AbstractScreen implements Screen {
     /**
      * The enveloping window object.
      */
-    protected FoodWindow window;
+    protected final FoodWindow window;
 
     /**
      * Creates a new Abstract Screen object.
@@ -51,20 +51,18 @@ public abstract class AbstractScreen implements Screen {
      *
      * @param str The text of the object.
      * @param font The font used for the Text.
-     * @param alignment How the text should be aligned.
-     * @param color The colour of the text.
      * @param x The x-coordinate.
      * @param y The y-coordinate.
      * @return The created Text object.
      */
-    protected Text addText(String str, Font font, TextAlignment alignment, Color color, double x, double y) {
+    protected Text addText(String str, Font font, double x, double y) {
         Text text = new Text();
         text.setText(str);
-        text.setTextAlignment(alignment);
+        text.setTextAlignment(TextAlignment.LEFT);
         text.setFont(font);
         text.setLayoutX(x);
         text.setLayoutY(y);
-        text.setFill(color);
+        text.setFill(Color.BLACK);
         this.nodes.add(text);
         return text;
     }

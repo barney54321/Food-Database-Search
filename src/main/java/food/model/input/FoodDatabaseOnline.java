@@ -19,17 +19,17 @@ public class FoodDatabaseOnline implements FoodStrategy {
     /**
      * The HtppClient used for connections.
      */
-    private CloseableHttpClient client;
+    private final CloseableHttpClient client;
 
     /**
      * The App ID credential.
      */
-    private String appID;
+    private final String appID;
 
     /**
      * The App token credential.
      */
-    private String appKey;
+    private final String appKey;
 
     /**
      * Creates a new FoodDatabase object.
@@ -70,13 +70,13 @@ public class FoodDatabaseOnline implements FoodStrategy {
     private String readInputStream(InputStream stream) {
         Scanner sc = new Scanner(stream);
 
-        String out = "";
+        StringBuilder out = new StringBuilder();
 
         while (sc.hasNextLine()) {
-            out += sc.nextLine();
+            out.append(sc.nextLine());
         }
 
-        return out;
+        return out.toString();
     }
 
     @Override

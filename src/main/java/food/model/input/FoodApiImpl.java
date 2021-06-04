@@ -24,12 +24,12 @@ public class FoodApiImpl implements FoodApi {
     /**
      * The database cache.
      */
-    private Database cache;
+    private final Database cache;
 
     /**
      * The FoodStrategy object that defines behaviour (offline/online)
      */
-    private FoodStrategy strategy;
+    private final FoodStrategy strategy;
 
     /**
      * Creates a new FoodApi object.

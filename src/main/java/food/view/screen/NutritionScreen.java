@@ -10,10 +10,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 
 /**
  * The detailed Nutrition Screen.
@@ -23,12 +21,12 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
     /**
      * The parent Screen object.
      */
-    private Screen parent;
+    private final Screen parent;
 
     /**
      * The Food the Nutrition is based on.
      */
-    private Food food;
+    private final Food food;
 
     /**
      * The Nutrition being displayed.
@@ -79,11 +77,11 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         if (this.food != null) {
             if (this.food.getLabel().length() > 50) {
                 String reducedLabel = this.food.getLabel().substring(0, 50) + "...";
-                addText(reducedLabel, Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 30);
+                addText(reducedLabel, Font.font(20), 10, 30);
             } else if (this.food.getLabel().length() > 25) {
-                addText(this.food.getLabel(), Font.font(20), TextAlignment.LEFT, Color.BLACK, 10, 30);
+                addText(this.food.getLabel(), Font.font(20), 10, 30);
             } else {
-                addText(this.food.getLabel(), Font.font(30), TextAlignment.LEFT, Color.BLACK, 10, 40);
+                addText(this.food.getLabel(), Font.font(30), 10, 40);
             }
 
             this.options = new ComboBox<>();
@@ -159,15 +157,15 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         dietLabel.setText("Diet labels:");
         dietLabel.setFont(Font.font(15));
 
-        String dietStr = "";
+        StringBuilder dietStr = new StringBuilder();
 
         for (String label : nutrition.getDietLabels()) {
             label = label.replace("_", " ");
-            dietStr += label + "\n";
+            dietStr.append(label).append("\n");
         }
 
         TextArea diet = new TextArea();
-        diet.setText(dietStr);
+        diet.setText(dietStr.toString());
         diet.maxWidth(160);
         diet.setPrefRowCount(5);
         diet.setEditable(false);
@@ -176,15 +174,15 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         healthLabel.setText("Health labels:");
         healthLabel.setFont(Font.font(15));
 
-        String healthStr = "";
+        StringBuilder healthStr = new StringBuilder();
 
         for (String label : nutrition.getHealthLabels()) {
             label = label.replace("_", " ");
-            healthStr += label + "\n";
+            healthStr.append(label).append("\n");
         }
 
         TextArea health = new TextArea();
-        health.setText(healthStr);
+        health.setText(healthStr.toString());
         health.maxWidth(160);
         health.setPrefRowCount(6);
         health.setEditable(false);
@@ -203,15 +201,15 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         cautionLabels.setText("Cautions:");
         cautionLabels.setFont(Font.font(15));
 
-        String cautionStr = "";
+        StringBuilder cautionStr = new StringBuilder();
 
         for (String label : nutrition.getCautions()) {
             label = label.replace("_", " ");
-            cautionStr += label + "\n";
+            cautionStr.append(label).append("\n");
         }
 
         TextArea cautions = new TextArea();
-        cautions.setText(cautionStr);
+        cautions.setText(cautionStr.toString());
         cautions.maxWidth(160);
         cautions.setPrefRowCount(6);
         cautions.setEditable(false);

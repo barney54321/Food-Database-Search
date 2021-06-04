@@ -3,7 +3,6 @@ package food;
 import food.model.ModelFacade;
 import food.model.ModelFacadeImpl;
 import food.model.input.*;
-import food.model.input.cache.Database;
 import food.model.input.cache.DatabaseImpl;
 import food.model.output.Twilio;
 import food.model.output.TwilioOffline;

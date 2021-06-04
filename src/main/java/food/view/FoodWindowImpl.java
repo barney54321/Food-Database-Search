@@ -24,12 +24,12 @@ public class FoodWindowImpl implements FoodWindow {
     /**
      * The JavaFX Scene for the Window.
      */
-    private Scene scene;
+    private final Scene scene;
 
     /**
      * The Pane nested in the Window.
      */
-    private Pane pane;
+    private final Pane pane;
 
     /**
      * The Screen object for the window (uses State pattern).
@@ -39,7 +39,7 @@ public class FoodWindowImpl implements FoodWindow {
     /**
      * The Controller used to interact with the Model.
      */
-    private Controller controller;
+    private final Controller controller;
 
     /**
      * Creates a FoodWindow object.

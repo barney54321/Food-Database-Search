@@ -16,13 +16,13 @@ public class FoodDatabaseOffline implements FoodStrategy {
 
             Scanner sc = new Scanner(reader);
 
-            String out = "";
+            StringBuilder out = new StringBuilder();
 
             while (sc.hasNextLine()) {
-                out += sc.nextLine();
+                out.append(sc.nextLine());
             }
 
-            return out;
+            return out.toString();
         } catch (IOException e) {
             return null;
         }
@@ -35,13 +35,13 @@ public class FoodDatabaseOffline implements FoodStrategy {
 
             Scanner sc = new Scanner(reader);
 
-            String out = "";
+            StringBuilder out = new StringBuilder();
 
             while (sc.hasNextLine()) {
-                out += sc.nextLine();
+                out.append(sc.nextLine());
             }
 
-            return out;
+            return out.toString();
 
         } catch (IOException e) {
             return null;
