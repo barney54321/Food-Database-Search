@@ -141,15 +141,19 @@ public class FoodScreen extends AbstractScreen {
                 addText(this.food.getLabel(), Font.font(30), 10, 240);
             }
 
-            addText("Brand: " + this.food.getBrand(), Font.font(20), 10, 270);
+            addText("Brand: " + this.food.getBrand(), Font.font(20), 10, 280);
 
             String category = this.food.getCategory();
 
-            addText("Category: " + category, Font.font(20), 10, 300);
+            addText("Category: " + category, Font.font(20), 10, 310);
+
+            String categoryLabel = this.food.getCategoryLabel();
+
+            addText("Category label: " + categoryLabel, Font.font(20), 10, 340);
 
             String servings = this.food.getServingsPerContainer() + "";
 
-            addText("Servings per size: " + servings, Font.font(20), 10, 330);
+            addText("Servings per size: " + servings.substring(0, Math.min(5, servings.length())), Font.font(20), 10, 370);
 
             TableView<NutrientMap> nutrients = new TableView<>();
             ObservableList<NutrientMap> list = nutrients.getItems();
@@ -169,8 +173,8 @@ public class FoodScreen extends AbstractScreen {
             nutrients.setEditable(false);
             nutrients.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
             nutrients.setMaxHeight(150);
-            nutrients.setLayoutX(10);
-            nutrients.setLayoutY(340);
+            nutrients.setLayoutX(300);
+            nutrients.setLayoutY(250);
 
             this.nodes.add(nutrients);
         }

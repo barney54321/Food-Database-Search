@@ -62,13 +62,13 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
             this.window.getController().search(this.searchBar.getText(), check, quick, this);
         });
 
-        this.checkbox = new CheckBox("Use cache if possible");
+        this.checkbox = new CheckBox("Use cache");
         this.checkbox.setLayoutX(40);
         this.checkbox.setLayoutY(90);
         this.checkbox.setSelected(true);
         this.nodes.add(this.checkbox);
 
-        this.quick = new CheckBox("Attempt quick search");
+        this.quick = new CheckBox("I'm feeling lucky");
         this.quick.setLayoutX(240);
         this.quick.setLayoutY(90);
         this.quick.setSelected(false);
