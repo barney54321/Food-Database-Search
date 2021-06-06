@@ -203,8 +203,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
                 false, 240);
 
         addColumnToTable(dailyNutrients, "Nutrient", "label");
-        addColumnToTable(dailyNutrients, "Quantity", "quantity");
-        addColumnToTable(dailyNutrients, "Unit", "unit");
+        addColumnToTable(dailyNutrients, "Quantity (%)", "quantity");
 
         return new VBox(5, dailyNutrientsLabel, dailyNutrients);
     }

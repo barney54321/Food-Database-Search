@@ -98,6 +98,8 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
 
             int count = Math.max(1, foods.size() / RESULTS_PER_PAGE);
             this.results = addPagination(count,40, 120, 520, 360, callback);
+        } else {
+            update(new Exception("No results"));
         }
 
         this.controller.refresh();
