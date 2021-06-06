@@ -13,6 +13,9 @@ import javafx.scene.text.Font;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -42,8 +45,9 @@ public class FoodScreen extends AbstractScreen {
         super(controller);
         this.parent = parent;
         this.food = food;
-        setupNodes();
-        this.controller.setScreen(this);
+
+        this.setupFoodNodes();
+        this.controller.refresh();
     }
 
     /**
@@ -103,30 +107,20 @@ public class FoodScreen extends AbstractScreen {
             Screen nutritionScreen = new NutritionScreen(this.controller, this, this.food);
             this.controller.setScreen(nutritionScreen);
         });
+    }
 
+    /**
+     * Creates the nodes once the Food object is loaded in.
+     */
+    private void setupFoodNodes() {
         if (this.food != null) {
 
             if (this.food.getImagePath() != null) {
-                Image image = new Image(this.food.getImagePath(), true);
-                ImageView view = new ImageView(image);
-
-                view.setX(10);
-                view.setY(10);
-                view.setFitWidth(190);
-                view.setFitHeight(190);
-
-                this.nodes.add(view);
+                addImage(this.food.getImagePath(), true, 10, 10, 190, 190);
             } else {
                 try {
-                    Image image = new Image(new FileInputStream("src/main/resources/placeholder.png"));
-                    ImageView view = new ImageView(image);
-
-                    view.setX(10);
-                    view.setY(10);
-                    view.setFitWidth(190);
-                    view.setFitHeight(190);
-
-                    this.nodes.add(view);
+                    InputStream stream = new FileInputStream("src/main/resources/placeholder.png");
+                    addImage(stream, 10, 10, 190, 190);
                 } catch (FileNotFoundException e) {
                     // Just give up at this point
                     e.printStackTrace();
@@ -153,31 +147,18 @@ public class FoodScreen extends AbstractScreen {
             addText("Category label: " + categoryLabel, Font.font(20), 10, 340);
 
             String servings = this.food.getServingsPerContainer() + "";
+            String servingText = "Servings per size: " + servings.substring(0, Math.min(5, servings.length()));
 
-            addText("Servings per size: " + servings.substring(0, Math.min(5, servings.length())), Font.font(20), 10, 370);
+            addText(servingText, Font.font(20), 10, 370);
 
-            TableView<NutrientMap> nutrients = new TableView<>();
-            ObservableList<NutrientMap> list = nutrients.getItems();
-
+            List<NutrientMap> list = new ArrayList<>();
             for (Map.Entry<String, Double> entry : this.food.getNutrients().entrySet()) {
                 list.add(new NutrientMap(entry.getKey(), entry.getValue()));
             }
 
-            TableColumn<NutrientMap, String> typeCol = new TableColumn<>("Nutrient");
-            typeCol.setCellValueFactory(new PropertyValueFactory<>("key"));
-
-            TableColumn<NutrientMap, String> quantityCol = new TableColumn<>("Quantity");
-            quantityCol.setCellValueFactory(new PropertyValueFactory<>("value"));
-
-            nutrients.getColumns().add(typeCol);
-            nutrients.getColumns().add(quantityCol);
-            nutrients.setEditable(false);
-            nutrients.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-            nutrients.setMaxHeight(150);
-            nutrients.setLayoutX(300);
-            nutrients.setLayoutY(250);
-
-            this.nodes.add(nutrients);
+            TableView<NutrientMap> table = addTableView(list, false, 300, 250, 150);
+            addColumnToTable(table, "Nutrient", "key");
+            addColumnToTable(table, "Quantity", "value");
         }
     }
 }

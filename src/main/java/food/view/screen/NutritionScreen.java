@@ -14,6 +14,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * The detailed Nutrition Screen.
  */
@@ -64,13 +67,12 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         this.controller.registerNutritionObserver(this);
         this.controller.registerMessageObserver(this);
 
-        setupNodes();
+        setupDropdown();
         this.controller.refresh();
     }
 
     @Override
     protected void setupNodes() {
-
         addButton("Return", 500, 10, 90, 30, event -> {
             this.controller.removeNutritionObserver(this);
             this.controller.removeMessageObserver(this);
@@ -80,38 +82,29 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         addButton("Generate\nReport", 500, 50, 90, 50, event -> {
             this.controller.sendMessage(this.food, this.nutrition, options.getValue(), this);
         });
+    }
 
-        if (this.food != null) {
-            if (this.food.getLabel().length() > 50) {
-                String reducedLabel = this.food.getLabel().substring(0, 50) + "...";
-                addText(reducedLabel, Font.font(20), 10, 30);
-            } else if (this.food.getLabel().length() > 25) {
-                addText(this.food.getLabel(), Font.font(20), 10, 30);
-            } else {
-                addText(this.food.getLabel(), Font.font(30), 10, 40);
-            }
-
-            this.options = new ComboBox<>();
-            this.options.setLayoutX(10);
-            this.options.setLayoutY(50);
-            this.options.setMaxWidth(300);
-            this.options.setPrefWidth(300);
-            this.options.getItems().addAll(this.food.getMeasures().keySet());
-            this.options.getSelectionModel().selectFirst();
-
-            this.nodes.add(options);
-
-            addButton("Search", 320, 50, 100, 10, event -> {
-                String measure = this.food.getMeasures().get(this.options.getValue());
-                this.controller.getNutrition(this.food, measure, this.checkbox.isSelected(), this);
-            });
-
-            this.checkbox = new CheckBox("Use cache if possible");
-            this.checkbox.setLayoutX(10);
-            this.checkbox.setLayoutY(80);
-            this.checkbox.setSelected(true);
-            this.nodes.add(this.checkbox);
+    /**
+     * Creates the nodes once the Food object is loaded in.
+     */
+    private void setupDropdown() {
+        if (this.food.getLabel().length() > 50) {
+            String reducedLabel = this.food.getLabel().substring(0, 50) + "...";
+            addText(reducedLabel, Font.font(20), 10, 30);
+        } else if (this.food.getLabel().length() > 25) {
+            addText(this.food.getLabel(), Font.font(20), 10, 30);
+        } else {
+            addText(this.food.getLabel(), Font.font(30), 10, 40);
         }
+
+        this.options = addComboBox(this.food.getMeasures().keySet(), 10, 50, 300);
+
+        addButton("Search", 320, 50, 100, 10, event -> {
+            String measure = this.food.getMeasures().get(this.options.getValue());
+            this.controller.getNutrition(this.food, measure, this.checkbox.isSelected(), this);
+        });
+
+        this.checkbox = addCheckbox("Use cache if possible", 10, 80, true);
     }
 
     /**
@@ -122,16 +115,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
             this.nodes.remove(pagination);
         }
 
-        this.pagination = new Pagination(3);
-
-        pagination.setLayoutX(10);
-        pagination.setLayoutY(100);
-        pagination.setMaxWidth(580);
-        pagination.setPrefWidth(580);
-        pagination.setMaxHeight(390);
-        pagination.setPrefHeight(390);
-
-        pagination.setPageFactory(index -> {
+        this.pagination = addPagination(3, 10, 100, 580, 390, index -> {
             if (index == 0) {
                 return setPageOne();
             } else if (index == 1) {
@@ -142,8 +126,6 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
                 return new VBox();
             }
         });
-
-        this.nodes.add(pagination);
     }
 
     /**
@@ -152,17 +134,9 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
      * @return The encompassing VBox.
      */
     private VBox setPageOne() {
-        Text calories = new Text();
-        calories.setText("Calories: " + nutrition.getCalories() + "kcal");
-        calories.setFont(Font.font(15));
-
-        Text weight = new Text();
-        weight.setText("Total weight: " + nutrition.getTotalWeight() + "g");
-        weight.setFont(Font.font(15));
-
-        Text dietLabel = new Text();
-        dietLabel.setText("Diet labels:");
-        dietLabel.setFont(Font.font(15));
+        Text calories = createTextForPagination("Calories: " + nutrition.getCalories() + "kcal", Font.font(15));
+        Text weight = createTextForPagination("Total weight: " + nutrition.getTotalWeight() + "g", Font.font(15));
+        Text dietLabel = createTextForPagination("Diet labels:", Font.font(15));
 
         StringBuilder dietStr = new StringBuilder();
 
@@ -171,15 +145,9 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
             dietStr.append(label).append("\n");
         }
 
-        TextArea diet = new TextArea();
-        diet.setText(dietStr.toString());
-        diet.maxWidth(160);
-        diet.setPrefRowCount(5);
-        diet.setEditable(false);
+        TextArea diet = createTextAreaForPagination(dietStr.toString(), 160, 5, false);
 
-        Text healthLabel = new Text();
-        healthLabel.setText("Health labels:");
-        healthLabel.setFont(Font.font(15));
+        Text healthLabel = createTextForPagination("Health labels:", Font.font(15));
 
         StringBuilder healthStr = new StringBuilder();
 
@@ -188,11 +156,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
             healthStr.append(label).append("\n");
         }
 
-        TextArea health = new TextArea();
-        health.setText(healthStr.toString());
-        health.maxWidth(160);
-        health.setPrefRowCount(6);
-        health.setEditable(false);
+        TextArea health = createTextAreaForPagination(healthStr.toString(), 160, 6, false);
 
         return new VBox(5, calories, weight, dietLabel, diet, healthLabel, health);
     }
@@ -203,10 +167,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
      * @return The encompassing VBox.
      */
     private VBox setPageTwo() {
-
-        Text cautionLabels = new Text();
-        cautionLabels.setText("Cautions:");
-        cautionLabels.setFont(Font.font(15));
+        Text cautionLabels = createTextForPagination("Cautions:", Font.font(15));
 
         StringBuilder cautionStr = new StringBuilder();
 
@@ -215,35 +176,16 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
             cautionStr.append(label).append("\n");
         }
 
-        TextArea cautions = new TextArea();
-        cautions.setText(cautionStr.toString());
-        cautions.maxWidth(160);
-        cautions.setPrefRowCount(6);
-        cautions.setEditable(false);
+        TextArea cautions = createTextAreaForPagination(cautionStr.toString(), 160, 6, false);
 
-        Text totalNutrientsLabel = new Text();
-        totalNutrientsLabel.setText("Total nutrients:");
-        totalNutrientsLabel.setFont(Font.font(15));
+        Text totalNutrientsLabel = createTextForPagination("Total nutrients:", Font.font(15));
 
-        TableView<Nutrient> totalNutrients = new TableView<>();
-        ObservableList<Nutrient> list = totalNutrients.getItems();
-        list.addAll(nutrition.getTotalNutrients().values());
+        TableView<Nutrient> totalNutrients = createTableViewForPagination(nutrition.getTotalNutrients().values(),
+                false, 240);
 
-        TableColumn<Nutrient, String> typeCol = new TableColumn<>("Nutrient");
-        typeCol.setCellValueFactory(new PropertyValueFactory<>("label"));
-
-        TableColumn<Nutrient, String> quantityCol = new TableColumn<>("Quantity");
-        quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-
-        TableColumn<Nutrient, String> unitCol = new TableColumn<>("Unit");
-        unitCol.setCellValueFactory(new PropertyValueFactory<>("unit"));
-
-        totalNutrients.getColumns().add(typeCol);
-        totalNutrients.getColumns().add(quantityCol);
-        totalNutrients.getColumns().add(unitCol);
-        totalNutrients.setEditable(false);
-        totalNutrients.setMaxHeight(240);
-        totalNutrients.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        addColumnToTable(totalNutrients, "Nutrient", "label");
+        addColumnToTable(totalNutrients, "Quantity", "quantity");
+        addColumnToTable(totalNutrients, "Unit", "unit");
 
         return new VBox(5, cautionLabels, cautions, totalNutrientsLabel, totalNutrients);
     }
@@ -255,24 +197,14 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
      */
     private VBox setPageThree() {
 
-        Text dailyNutrientsLabel = new Text();
-        dailyNutrientsLabel.setText("Daily nutrients:");
-        dailyNutrientsLabel.setFont(Font.font(15));
+        Text dailyNutrientsLabel = createTextForPagination("Daily nutrients:", Font.font(15));
 
-        TableView<Nutrient> dailyNutrients = new TableView<>();
-        ObservableList<Nutrient> list = dailyNutrients.getItems();
-        list.addAll(nutrition.getTotalDaily().values());
+        TableView<Nutrient> dailyNutrients = createTableViewForPagination(nutrition.getTotalDaily().values(),
+                false, 240);
 
-        TableColumn<Nutrient, String> typeCol = new TableColumn<>("Nutrient");
-        typeCol.setCellValueFactory(new PropertyValueFactory<>("label"));
-
-        TableColumn<Nutrient, String> quantityCol = new TableColumn<>("Quantity (%)");
-        quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-
-        dailyNutrients.getColumns().add(typeCol);
-        dailyNutrients.getColumns().add(quantityCol);
-        dailyNutrients.setEditable(false);
-        dailyNutrients.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        addColumnToTable(dailyNutrients, "Nutrient", "label");
+        addColumnToTable(dailyNutrients, "Quantity", "quantity");
+        addColumnToTable(dailyNutrients, "Unit", "unit");
 
         return new VBox(5, dailyNutrientsLabel, dailyNutrients);
     }

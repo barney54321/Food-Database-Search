@@ -4,11 +4,15 @@ import food.controller.Controller;
 import food.model.models.Food;
 import food.view.FoodWindow;
 import food.view.observers.FoodListObserver;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
+import javafx.util.Callback;
 
 import java.util.List;
 
@@ -65,17 +69,9 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
             this.controller.search(this.searchBar.getText(), check, quick, this);
         });
 
-        this.checkbox = new CheckBox("Use cache");
-        this.checkbox.setLayoutX(40);
-        this.checkbox.setLayoutY(90);
-        this.checkbox.setSelected(true);
-        this.nodes.add(this.checkbox);
+        this.checkbox = addCheckbox("Use cache", 40, 90, true);
 
-        this.quick = new CheckBox("I'm feeling lucky");
-        this.quick.setLayoutX(240);
-        this.quick.setLayoutY(90);
-        this.quick.setSelected(false);
-        this.nodes.add(this.quick);
+        this.quick = addCheckbox("I'm feeling lucky", 240, 90, false);
     }
 
     @Override
@@ -85,14 +81,8 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
         }
 
         if (foods.size() > 0) {
-            this.results = new Pagination(Math.max(1, foods.size() / RESULTS_PER_PAGE));
-            this.results.setLayoutX(40);
-            this.results.setLayoutY(120);
-            this.results.setPrefWidth(520);
-            this.results.setPrefHeight(360);
 
-            // Use setPageFactory to set contents of Pagination
-            this.results.setPageFactory(index -> {
+            Callback<Integer, Node> callback = index -> {
                 int start = index * RESULTS_PER_PAGE;
                 List<Food> sublist = foods.subList(start, Math.min(foods.size(), (index + 1) * RESULTS_PER_PAGE));
 
@@ -100,22 +90,14 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
 
                 for (int i = 0; i < Math.min(RESULTS_PER_PAGE, sublist.size()); i++) {
                     Food food = sublist.get(i);
-
-                    foodButtons[i] = new Button();
-                    foodButtons[i].setTextAlignment(TextAlignment.LEFT);
-                    foodButtons[i].setAlignment(Pos.BASELINE_LEFT);
-                    foodButtons[i].setText(food.getLabel());
-                    foodButtons[i].setMaxWidth(520);
-
-                    foodButtons[i].setOnAction(event -> {
-                        this.controller.setScreen(new FoodScreen(this.controller, this, food));
-                    });
+                    foodButtons[i] = createButtonForPagination(food);
                 }
 
                 return new VBox(5, foodButtons);
-            });
+            };
 
-            this.nodes.add(this.results);
+            int count = Math.max(1, foods.size() / RESULTS_PER_PAGE);
+            this.results = addPagination(count,40, 120, 520, 360, callback);
         }
 
         this.controller.refresh();
@@ -124,6 +106,14 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
             Food food = foods.get(0);
             this.controller.setScreen(new FoodScreen(this.controller, this, food));
         }
+    }
+
+    private Button createButtonForPagination(Food food) {
+        Button button = createButtonForPagination(food.getLabel(), Pos.BASELINE_LEFT, 520, event -> {
+            this.controller.setScreen(new FoodScreen(this.controller, this, food));
+        });
+
+        return button;
     }
 
     @Override
