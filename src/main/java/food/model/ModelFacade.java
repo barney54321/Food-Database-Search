@@ -71,36 +71,42 @@ public interface ModelFacade {
 
     /**
      * Attaches a new FoodListObserver object.
+     *
      * @param observer The observer wishing to subscribe.
      */
     void attach(FoodListObserver observer);
 
     /**
      * Detaches the given observer.
+     *
      * @param observer The observer to detach.
      */
     void detach(FoodListObserver observer);
 
     /**
      * Attaches a new NutritionObserver object.
+     *
      * @param observer The observer wishing to subscribe.
      */
     void attach(NutritionObserver observer);
 
     /**
      * Detaches the given observer.
+     *
      * @param observer The observer to detach.
      */
     void detach(NutritionObserver observer);
 
     /**
      * Attaches a new MessageObserver object.
+     *
      * @param observer The observer wishing to subscribe.
      */
     void attach(MessageObserver observer);
 
     /**
      * Detaches the given observer.
+     *
      * @param observer The observer to detach.
      */
     void detach(MessageObserver observer);

@@ -51,12 +51,14 @@ public interface Controller {
 
     /**
      * Injects the view object for MVC.
+     *
      * @param view The View object.
      */
     void setView(FoodWindow view);
 
     /**
      * Updates the FoodWindow screen state.
+     *
      * @param screen The new state.
      */
     void setScreen(Screen screen);
@@ -68,30 +70,35 @@ public interface Controller {
 
     /**
      * Informs model of a new FoodListObserver object.
+     *
      * @param observer The observer to update with.
      */
     void registerFoodListObserver(FoodListObserver observer);
 
     /**
      * Informs model of a new NutritionObserver object.
+     *
      * @param observer The observer to update with.
      */
     void registerNutritionObserver(NutritionObserver observer);
 
     /**
      * Informs model of a new MessageObserver object.
+     *
      * @param observer The observer to update with.
      */
     void registerMessageObserver(MessageObserver observer);
 
     /**
      * Informs model that a NutritionObserver object is being removed.
+     *
      * @param observer The observer to update with.
      */
     void removeNutritionObserver(NutritionObserver observer);
 
     /**
      * Informs model that a MessageObserver object is being removed.
+     *
      * @param observer The observer to update with.
      */
     void removeMessageObserver(MessageObserver observer);

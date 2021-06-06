@@ -102,26 +102,26 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void registerFoodListObserver(FoodListObserver observer) {
-
+        this.facade.attach(observer);
     }
 
     @Override
     public void registerNutritionObserver(NutritionObserver observer) {
-
+        this.facade.attach(observer);
     }
 
     @Override
     public void registerMessageObserver(MessageObserver observer) {
-
+        this.facade.attach(observer);
     }
 
     @Override
     public void removeNutritionObserver(NutritionObserver observer) {
-
+        this.facade.detach(observer);
     }
 
     @Override
     public void removeMessageObserver(MessageObserver observer) {
-
+        this.facade.detach(observer);
     }
 }

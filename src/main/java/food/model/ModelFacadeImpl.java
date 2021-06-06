@@ -9,7 +9,6 @@ import food.view.observers.MessageObserver;
 import food.view.observers.NutritionObserver;
 import javafx.application.Platform;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -43,6 +42,21 @@ public class ModelFacadeImpl implements ModelFacade {
     private final List<Runnable> tasks;
 
     /**
+     * The list of food list observers.
+     */
+    private List<FoodListObserver> foodObservers;
+
+    /**
+     * The list of nutrition observers.
+     */
+    private List<NutritionObserver> nutritionObservers;
+
+    /**
+     * The list of message observers.
+     */
+    private List<MessageObserver> messageObservers;
+
+    /**
      * Creates a new ModelFacadeImpl object.
      *
      * @param database The FoodDatabase the Facade will use.
@@ -53,6 +67,10 @@ public class ModelFacadeImpl implements ModelFacade {
         this.twilio = twilio;
         this.run = new AtomicBoolean(true);
         this.tasks = new CopyOnWriteArrayList<>();
+
+        this.foodObservers = new CopyOnWriteArrayList<>();
+        this.nutritionObservers = new CopyOnWriteArrayList<>();
+        this.messageObservers = new CopyOnWriteArrayList<>();
     }
 
     @Override
@@ -60,7 +78,7 @@ public class ModelFacadeImpl implements ModelFacade {
         List<Food> list = database.search(term, useCache);
 
         if (list == null) {
-//            Platform.runLater(() -> observer.update(new NoSuchElementException("Unable to search cache or database")));
+            updateFoodObservers(new NoSuchElementException("Unable to search cache or database"));
         } else if (quick) {
             // Check to see if quick search is possible
             boolean match = false;
@@ -68,17 +86,29 @@ public class ModelFacadeImpl implements ModelFacade {
             for (Food food : list) {
                 if (food.getLabel().equalsIgnoreCase(term)) {
                     match = true;
-//                    Platform.runLater(() -> observer.update(Collections.singletonList(food)));
+                    updateFoodObservers(Collections.singletonList(food));
                     break;
                 }
             }
 
             // Quick search isn't possible
             if (!match) {
-//                Platform.runLater(() -> observer.update(list));
+                updateFoodObservers(list);
             }
         } else {
-//            Platform.runLater(() -> observer.update(list));
+            updateFoodObservers(list);
+        }
+    }
+
+    private void updateFoodObservers(Exception exception) {
+        for (FoodListObserver observer : foodObservers) {
+            Platform.runLater(() -> observer.update(exception));
+        }
+    }
+
+    private void updateFoodObservers(List<Food> list) {
+        for (FoodListObserver observer : foodObservers) {
+            Platform.runLater(() -> observer.update(list));
         }
     }
 
@@ -87,17 +117,34 @@ public class ModelFacadeImpl implements ModelFacade {
         Nutrition nutrition = database.getNutrition(foodID, measure, useCache);
 
         if (nutrition == null) {
-//            Platform.runLater(() -> observer.update(new NoSuchElementException("No matching nutrition object")));
+            updateNutritionObservers(new NoSuchElementException("No matching nutrition object"));
         } else {
-//            Platform.runLater(() -> observer.update(nutrition));
+            updateNutritionObservers(nutrition);
+        }
+    }
+
+    private void updateNutritionObservers(Exception exception) {
+        for (NutritionObserver observer : nutritionObservers) {
+            Platform.runLater(() -> observer.update(exception));
+        }
+    }
+
+    private void updateNutritionObservers(Nutrition nutrition) {
+        for (NutritionObserver observer : nutritionObservers) {
+            Platform.runLater(() -> observer.update(nutrition));
         }
     }
 
     @Override
     public void sendMessage(String message) {
         boolean result = twilio.sendMessage(message);
+        updateMessageObservers(result);
+    }
 
-//        Platform.runLater(() -> observer.update(result));
+    private void updateMessageObservers(boolean result) {
+        for (MessageObserver observer : messageObservers) {
+            Platform.runLater(() -> observer.update(result));
+        }
     }
 
     @Override
@@ -117,46 +164,46 @@ public class ModelFacadeImpl implements ModelFacade {
 
     @Override
     public void queueSearch(String term, boolean useCache, boolean quick) {
-//        this.tasks.add(() -> this.search(term, useCache, quick, observer));
+        this.tasks.add(() -> this.search(term, useCache, quick));
     }
 
     @Override
     public void queueGetNutrition(String foodID, String measure, boolean useCache) {
-//        this.tasks.add(() -> this.getNutrition(foodID, measure, useCache, observer));
+        this.tasks.add(() -> this.getNutrition(foodID, measure, useCache));
     }
 
     @Override
     public void queueSendMessage(String message) {
-//        this.tasks.add(() -> this.sendMessage(message, observer));
+        this.tasks.add(() -> this.sendMessage(message));
     }
 
     @Override
     public void attach(FoodListObserver observer) {
-
+        this.foodObservers.add(observer);
     }
 
     @Override
     public void detach(FoodListObserver observer) {
-
+        this.foodObservers.remove(observer);
     }
 
     @Override
     public void attach(NutritionObserver observer) {
-
+        this.nutritionObservers.add(observer);
     }
 
     @Override
     public void detach(NutritionObserver observer) {
-
+        this.nutritionObservers.remove(observer);
     }
 
     @Override
     public void attach(MessageObserver observer) {
-
+        this.messageObservers.add(observer);
     }
 
     @Override
     public void detach(MessageObserver observer) {
-
+        this.messageObservers.remove(observer);
     }
 }
