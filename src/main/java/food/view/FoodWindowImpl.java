@@ -52,7 +52,7 @@ public class FoodWindowImpl implements FoodWindow {
         this.pane = new Pane();
         this.scene = new Scene(pane, WIDTH, HEIGHT);
 
-        this.setScreen(new SearchScreen(this));
+        this.setScreen(new SearchScreen(controller));
     }
 
     @Override

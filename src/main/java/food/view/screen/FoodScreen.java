@@ -1,5 +1,6 @@
 package food.view.screen;
 
+import food.controller.Controller;
 import food.model.models.Food;
 import food.view.FoodWindow;
 import javafx.collections.ObservableList;
@@ -33,16 +34,16 @@ public class FoodScreen extends AbstractScreen {
     /**
      * Creates a new FoodScreen object based on the provided Food object.
      *
-     * @param window The encompassing window.
+     * @param controller The encompassing window's controller.
      * @param parent The parent Screen object.
      * @param food The food object the screen represents.
      */
-    public FoodScreen(FoodWindow window, Screen parent, Food food) {
-        super(window);
+    public FoodScreen(Controller controller, Screen parent, Food food) {
+        super(controller);
         this.parent = parent;
         this.food = food;
         setupNodes();
-        this.window.refresh();
+        this.controller.setScreen(this);
     }
 
     /**
@@ -95,12 +96,12 @@ public class FoodScreen extends AbstractScreen {
     @Override
     protected void setupNodes() {
         addButton("Return", 500, 10, 90, 30, event -> {
-            this.window.setScreen(this.parent);
+            this.controller.setScreen(this.parent);
         });
 
         addButton("Nutrition", 500, 50, 90, 30, event -> {
-            Screen nutritionScreen = new NutritionScreen(this.window, this, this.food);
-            this.window.setScreen(nutritionScreen);
+            Screen nutritionScreen = new NutritionScreen(this.controller, this, this.food);
+            this.controller.setScreen(nutritionScreen);
         });
 
         if (this.food != null) {

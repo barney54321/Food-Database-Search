@@ -2,9 +2,12 @@ package food.controller;
 
 import food.model.models.Food;
 import food.model.models.Nutrition;
+import food.view.FoodWindow;
+import food.view.observers.BaseObserver;
 import food.view.observers.FoodListObserver;
 import food.view.observers.MessageObserver;
 import food.view.observers.NutritionObserver;
+import food.view.screen.Screen;
 
 /**
  * The base Controller interface.
@@ -45,4 +48,21 @@ public interface Controller {
      * @param observer The observer the model will update.
      */
     void sendMessage(Food food, Nutrition nutrition, String size, MessageObserver observer);
+
+    /**
+     * Injects the view object for MVC.
+     * @param view The View object.
+     */
+    void setView(FoodWindow view);
+
+    /**
+     * Updates the FoodWindow screen state.
+     * @param screen The new state.
+     */
+    void setScreen(Screen screen);
+
+    /**
+     * Refreshes the view.
+     */
+    void refresh();
 }

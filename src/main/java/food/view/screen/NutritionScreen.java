@@ -1,5 +1,6 @@
 package food.view.screen;
 
+import food.controller.Controller;
 import food.model.models.Food;
 import food.model.models.Nutrient;
 import food.model.models.Nutrition;
@@ -51,27 +52,27 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
     /**
      * Creates a new NutritionScreen object.
      *
-     * @param window The encompassing window.
+     * @param controller The encompassing window's controller.
      * @param parent The parent Screen object.
      * @param food The Food object the Screen is based on.
      */
-    public NutritionScreen(FoodWindow window, Screen parent, Food food) {
-        super(window);
+    public NutritionScreen(Controller controller, Screen parent, Food food) {
+        super(controller);
         this.parent = parent;
         this.food = food;
         setupNodes();
-        this.window.refresh();
+        this.controller.refresh();
     }
 
     @Override
     protected void setupNodes() {
 
         addButton("Return", 500, 10, 90, 30, event -> {
-            this.window.setScreen(this.parent);
+            this.controller.setScreen(this.parent);
         });
 
         addButton("Generate\nReport", 500, 50, 90, 50, event -> {
-            this.window.getController().sendMessage(this.food, this.nutrition, options.getValue(), this);
+            this.controller.sendMessage(this.food, this.nutrition, options.getValue(), this);
         });
 
         if (this.food != null) {
@@ -96,7 +97,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
 
             addButton("Search", 320, 50, 100, 10, event -> {
                 String measure = this.food.getMeasures().get(this.options.getValue());
-                this.window.getController().getNutrition(this.food, measure, this.checkbox.isSelected(), this);
+                this.controller.getNutrition(this.food, measure, this.checkbox.isSelected(), this);
             });
 
             this.checkbox = new CheckBox("Use cache if possible");
@@ -285,7 +286,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
     public void update(Nutrition nutrition) {
         this.nutrition = nutrition;
         this.setupNutrition();
-        this.window.refresh();
+        this.controller.refresh();
     }
 
     @Override

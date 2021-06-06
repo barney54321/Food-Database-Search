@@ -1,5 +1,6 @@
 package food.view.screen;
 
+import food.controller.Controller;
 import food.view.FoodWindow;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -26,17 +27,17 @@ public abstract class AbstractScreen implements Screen {
     protected List<Node> nodes;
 
     /**
-     * The enveloping window object.
+     * The enveloping window's controller.
      */
-    protected final FoodWindow window;
+    protected final Controller controller;
 
     /**
      * Creates a new Abstract Screen object.
      *
-     * @param window The encompassing window.
+     * @param controller The encompassing window's controller.
      */
-    public AbstractScreen(FoodWindow window) {
-        this.window = window;
+    public AbstractScreen(Controller controller) {
+        this.controller = controller;
         this.nodes = new ArrayList<>();
         setupNodes();
     }

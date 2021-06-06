@@ -1,5 +1,6 @@
 package food.view.screen;
 
+import food.controller.Controller;
 import food.model.models.Food;
 import food.view.FoodWindow;
 import food.view.observers.FoodListObserver;
@@ -44,10 +45,10 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
     /**
      * Creates a new SearchScreen object.
      *
-     * @param window The encompassing window.
+     * @param controller The encompassing window's controller.
      */
-    public SearchScreen(FoodWindow window) {
-        super(window);
+    public SearchScreen(Controller controller) {
+        super(controller);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
         addButton("Search", 490, 60, 70, 10, event -> {
             boolean check = this.checkbox.isSelected();
             boolean quick = this.quick.isSelected();
-            this.window.getController().search(this.searchBar.getText(), check, quick, this);
+            this.controller.search(this.searchBar.getText(), check, quick, this);
         });
 
         this.checkbox = new CheckBox("Use cache");
@@ -105,7 +106,7 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
                     foodButtons[i].setMaxWidth(520);
 
                     foodButtons[i].setOnAction(event -> {
-                        this.window.setScreen(new FoodScreen(this.window, this, food));
+                        this.controller.setScreen(new FoodScreen(this.controller, this, food));
                     });
                 }
 
@@ -115,11 +116,11 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
             this.nodes.add(this.results);
         }
 
-        this.window.refresh();
+        this.controller.refresh();
 
         if (foods.size() == 1 && this.quick.isSelected()) {
             Food food = foods.get(0);
-            this.window.setScreen(new FoodScreen(this.window, this, food));
+            this.controller.setScreen(new FoodScreen(this.controller, this, food));
         }
     }
 

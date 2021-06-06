@@ -106,6 +106,7 @@ public class Runner extends Application {
         facade = new ModelFacadeImpl(api, twilio);
         Controller controller = new ControllerImpl(facade);
         FoodWindow window = new FoodWindowImpl(controller);
+        controller.setView(window);
 
         // Setup facade thread
         thread = new Thread(facade::run);
