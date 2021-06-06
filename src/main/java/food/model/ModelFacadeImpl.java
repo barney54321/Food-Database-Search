@@ -94,7 +94,7 @@ public class ModelFacadeImpl implements ModelFacade {
             // Quick search isn't possible
             if (!match && list.size() > 0) {
                 updateFoodObservers(Collections.singletonList(list.get(0)));
-            } else {
+            } else if (!match) {
                 updateFoodObservers(list);
             }
         } else {
