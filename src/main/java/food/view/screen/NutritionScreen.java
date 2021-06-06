@@ -2,6 +2,7 @@ package food.view.screen;
 
 import food.controller.Controller;
 import food.model.models.Food;
+import food.model.models.Ingredient;
 import food.model.models.Nutrient;
 import food.model.models.Nutrition;
 import food.view.FoodWindow;
@@ -115,13 +116,15 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
             this.nodes.remove(pagination);
         }
 
-        this.pagination = addPagination(3, 10, 100, 580, 390, index -> {
+        this.pagination = addPagination(4, 10, 100, 580, 390, index -> {
             if (index == 0) {
                 return setPageOne();
             } else if (index == 1) {
                 return setPageTwo();
             } else if (index == 2) {
                 return setPageThree();
+            } else if (index == 3) {
+                return setPageFour();
             } else {
                 return new VBox();
             }
@@ -206,6 +209,25 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         addColumnToTable(dailyNutrients, "Quantity (%)", "quantity");
 
         return new VBox(5, dailyNutrientsLabel, dailyNutrients);
+    }
+
+    /**
+     * Creates Page 4 of Pagination.
+     *
+     * @return The encompassing VBox.
+     */
+    private VBox setPageFour() {
+
+        Text ingredientsLabel = createTextForPagination("Ingredients:", Font.font(15));
+
+        TableView<Ingredient> ingredients = createTableViewForPagination(nutrition.getIngredients(),
+                false, 320);
+
+        addColumnToTable(ingredients, "Ingredient", "food");
+        addColumnToTable(ingredients, "Quantity", "quantity");
+        addColumnToTable(ingredients, "Weight", "weight");
+
+        return new VBox(5, ingredientsLabel, ingredients);
     }
 
     @Override
