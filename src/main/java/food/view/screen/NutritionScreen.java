@@ -200,7 +200,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         Text dailyNutrientsLabel = createTextForPagination("Daily nutrients:", Font.font(15));
 
         TableView<Nutrient> dailyNutrients = createTableViewForPagination(nutrition.getTotalDaily().values(),
-                false, 240);
+                false, 320);
 
         addColumnToTable(dailyNutrients, "Nutrient", "label");
         addColumnToTable(dailyNutrients, "Quantity (%)", "quantity");

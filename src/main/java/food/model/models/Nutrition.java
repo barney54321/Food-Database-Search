@@ -56,4 +56,9 @@ public interface Nutrition {
      * @return The map of daily nutrients in the item.
      */
     Map<String, Nutrient> getTotalDaily();
+
+    /**
+     * The list of ingredients present in the food item.
+     */
+    List<Ingredient> getIngredients();
 }
