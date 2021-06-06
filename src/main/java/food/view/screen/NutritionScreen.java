@@ -60,6 +60,10 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
         super(controller);
         this.parent = parent;
         this.food = food;
+
+        this.controller.registerNutritionObserver(this);
+        this.controller.registerMessageObserver(this);
+
         setupNodes();
         this.controller.refresh();
     }
@@ -68,6 +72,8 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
     protected void setupNodes() {
 
         addButton("Return", 500, 10, 90, 30, event -> {
+            this.controller.removeNutritionObserver(this);
+            this.controller.removeMessageObserver(this);
             this.controller.setScreen(this.parent);
         });
 

@@ -49,6 +49,8 @@ public class SearchScreen extends AbstractScreen implements FoodListObserver {
      */
     public SearchScreen(Controller controller) {
         super(controller);
+
+        this.controller.registerFoodListObserver(this);
     }
 
     @Override
