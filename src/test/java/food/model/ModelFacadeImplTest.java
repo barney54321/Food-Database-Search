@@ -55,6 +55,10 @@ public class ModelFacadeImplTest extends Application {
         this.message = mock(MessageObserver.class);
 
         this.facade = new ModelFacadeImpl(database, twilio);
+
+        this.facade.attach(list);
+        this.facade.attach(nutrition);
+        this.facade.attach(message);
     }
 
     private void waitForPlatformRunLater() {
@@ -73,7 +77,7 @@ public class ModelFacadeImplTest extends Application {
 
         when(database.search("Apple", true)).thenReturn(Arrays.asList(food1, food2, food3));
 
-        facade.search("Apple", true, false, list);
+        facade.search("Apple", true, false);
 
         waitForPlatformRunLater();
 
@@ -92,7 +96,7 @@ public class ModelFacadeImplTest extends Application {
 
         when(database.search("Apple", true)).thenReturn(Arrays.asList(food1, food2, food3));
 
-        facade.search("Apple", true, true, list);
+        facade.search("Apple", true, true);
 
         waitForPlatformRunLater();
 
@@ -107,7 +111,7 @@ public class ModelFacadeImplTest extends Application {
 
         when(database.search("Apple", false)).thenReturn(Arrays.asList(food1, food2, food3));
 
-        facade.search("Apple", false, false, list);
+        facade.search("Apple", false, false);
 
         waitForPlatformRunLater();
 
@@ -126,7 +130,7 @@ public class ModelFacadeImplTest extends Application {
 
         when(database.search("Apple", false)).thenReturn(Arrays.asList(food1, food2, food3));
 
-        facade.search("Apple", false, true, list);
+        facade.search("Apple", false, true);
 
         waitForPlatformRunLater();
 
@@ -137,7 +141,7 @@ public class ModelFacadeImplTest extends Application {
     public void searchFalseError() {
         when(database.search("Apple", true)).thenReturn(null);
 
-        facade.search("Apple", true, false, list);
+        facade.search("Apple", true, false);
 
         waitForPlatformRunLater();
 
@@ -148,7 +152,7 @@ public class ModelFacadeImplTest extends Application {
     public void searchEmptyTrue() {
         when(database.search("Apple", true)).thenReturn(new ArrayList<Food>());
 
-        facade.search("Apple", true, false, list);
+        facade.search("Apple", true, false);
 
         waitForPlatformRunLater();
 
@@ -159,7 +163,7 @@ public class ModelFacadeImplTest extends Application {
     public void searchEmptyFalse() {
         when(database.search("Apple", false)).thenReturn(new ArrayList<Food>());
 
-        facade.search("Apple", true, false, list);
+        facade.search("Apple", true, false);
 
         waitForPlatformRunLater();
 
@@ -172,7 +176,7 @@ public class ModelFacadeImplTest extends Application {
 
         when(database.getNutrition("1234", "size1", true)).thenReturn(mock);
 
-        facade.getNutrition("1234", "size1", true, nutrition);
+        facade.getNutrition("1234", "size1", true);
 
         waitForPlatformRunLater();
 
@@ -185,7 +189,7 @@ public class ModelFacadeImplTest extends Application {
 
         when(database.getNutrition("1234", "size1", false)).thenReturn(mock);
 
-        facade.getNutrition("1234", "size1", false, nutrition);
+        facade.getNutrition("1234", "size1", false);
 
         waitForPlatformRunLater();
 
@@ -196,7 +200,7 @@ public class ModelFacadeImplTest extends Application {
     public void getNutritionFailTrue() {
         when(database.getNutrition("1234", "size1", true)).thenReturn(null);
 
-        facade.getNutrition("1234", "size1", true, nutrition);
+        facade.getNutrition("1234", "size1", true);
 
         waitForPlatformRunLater();
 
@@ -207,7 +211,7 @@ public class ModelFacadeImplTest extends Application {
     public void getNutritionFailFalse() {
         when(database.getNutrition("1234", "size1", false)).thenReturn(null);
 
-        facade.getNutrition("1234", "size1", false, nutrition);
+        facade.getNutrition("1234", "size1", false);
 
         waitForPlatformRunLater();
 
@@ -218,7 +222,7 @@ public class ModelFacadeImplTest extends Application {
     public void sendMessage() {
         when(twilio.sendMessage("Hello world")).thenReturn(true);
 
-        facade.sendMessage("Hello world", message);
+        facade.sendMessage("Hello world");
 
         waitForPlatformRunLater();
 
@@ -229,7 +233,7 @@ public class ModelFacadeImplTest extends Application {
     public void sendMessageFail() {
         when(twilio.sendMessage("Hello world")).thenReturn(false);
 
-        facade.sendMessage("Hello world", message);
+        facade.sendMessage("Hello world");
 
         waitForPlatformRunLater();
 
@@ -267,7 +271,7 @@ public class ModelFacadeImplTest extends Application {
         thread.start();
 
         try {
-            facade.queueSearch("Apple", true, false, list);
+            facade.queueSearch("Apple", true, false);
             Thread.sleep(300);
             facade.stop();
             thread.join();
@@ -294,7 +298,7 @@ public class ModelFacadeImplTest extends Application {
         thread.start();
 
         try {
-            facade.queueSearch("Apple", true, true, list);
+            facade.queueSearch("Apple", true, true);
             Thread.sleep(300);
             facade.stop();
             thread.join();
@@ -315,7 +319,7 @@ public class ModelFacadeImplTest extends Application {
         thread.start();
 
         try {
-            facade.queueGetNutrition("1234", "size1", true, nutrition);
+            facade.queueGetNutrition("1234", "size1", true);
             Thread.sleep(100);
             facade.stop();
             thread.join();
@@ -334,7 +338,7 @@ public class ModelFacadeImplTest extends Application {
         thread.start();
 
         try {
-            facade.queueSendMessage("Hello world", message);
+            facade.queueSendMessage("Hello world");
             Thread.sleep(100);
             facade.stop();
             thread.join();
@@ -367,9 +371,9 @@ public class ModelFacadeImplTest extends Application {
         thread.start();
 
         try {
-            facade.queueSearch("Apple", true, false, list);
-            facade.queueSendMessage("Hello world", message);
-            facade.queueGetNutrition("1234", "size1", true, nutrition);
+            facade.queueSearch("Apple", true, false);
+            facade.queueSendMessage("Hello world");
+            facade.queueGetNutrition("1234", "size1", true);
             Thread.sleep(200);
             facade.stop();
             thread.join();
@@ -380,5 +384,50 @@ public class ModelFacadeImplTest extends Application {
         verify(nutrition, times(1)).update(mock);
         verify(list, times(1)).update(eq(Arrays.asList(food1, food2, food3)));
         verify(message, times(1)).update(true);
+    }
+
+    @Test
+    public void detachFoodObserver() {
+        facade.detach(list);
+
+        Food food1 = mock(Food.class);
+        Food food2 = mock(Food.class);
+        Food food3 = mock(Food.class);
+
+        when(database.search("Apple", true)).thenReturn(Arrays.asList(food1, food2, food3));
+
+        facade.search("Apple", true, false);
+
+        waitForPlatformRunLater();
+
+        verify(list, never()).update(eq(Arrays.asList(food1, food2, food3)));
+    }
+
+    @Test
+    public void detachNutritionObserver() {
+        facade.detach(nutrition);
+
+        Nutrition mock = mock(Nutrition.class);
+
+        when(database.getNutrition("1234", "size1", true)).thenReturn(mock);
+
+        facade.getNutrition("1234", "size1", true);
+
+        waitForPlatformRunLater();
+
+        verify(nutrition, never()).update(mock);
+    }
+
+    @Test
+    public void detachMessageObserver() {
+        facade.detach(message);
+
+        when(twilio.sendMessage("Hello world")).thenReturn(true);
+
+        facade.sendMessage("Hello world");
+
+        waitForPlatformRunLater();
+
+        verify(message, never()).update(true);
     }
 }

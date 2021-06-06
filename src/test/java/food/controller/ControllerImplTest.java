@@ -37,35 +37,35 @@ public class ControllerImplTest {
     public void searchNormalTrueTrue() {
         controller.search("Apple", true, true, foodListObserver);
 
-        verify(facade, times(1)).queueSearch("Apple", true, true, foodListObserver);
+        verify(facade, times(1)).queueSearch("Apple", true, true);
     }
 
     @Test
     public void searchNormalTrueFalse() {
         controller.search("Apple", true, false, foodListObserver);
 
-        verify(facade, times(1)).queueSearch("Apple", true, false, foodListObserver);
+        verify(facade, times(1)).queueSearch("Apple", true, false);
     }
 
     @Test
     public void searchNormalFalseTrue() {
         controller.search("Apple", false, true, foodListObserver);
 
-        verify(facade, times(1)).queueSearch("Apple", false, true, foodListObserver);
+        verify(facade, times(1)).queueSearch("Apple", false, true);
     }
 
     @Test
     public void searchNormalFalseFalse() {
         controller.search("Apple", false, false, foodListObserver);
 
-        verify(facade, times(1)).queueSearch("Apple", false, false, foodListObserver);
+        verify(facade, times(1)).queueSearch("Apple", false, false);
     }
 
     @Test
     public void searchEmpty() {
         controller.search("", true, true, foodListObserver);
 
-        verify(facade, times(0)).queueSearch("", true, true, foodListObserver);
+        verify(facade, times(0)).queueSearch("", true, true);
         verify(foodListObserver, times(1)).update(any(Exception.class));
     }
 
@@ -73,7 +73,7 @@ public class ControllerImplTest {
     public void searchNull() {
         controller.search(null, true, true, foodListObserver);
 
-        verify(facade, times(0)).queueSearch(null, true, true, foodListObserver);
+        verify(facade, times(0)).queueSearch(null, true, true);
         verify(foodListObserver, times(1)).update(any(Exception.class));
     }
 
@@ -89,7 +89,7 @@ public class ControllerImplTest {
         controller.search("hello_ world", true, true, foodListObserver);
         controller.search("hello; world", true, true, foodListObserver);
 
-        verify(facade, times(0)).queueSearch(null, true, true, foodListObserver);
+        verify(facade, times(0)).queueSearch(null, true, true);
         verify(foodListObserver, times(9)).update(any(Exception.class));
     }
 
@@ -101,7 +101,7 @@ public class ControllerImplTest {
 
         controller.getNutrition(mock, "size1", true, nutritionObserver);
 
-        verify(facade, times(1)).queueGetNutrition("1234", "size1", true, nutritionObserver);
+        verify(facade, times(1)).queueGetNutrition("1234", "size1", true);
     }
 
     @Test
@@ -112,7 +112,7 @@ public class ControllerImplTest {
 
         controller.getNutrition(mock, "size1", false, nutritionObserver);
 
-        verify(facade, times(1)).queueGetNutrition("1234", "size1", false, nutritionObserver);
+        verify(facade, times(1)).queueGetNutrition("1234", "size1", false);
     }
 
     @Test
@@ -152,7 +152,7 @@ public class ControllerImplTest {
 
         controller.sendMessage(mock, nutrition, "size1", messageObserver);
 
-        verify(facade, times(1)).queueSendMessage("Hello world", messageObserver);
+        verify(facade, times(1)).queueSendMessage("Hello world");
     }
 
     @Test
@@ -196,5 +196,37 @@ public class ControllerImplTest {
         controller.sendMessage(mock, null, "size1", messageObserver);
 
         verify(messageObserver, times(1)).update(any(Exception.class));
+    }
+
+    @Test
+    public void registerFoodListObserver() {
+        controller.registerFoodListObserver(foodListObserver);
+        verify(facade, times(1)).attach(foodListObserver);
+    }
+
+    @Test
+    public void registerNutritionObserver() {
+        controller.registerNutritionObserver(nutritionObserver);
+        verify(facade, times(1)).attach(nutritionObserver);
+    }
+
+    @Test
+    public void registerMessageObserver() {
+        controller.registerMessageObserver(messageObserver);
+        verify(facade, times(1)).attach(messageObserver);
+    }
+
+    @Test
+    public void removeNutritionObserver() {
+        controller.registerNutritionObserver(nutritionObserver);
+        controller.removeNutritionObserver(nutritionObserver);
+        verify(facade, times(1)).attach(nutritionObserver);
+    }
+
+    @Test
+    public void removeMessageObserver() {
+        controller.registerMessageObserver(messageObserver);
+        controller.removeMessageObserver(messageObserver);
+        verify(facade, times(1)).attach(messageObserver);
     }
 }

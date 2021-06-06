@@ -56,11 +56,11 @@ public class ModelFacadeImpl implements ModelFacade {
     }
 
     @Override
-    public void search(String term, boolean useCache, boolean quick, FoodListObserver observer) {
+    public void search(String term, boolean useCache, boolean quick) {
         List<Food> list = database.search(term, useCache);
 
         if (list == null) {
-            Platform.runLater(() -> observer.update(new NoSuchElementException("Unable to search cache or database")));
+//            Platform.runLater(() -> observer.update(new NoSuchElementException("Unable to search cache or database")));
         } else if (quick) {
             // Check to see if quick search is possible
             boolean match = false;
@@ -68,36 +68,36 @@ public class ModelFacadeImpl implements ModelFacade {
             for (Food food : list) {
                 if (food.getLabel().equalsIgnoreCase(term)) {
                     match = true;
-                    Platform.runLater(() -> observer.update(Collections.singletonList(food)));
+//                    Platform.runLater(() -> observer.update(Collections.singletonList(food)));
                     break;
                 }
             }
 
             // Quick search isn't possible
             if (!match) {
-                Platform.runLater(() -> observer.update(list));
+//                Platform.runLater(() -> observer.update(list));
             }
         } else {
-            Platform.runLater(() -> observer.update(list));
+//            Platform.runLater(() -> observer.update(list));
         }
     }
 
     @Override
-    public void getNutrition(String foodID, String measure, boolean useCache, NutritionObserver observer) {
+    public void getNutrition(String foodID, String measure, boolean useCache) {
         Nutrition nutrition = database.getNutrition(foodID, measure, useCache);
 
         if (nutrition == null) {
-            Platform.runLater(() -> observer.update(new NoSuchElementException("No matching nutrition object")));
+//            Platform.runLater(() -> observer.update(new NoSuchElementException("No matching nutrition object")));
         } else {
-            Platform.runLater(() -> observer.update(nutrition));
+//            Platform.runLater(() -> observer.update(nutrition));
         }
     }
 
     @Override
-    public void sendMessage(String message, MessageObserver observer) {
+    public void sendMessage(String message) {
         boolean result = twilio.sendMessage(message);
 
-        Platform.runLater(() -> observer.update(result));
+//        Platform.runLater(() -> observer.update(result));
     }
 
     @Override
@@ -116,17 +116,47 @@ public class ModelFacadeImpl implements ModelFacade {
     }
 
     @Override
-    public void queueSearch(String term, boolean useCache, boolean quick, FoodListObserver observer) {
-        this.tasks.add(() -> this.search(term, useCache, quick, observer));
+    public void queueSearch(String term, boolean useCache, boolean quick) {
+//        this.tasks.add(() -> this.search(term, useCache, quick, observer));
     }
 
     @Override
-    public void queueGetNutrition(String foodID, String measure, boolean useCache, NutritionObserver observer) {
-        this.tasks.add(() -> this.getNutrition(foodID, measure, useCache, observer));
+    public void queueGetNutrition(String foodID, String measure, boolean useCache) {
+//        this.tasks.add(() -> this.getNutrition(foodID, measure, useCache, observer));
     }
 
     @Override
-    public void queueSendMessage(String message, MessageObserver observer) {
-        this.tasks.add(() -> this.sendMessage(message, observer));
+    public void queueSendMessage(String message) {
+//        this.tasks.add(() -> this.sendMessage(message, observer));
+    }
+
+    @Override
+    public void attach(FoodListObserver observer) {
+
+    }
+
+    @Override
+    public void detach(FoodListObserver observer) {
+
+    }
+
+    @Override
+    public void attach(NutritionObserver observer) {
+
+    }
+
+    @Override
+    public void detach(NutritionObserver observer) {
+
+    }
+
+    @Override
+    public void attach(MessageObserver observer) {
+
+    }
+
+    @Override
+    public void detach(MessageObserver observer) {
+
     }
 }

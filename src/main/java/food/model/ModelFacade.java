@@ -10,32 +10,29 @@ import food.view.observers.NutritionObserver;
 public interface ModelFacade {
 
     /**
-     * Searches for matching food items and updates the observer.
+     * Searches for matching food items and updates the observers.
      *
      * @param term The term to search on.
      * @param useCache Whether to use cached data.
      * @param quick Whether to run a quick search.
-     * @param observer The observer to update.
      */
-    void search(String term, boolean useCache, boolean quick, FoodListObserver observer);
+    void search(String term, boolean useCache, boolean quick);
 
     /**
-     * Retrieves the nutritional information for the given food item and updates the observer.
+     * Retrieves the nutritional information for the given food item and updates the observers.
      *
      * @param foodID The associated food item.
      * @param measure The size of the nutritional information.
      * @param useCache Whether to use cached data.
-     * @param observer The observer to update.
      */
-    void getNutrition(String foodID, String measure, boolean useCache, NutritionObserver observer);
+    void getNutrition(String foodID, String measure, boolean useCache);
 
     /**
-     * Sends the provided message and updates the observer on the outcome.
+     * Sends the provided message and updates the observers on the outcome.
      *
      * @param message The message to send.
-     * @param observer The observer to update.
      */
-    void sendMessage(String message, MessageObserver observer);
+    void sendMessage(String message);
 
     /**
      * The method run inside Worker thread.
@@ -53,9 +50,8 @@ public interface ModelFacade {
      * @param term The term the task will use.
      * @param useCache Whether the task will use cached data.
      * @param quick Whether the task will use a quick search.
-     * @param observer The observer the task will update.
      */
-    void queueSearch(String term, boolean useCache, boolean quick, FoodListObserver observer);
+    void queueSearch(String term, boolean useCache, boolean quick);
 
     /**
      * Adds getNutrition() to the list of tasks to be executed.
@@ -63,16 +59,49 @@ public interface ModelFacade {
      * @param foodID The food item the task will use.
      * @param measure The size the task will use.
      * @param useCache Whether the task will use cached data.
-     * @param observer The observer the task will update.
      */
-    void queueGetNutrition(String foodID, String measure, boolean useCache, NutritionObserver observer);
+    void queueGetNutrition(String foodID, String measure, boolean useCache);
 
     /**
      * Adds sendMessage() to the list of tasks to be executed.
      *
      * @param message The message the task will send.
-     * @param observer The observer the task will update.
      */
-    void queueSendMessage(String message, MessageObserver observer);
+    void queueSendMessage(String message);
 
+    /**
+     * Attaches a new FoodListObserver object.
+     * @param observer The observer wishing to subscribe.
+     */
+    void attach(FoodListObserver observer);
+
+    /**
+     * Detaches the given observer.
+     * @param observer The observer to detach.
+     */
+    void detach(FoodListObserver observer);
+
+    /**
+     * Attaches a new NutritionObserver object.
+     * @param observer The observer wishing to subscribe.
+     */
+    void attach(NutritionObserver observer);
+
+    /**
+     * Detaches the given observer.
+     * @param observer The observer to detach.
+     */
+    void detach(NutritionObserver observer);
+
+    /**
+     * Attaches a new MessageObserver object.
+     * @param observer The observer wishing to subscribe.
+     */
+    void attach(MessageObserver observer);
+
+    /**
+     * Detaches the given observer.
+     * @param observer The observer to detach.
+     */
+    void detach(MessageObserver observer);
 }

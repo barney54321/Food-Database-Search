@@ -41,7 +41,7 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void search(String term, boolean useCache, boolean quick, FoodListObserver observer) {
+    public void search(String term, boolean useCache, boolean quick, BaseObserver observer) {
 
         if (term == null || term.equals("")) {
             observer.update(new IllegalArgumentException("Search term cannot be empty"));
@@ -55,22 +55,22 @@ public class ControllerImpl implements Controller {
             }
         }
 
-        this.facade.queueSearch(term, useCache, quick, observer);
+        this.facade.queueSearch(term, useCache, quick);
     }
 
     @Override
-    public void getNutrition(Food food, String measure, boolean useCache, NutritionObserver observer) {
+    public void getNutrition(Food food, String measure, boolean useCache, BaseObserver observer) {
         if (food == null) {
             observer.update(new IllegalArgumentException("Food cannot be null"));
         } else if (measure == null || measure.equals("")) {
             observer.update(new IllegalArgumentException("Measure cannot be empty"));
         } else {
-            this.facade.queueGetNutrition(food.getID(), measure, useCache, observer);
+            this.facade.queueGetNutrition(food.getID(), measure, useCache);
         }
     }
 
     @Override
-    public void sendMessage(Food food, Nutrition nutrition, String size, MessageObserver observer) {
+    public void sendMessage(Food food, Nutrition nutrition, String size, BaseObserver observer) {
         if (food == null) {
             observer.update(new IllegalArgumentException("Food cannot be null"));
         } else if (size == null || size.equals("")) {
@@ -81,7 +81,7 @@ public class ControllerImpl implements Controller {
             System.out.println(food.getMeasures());
             observer.update(new IllegalArgumentException("Invalid size"));
         } else {
-            this.facade.queueSendMessage(food.generateReport(size, nutrition), observer);
+            this.facade.queueSendMessage(food.generateReport(size, nutrition));
         }
     }
 
@@ -98,5 +98,30 @@ public class ControllerImpl implements Controller {
     @Override
     public void refresh() {
         this.view.refresh();
+    }
+
+    @Override
+    public void registerFoodListObserver(FoodListObserver observer) {
+
+    }
+
+    @Override
+    public void registerNutritionObserver(NutritionObserver observer) {
+
+    }
+
+    @Override
+    public void registerMessageObserver(MessageObserver observer) {
+
+    }
+
+    @Override
+    public void removeNutritionObserver(NutritionObserver observer) {
+
+    }
+
+    @Override
+    public void removeMessageObserver(MessageObserver observer) {
+
     }
 }

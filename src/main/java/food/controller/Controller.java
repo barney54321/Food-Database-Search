@@ -23,9 +23,9 @@ public interface Controller {
      * @param term The term to search on.
      * @param useCache Whether to use cached data.
      * @param quick Whether to use quick search.
-     * @param observer The observer the model will update.
+     * @param observer The observer to update in case of error.
      */
-    void search(String term, boolean useCache, boolean quick, FoodListObserver observer);
+    void search(String term, boolean useCache, boolean quick, BaseObserver observer);
 
     /**
      * Delegates retrieving nutrition to the Model and passes along the observer.
@@ -34,9 +34,9 @@ public interface Controller {
      * @param food The food item to retrieve nutritional information for.
      * @param measure The size to use.
      * @param useCache Whether to use cached data.
-     * @param observer The observer the model will update.
+     * @param observer The observer to update in case of error.
      */
-    void getNutrition(Food food, String measure, boolean useCache, NutritionObserver observer);
+    void getNutrition(Food food, String measure, boolean useCache, BaseObserver observer);
 
     /**
      * Delegates sending messages to the Model and passes along the observer.
@@ -45,9 +45,9 @@ public interface Controller {
      * @param food The food item to generate the report for.
      * @param nutrition The nutrition item to use in the report.
      * @param size The size for the nutritional information.
-     * @param observer The observer the model will update.
+     * @param observer The observer to update in case of error.
      */
-    void sendMessage(Food food, Nutrition nutrition, String size, MessageObserver observer);
+    void sendMessage(Food food, Nutrition nutrition, String size, BaseObserver observer);
 
     /**
      * Injects the view object for MVC.
@@ -65,4 +65,34 @@ public interface Controller {
      * Refreshes the view.
      */
     void refresh();
+
+    /**
+     * Informs model of a new FoodListObserver object.
+     * @param observer The observer to update with.
+     */
+    void registerFoodListObserver(FoodListObserver observer);
+
+    /**
+     * Informs model of a new NutritionObserver object.
+     * @param observer The observer to update with.
+     */
+    void registerNutritionObserver(NutritionObserver observer);
+
+    /**
+     * Informs model of a new MessageObserver object.
+     * @param observer The observer to update with.
+     */
+    void registerMessageObserver(MessageObserver observer);
+
+    /**
+     * Informs model that a NutritionObserver object is being removed.
+     * @param observer The observer to update with.
+     */
+    void removeNutritionObserver(NutritionObserver observer);
+
+    /**
+     * Informs model that a MessageObserver object is being removed.
+     * @param observer The observer to update with.
+     */
+    void removeMessageObserver(MessageObserver observer);
 }
