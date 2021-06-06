@@ -17,13 +17,6 @@ public interface FoodWindow {
     Scene getScene();
 
     /**
-     * Returns the Window's controller.
-     *
-     * @return The controller.
-     */
-    Controller getController();
-
-    /**
      * Updates the Screen.
      *
      * @param screen The new Screen.

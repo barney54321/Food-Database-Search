@@ -37,18 +37,11 @@ public class FoodWindowImpl implements FoodWindow {
     private Screen screen;
 
     /**
-     * The Controller used to interact with the Model.
-     */
-    private final Controller controller;
-
-    /**
      * Creates a FoodWindow object.
      *
      * @param controller The controller all logic is handled by.
      */
     public FoodWindowImpl(Controller controller) {
-        this.controller = controller;
-
         this.pane = new Pane();
         this.scene = new Scene(pane, WIDTH, HEIGHT);
 
@@ -58,11 +51,6 @@ public class FoodWindowImpl implements FoodWindow {
     @Override
     public Scene getScene() {
         return this.scene;
-    }
-
-    @Override
-    public Controller getController() {
-        return this.controller;
     }
 
     @Override

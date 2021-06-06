@@ -29,16 +29,6 @@ import java.util.Map;
 public class Runner extends Application {
 
     /**
-     * The Model thread.
-     */
-    private Thread thread;
-
-    /**
-     * The Model.
-     */
-    private ModelFacade facade;
-
-    /**
      * The mode the Food Database is running in.
      */
     private static String foodMode;
@@ -57,6 +47,16 @@ public class Runner extends Application {
      * The name of the file storing credentials.
      */
     private final static String CREDENTIAL_FILE = "credentials.json";
+
+    /**
+     * The Model thread.
+     */
+    private Thread thread;
+
+    /**
+     * The Model.
+     */
+    private ModelFacade facade;
 
     /**
      * Runs the program.
