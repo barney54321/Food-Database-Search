@@ -349,7 +349,7 @@ public class ModelFacadeImplTest extends Application {
         verify(message, times(1)).update(true);
     }
 
-    @Test(timeout = 2000)
+    @Test(timeout = 4000)
     public void queueCompound() {
         Food food1 = mock(Food.class);
         Food food2 = mock(Food.class);
@@ -374,7 +374,7 @@ public class ModelFacadeImplTest extends Application {
             facade.queueSearch("Apple", true, false);
             facade.queueSendMessage("Hello world");
             facade.queueGetNutrition("1234", "size1", true);
-            Thread.sleep(200);
+            Thread.sleep(1000);
             facade.stop();
             thread.join();
         } catch (InterruptedException e) {

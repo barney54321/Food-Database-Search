@@ -135,3 +135,6 @@ DISTINCTION
 
 ## Style
 The code abides by the [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html).
+
+## Notes
+This submission is late as it made use of the Simple Extension.
