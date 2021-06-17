@@ -248,6 +248,7 @@ public class ModelFacadeImplTest extends Application {
         waitForPlatformRunLater();
 
         verify(nutrition, times(1)).update(nut);
+        verify(nut, never()).setOverCalorieLimit();
     }
 
     @Test
@@ -261,6 +262,7 @@ public class ModelFacadeImplTest extends Application {
         waitForPlatformRunLater();
 
         verify(nutrition, times(1)).update(nut);
+        verify(nut, never()).setOverCalorieLimit();
     }
 
     @Test
@@ -275,6 +277,7 @@ public class ModelFacadeImplTest extends Application {
 
         verify(nutrition, times(1)).update(nut);
         verify(nutrition, times(1)).update(any(Exception.class));
+        verify(nut, times(1)).setOverCalorieLimit();
     }
 
     @Test
@@ -294,32 +297,6 @@ public class ModelFacadeImplTest extends Application {
     @Test
     public void sendMessage() {
         when(twilio.sendMessage(text)).thenReturn(true);
-
-        facade.sendMessage(text);
-
-        waitForPlatformRunLater();
-
-        verify(message, times(1)).update(true);
-    }
-
-    @Test
-    public void sendMessageEqualBound() {
-        facade.setMaxCalories(100);
-
-        when(twilio.sendMessage(text)).thenReturn(true);
-
-        facade.sendMessage(text);
-
-        waitForPlatformRunLater();
-
-        verify(message, times(1)).update(true);
-    }
-
-    @Test
-    public void sendMessageAboveBound() {
-        facade.setMaxCalories(99);
-
-        when(twilio.sendMessage("*" + text)).thenReturn(true);
 
         facade.sendMessage(text);
 
