@@ -129,6 +129,9 @@ calorie amount'. If the user chooses to send a report on that item the report sh
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/735e86f77d0059d7add785496958d4f1348c9781
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/e6dd1e00690680afb77b8e8930b485bc4f936fd9
     
+* Prepend asterisk to messages when calories exceed the limit:
+    * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/f31c2e975e93a9f63a98437d4de4427e0995d428
+    
 ## Setup
 * Copy *credentials.json.example* and name the copy *credentials.json*
 * Replace the value for "food-id" with the Food-Database-API ID

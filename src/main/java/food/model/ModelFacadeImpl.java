@@ -14,6 +14,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Concrete implementation of the ModelFacade class.
@@ -150,6 +152,29 @@ public class ModelFacadeImpl implements ModelFacade {
 
     @Override
     public void sendMessage(String message) {
+
+        // Extract number of calories from message
+        // Format of message is already known, which means a simple regex search can be used
+        Pattern pattern = Pattern.compile("Calories: (\\d+)");
+        Matcher matcher = pattern.matcher(message);
+
+        // Only run if calories is found (otherwise error)
+        if (matcher.find()) {
+            String match = matcher.group(1);
+
+            // Note that null calories is possible
+            try {
+                int calories = Integer.parseInt(match);
+
+                if (calories > this.maxCalories) {
+                    message = "*" + message;
+                }
+
+            } catch (NumberFormatException e) {
+                // No operation
+            }
+        }
+
         boolean result = twilio.sendMessage(message);
         updateMessageObservers(result);
     }
