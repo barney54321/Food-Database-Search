@@ -124,6 +124,34 @@ public class FoodImplTest {
         when(nutrition.getCalories()).thenReturn(100);
         when(nutrition.getDietLabels()).thenReturn(Arrays.asList("GLUTEN_FREE"));
         when(nutrition.getHealthLabels()).thenReturn(Arrays.asList("HALAL, VEGETARIAN"));
+        when(nutrition.isOverCalorieLimit()).thenReturn(false);
+
+        assertEquals(expected, food.generateReport("size1", nutrition));
+    }
+
+    @Test
+    public void generateReportTooManyCalories() {
+        String expected = "";
+
+        expected += "*Food ID: food_bn4bryqayjl958auu03k3bxf6ja8\n";
+        expected += "Label: Ferrero Rocher Ferrero Eggs, Cocoa\n";
+        expected += "Brand: Ferrero Rocher\n";
+        expected += "Servings per container: 2.5\n";
+        expected += "Size: size1\n";
+        expected += "Calories: 100\n";
+        expected += "Diet labels: [GLUTEN FREE]\n";
+        expected += "Health labels: [HALAL, VEGETARIAN]\n\n";
+        expected += "Nutrients: \n";
+        expected += "ENERC_KCAL: 573.0\n";
+        expected += "PROCNT: 5.0\n";
+        expected += "FAT: 37.5\n";
+        expected += "CHOCDF: 55.0\n";
+        expected += "FIBTG: 5.0\n";
+
+        when(nutrition.getCalories()).thenReturn(100);
+        when(nutrition.getDietLabels()).thenReturn(Arrays.asList("GLUTEN_FREE"));
+        when(nutrition.getHealthLabels()).thenReturn(Arrays.asList("HALAL, VEGETARIAN"));
+        when(nutrition.isOverCalorieLimit()).thenReturn(true);
 
         assertEquals(expected, food.generateReport("size1", nutrition));
     }

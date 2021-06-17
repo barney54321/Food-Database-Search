@@ -61,4 +61,16 @@ public interface Nutrition {
      * The list of ingredients present in the food item.
      */
     List<Ingredient> getIngredients();
+
+    /**
+     * Sets whether the Nutrition object is above the calorie limit.
+     */
+    void setOverCalorieLimit();
+
+    /**
+     * Whether the calorie count is above the limit.
+     *
+     * @return True if the calorie count is above the limit.
+     */
+    boolean isOverCalorieLimit();
 }

@@ -81,6 +81,8 @@ public interface Food {
 
     /**
      * Generates a report for the given Food item.
+     * If the Nutrition object is above the calorie limit, prepends an
+     * asterisk to the report.
      *
      * @param size The size to use.
      * @param nutrition The associated Nutrition object.

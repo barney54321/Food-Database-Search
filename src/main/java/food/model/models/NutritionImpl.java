@@ -54,6 +54,11 @@ public class NutritionImpl implements Nutrition {
     private List<Ingredient> ingredients;
 
     /**
+     * Whether the calorie count is over the limit.
+     */
+    private boolean over;
+
+    /**
      * Creates a Nutrient object.
      *
      * @param json The JSONObject to base the Nutrition off of.
@@ -157,5 +162,15 @@ public class NutritionImpl implements Nutrition {
     @Override
     public List<Ingredient> getIngredients() {
         return this.ingredients;
+    }
+
+    @Override
+    public void setOverCalorieLimit() {
+
+    }
+
+    @Override
+    public boolean isOverCalorieLimit() {
+        return false;
     }
 }
