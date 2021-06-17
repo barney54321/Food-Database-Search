@@ -5,6 +5,12 @@ SID: 480394196
 * [Food Database](https://developer.edamam.com/food-database-api)
 * [Twilio](https://www.twilio.com)
 
+## Extension
+Ask the user when the application opens to give an integer from 1 to 1000 - this number is a 'max calorie amount'. 
+If the user later requests nutrition info on an item that has more than that number of calories (for whatever 
+measurement your application uses) then the application should pop up an alert box 'this item is above the max 
+calorie amount'. If the user chooses to send a report on that item the report should start with an asterisk (*).
+
 ## TDD Feature Commits
 ### Controller
 * Initial Controller class
@@ -114,6 +120,9 @@ SID: 480394196
 ### Controller
 * Add `setMaxCalories()`:
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/0f64f11fd53792e8821c1fa948c3f9327a88ebde
+    * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/26d0e06ab7dab7519a4a1880f94b1c9f04047275
+    * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/9606f6ebcdc112604d79067d08d4a8c9f9f5a000
+    * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/284216e56656ef136f1491cce9a256e024134bce
     
 ## Setup
 * Copy *credentials.json.example* and name the copy *credentials.json*
