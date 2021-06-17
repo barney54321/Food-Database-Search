@@ -126,7 +126,7 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void setMaxCalories(String field, BaseObserver observer) {
+    public void setMaxCalories(String field, BaseObserver observer, Screen nextScreen) {
         try {
             int calories = Integer.parseInt(field);
 

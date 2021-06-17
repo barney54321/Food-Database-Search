@@ -3,10 +3,12 @@ package food.controller;
 import food.model.ModelFacade;
 import food.model.models.Food;
 import food.model.models.Nutrition;
+import food.view.FoodWindow;
 import food.view.observers.BaseObserver;
 import food.view.observers.FoodListObserver;
 import food.view.observers.MessageObserver;
 import food.view.observers.NutritionObserver;
+import food.view.screen.Screen;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,6 +27,9 @@ public class ControllerImplTest {
     private MessageObserver messageObserver;
     private BaseObserver baseObserver;
 
+    private FoodWindow view;
+    private Screen screen;
+
     @Before
     public void setUp() {
         this.facade = mock(ModelFacade.class);
@@ -34,6 +39,11 @@ public class ControllerImplTest {
         this.baseObserver = mock(BaseObserver.class);
 
         this.controller = new ControllerImpl(facade);
+
+        this.view = mock(FoodWindow.class);
+        this.controller.setView(view);
+
+        this.screen = mock(Screen.class);
     }
 
     @Test
@@ -235,113 +245,129 @@ public class ControllerImplTest {
 
     @Test
     public void setMaxCaloriesSuccess() {
-        controller.setMaxCalories("123", baseObserver);
+        controller.setMaxCalories("123", baseObserver, screen);
         verify(baseObserver, never()).update(any(Exception.class));
         verify(facade, times(1)).setMaxCalories(123);
+        verify(view, times(1)).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesLowerBound() {
-        controller.setMaxCalories("1", baseObserver);
+        controller.setMaxCalories("1", baseObserver, screen);
         verify(baseObserver, never()).update(any(Exception.class));
         verify(facade, times(1)).setMaxCalories(1);
+        verify(view, times(1)).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesUpperBound() {
-        controller.setMaxCalories("1000", baseObserver);
+        controller.setMaxCalories("1000", baseObserver, screen);
         verify(baseObserver, never()).update(any(Exception.class));
         verify(facade, times(1)).setMaxCalories(1000);
+        verify(view, times(1)).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesEmpty() {
-        controller.setMaxCalories("", baseObserver);
+        controller.setMaxCalories("", baseObserver, screen);
         verify(baseObserver, times(1)).update(any(Exception.class));
         verify(facade, never()).setMaxCalories(anyInt());
+        verify(view, never()).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesNull() {
-        controller.setMaxCalories(null, baseObserver);
+        controller.setMaxCalories(null, baseObserver, screen);
         verify(baseObserver, times(1)).update(any(Exception.class));
         verify(facade, never()).setMaxCalories(anyInt());
+        verify(view, never()).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesZero() {
-        controller.setMaxCalories("0", baseObserver);
+        controller.setMaxCalories("0", baseObserver, screen);
         verify(baseObserver, times(1)).update(any(Exception.class));
         verify(facade, never()).setMaxCalories(anyInt());
+        verify(view, never()).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesTooHigh() {
-        controller.setMaxCalories("1001", baseObserver);
+        controller.setMaxCalories("1001", baseObserver, screen);
         verify(baseObserver, times(1)).update(any(Exception.class));
         verify(facade, never()).setMaxCalories(anyInt());
+        verify(view, never()).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesNegative() {
-        controller.setMaxCalories("-10", baseObserver);
+        controller.setMaxCalories("-10", baseObserver, screen);
         verify(baseObserver, times(1)).update(any(Exception.class));
         verify(facade, never()).setMaxCalories(anyInt());
+        verify(view, never()).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesNonNumerical1() {
-        controller.setMaxCalories("1a5", baseObserver);
+        controller.setMaxCalories("1a5", baseObserver, screen);
         verify(baseObserver, times(1)).update(any(Exception.class));
         verify(facade, never()).setMaxCalories(anyInt());
+        verify(view, never()).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesNonNumerical2() {
-        controller.setMaxCalories("abc", baseObserver);
+        controller.setMaxCalories("abc", baseObserver, screen);
         verify(baseObserver, times(1)).update(any(Exception.class));
         verify(facade, never()).setMaxCalories(anyInt());
+        verify(view, never()).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesNonNumerical3() {
-        controller.setMaxCalories("1 2", baseObserver);
+        controller.setMaxCalories("1 2", baseObserver, screen);
         verify(baseObserver, times(1)).update(any(Exception.class));
         verify(facade, never()).setMaxCalories(anyInt());
+        verify(view, never()).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesNonNumerical4() {
-        controller.setMaxCalories("1+2", baseObserver);
+        controller.setMaxCalories("1+2", baseObserver, screen);
         verify(baseObserver, times(1)).update(any(Exception.class));
         verify(facade, never()).setMaxCalories(anyInt());
+        verify(view, never()).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesNonNumerical5() {
-        controller.setMaxCalories("1:2", baseObserver);
+        controller.setMaxCalories("1:2", baseObserver, screen);
         verify(baseObserver, times(1)).update(any(Exception.class));
         verify(facade, never()).setMaxCalories(anyInt());
+        verify(view, never()).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesDecimal() {
-        controller.setMaxCalories("12.5", baseObserver);
+        controller.setMaxCalories("12.5", baseObserver, screen);
         verify(baseObserver, times(1)).update(any(Exception.class));
         verify(facade, never()).setMaxCalories(anyInt());
+        verify(view, never()).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesTooLarge() {
-        controller.setMaxCalories("2147483648", baseObserver);
+        controller.setMaxCalories("2147483648", baseObserver, screen);
         verify(baseObserver, times(1)).update(any(Exception.class));
         verify(facade, never()).setMaxCalories(anyInt());
+        verify(view, never()).setScreen(screen);
     }
 
     @Test
     public void setMaxCaloriesTooSmall() {
-        controller.setMaxCalories("-2147483649", baseObserver);
+        controller.setMaxCalories("-2147483649", baseObserver, screen);
         verify(baseObserver, times(1)).update(any(Exception.class));
         verify(facade, never()).setMaxCalories(anyInt());
+        verify(view, never()).setScreen(screen);
     }
 }

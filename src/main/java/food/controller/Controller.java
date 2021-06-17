@@ -109,6 +109,7 @@ public interface Controller {
      *
      * @param field The contents of the TextField.
      * @param observer The observer that invoked this method.
+     * @param nextScreen The screen the view should transition to upon success.
      */
-    void setMaxCalories(String field, BaseObserver observer);
+    void setMaxCalories(String field, BaseObserver observer, Screen nextScreen);
 }

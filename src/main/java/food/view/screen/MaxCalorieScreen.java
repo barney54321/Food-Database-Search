@@ -63,7 +63,7 @@ public class MaxCalorieScreen extends AbstractScreen implements BaseObserver {
         }));
 
         addButton("Enter", 305, 200, 100, 10, event -> {
-            this.controller.setMaxCalories(this.calorieField.getText(), this);
+            this.controller.setMaxCalories(this.calorieField.getText(), this, new SearchScreen(this.controller));
         });
     }
 
