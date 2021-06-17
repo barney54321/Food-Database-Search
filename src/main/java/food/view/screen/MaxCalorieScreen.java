@@ -35,7 +35,7 @@ public class MaxCalorieScreen extends AbstractScreen implements BaseObserver {
     protected void setupNodes() {
         addText("Food Database", Font.font(30), 200, 40);
 
-        addText("Maximum number of calories", Font.font(15), 200, 190);
+        addText("Maximum number of calories (1 to 1000)", Font.font(15), 180, 190);
 
         this.calorieField = addTextField(195, 200, 100, 20, "Maximum calories");
         this.calorieField.setAlignment(Pos.BASELINE_CENTER);
