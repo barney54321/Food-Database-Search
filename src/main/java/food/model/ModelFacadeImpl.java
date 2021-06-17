@@ -133,6 +133,7 @@ public class ModelFacadeImpl implements ModelFacade {
             updateNutritionObservers(nutrition);
 
             if (nutrition.getCalories() == null || nutrition.getCalories() > this.maxCalories) {
+                nutrition.setOverCalorieLimit();
                 updateNutritionObservers(new Exception("This item is above the max calorie amount."));
             }
         }
@@ -152,29 +153,6 @@ public class ModelFacadeImpl implements ModelFacade {
 
     @Override
     public void sendMessage(String message) {
-
-        // Extract number of calories from message
-        // Format of message is already known, which means a simple regex search can be used
-        Pattern pattern = Pattern.compile("Calories: (\\d+)");
-        Matcher matcher = pattern.matcher(message);
-
-        // Only run if calories is found (otherwise error)
-        if (matcher.find()) {
-            String match = matcher.group(1);
-
-            // Note that null calories is possible
-            try {
-                int calories = Integer.parseInt(match);
-
-                if (calories > this.maxCalories) {
-                    message = "*" + message;
-                }
-
-            } catch (NumberFormatException e) {
-                // No operation
-            }
-        }
-
         boolean result = twilio.sendMessage(message);
         updateMessageObservers(result);
     }
