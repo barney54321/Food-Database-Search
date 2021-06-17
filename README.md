@@ -131,6 +131,7 @@ calorie amount'. If the user chooses to send a report on that item the report sh
     
 * Prepend asterisk to messages when calories exceed the limit:
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/f31c2e975e93a9f63a98437d4de4427e0995d428
+    * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/ba68d22b1d1f9db68525faacddb05edcd7aeca4a
     
 ## Setup
 * Copy *credentials.json.example* and name the copy *credentials.json*
