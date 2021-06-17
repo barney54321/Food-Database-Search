@@ -133,6 +133,15 @@ calorie amount'. If the user chooses to send a report on that item the report sh
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/f31c2e975e93a9f63a98437d4de4427e0995d428
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/ba68d22b1d1f9db68525faacddb05edcd7aeca4a
     
+* Move asterisk responsibility from ModelFacade to Food:
+    * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/0684b1d5fa7c7ae43d84a64b4e1ae2cfc58a25e2
+    * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/6486837721e66fc4b590840b1fd6839fef2d7e47
+    
+### Food
+* Prepend asterisk to messages when calories exceed the limit:
+    * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/2886e1dac63143574236852197110ad57ed18e07
+    * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/2c6a94b602fd4aa6ed97876933eb58111264a02e
+    
 ## Setup
 * Copy *credentials.json.example* and name the copy *credentials.json*
 * Replace the value for "food-id" with the Food-Database-API ID
