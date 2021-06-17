@@ -20,6 +20,8 @@ public interface ModelFacade {
 
     /**
      * Retrieves the nutritional information for the given food item and updates the observers.
+     * If the number of calories in the item exceeds the max calorie value, the observers are also
+     * updated with an error message.
      *
      * @param foodID The associated food item.
      * @param measure The size of the nutritional information.

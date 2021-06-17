@@ -29,6 +29,8 @@ public class ModelFacadeImplTest extends Application {
     private NutritionObserver nutrition;
     private MessageObserver message;
 
+    private Nutrition nut;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         // No op
@@ -59,6 +61,11 @@ public class ModelFacadeImplTest extends Application {
         this.facade.attach(list);
         this.facade.attach(nutrition);
         this.facade.attach(message);
+
+        this.facade.setMaxCalories(1000);
+
+        this.nut = mock(Nutrition.class);
+        when(this.nut.getCalories()).thenReturn(100);
     }
 
     private void waitForPlatformRunLater() {
@@ -172,28 +179,24 @@ public class ModelFacadeImplTest extends Application {
 
     @Test
     public void getNutritionTrue() {
-        Nutrition mock = mock(Nutrition.class);
-
-        when(database.getNutrition("1234", "size1", true)).thenReturn(mock);
+        when(database.getNutrition("1234", "size1", true)).thenReturn(nut);
 
         facade.getNutrition("1234", "size1", true);
 
         waitForPlatformRunLater();
 
-        verify(nutrition, times(1)).update(mock);
+        verify(nutrition, times(1)).update(nut);
     }
 
     @Test
     public void getNutritionFalse() {
-        Nutrition mock = mock(Nutrition.class);
-
-        when(database.getNutrition("1234", "size1", false)).thenReturn(mock);
+        when(database.getNutrition("1234", "size1", false)).thenReturn(nut);
 
         facade.getNutrition("1234", "size1", false);
 
         waitForPlatformRunLater();
 
-        verify(nutrition, times(1)).update(mock);
+        verify(nutrition, times(1)).update(nut);
     }
 
     @Test
@@ -215,6 +218,58 @@ public class ModelFacadeImplTest extends Application {
 
         waitForPlatformRunLater();
 
+        verify(nutrition, times(1)).update(any(Exception.class));
+    }
+
+    @Test
+    public void getNutritionBelowBound() {
+        when(database.getNutrition("1234", "size1", true)).thenReturn(nut);
+
+        facade.getNutrition("1234", "size1", true);
+
+        waitForPlatformRunLater();
+
+        verify(nutrition, times(1)).update(nut);
+    }
+
+    @Test
+    public void getNutritionEqualToBound() {
+        this.facade.setMaxCalories(100);
+
+        when(database.getNutrition("1234", "size1", true)).thenReturn(nut);
+
+        facade.getNutrition("1234", "size1", true);
+
+        waitForPlatformRunLater();
+
+        verify(nutrition, times(1)).update(nut);
+    }
+
+    @Test
+    public void getNutritionAboveBound() {
+        this.facade.setMaxCalories(99);
+
+        when(database.getNutrition("1234", "size1", true)).thenReturn(nut);
+
+        facade.getNutrition("1234", "size1", true);
+
+        waitForPlatformRunLater();
+
+        verify(nutrition, times(1)).update(nut);
+        verify(nutrition, times(1)).update(any(Exception.class));
+    }
+
+    @Test
+    public void getNutritionNullNutrition() {
+        when(nut.getCalories()).thenReturn(null);
+
+        when(database.getNutrition("1234", "size1", true)).thenReturn(nut);
+
+        facade.getNutrition("1234", "size1", true);
+
+        waitForPlatformRunLater();
+
+        verify(nutrition, times(1)).update(nut);
         verify(nutrition, times(1)).update(any(Exception.class));
     }
 
