@@ -135,6 +135,7 @@ public class ControllerImpl implements Controller {
             }
 
             this.facade.setMaxCalories(calories);
+            this.setScreen(nextScreen);
 
         } catch (NumberFormatException e) {
             observer.update(new NumberFormatException("Invalid calorie count."));
