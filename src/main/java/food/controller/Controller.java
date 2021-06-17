@@ -102,4 +102,13 @@ public interface Controller {
      * @param observer The observer to update with.
      */
     void removeMessageObserver(MessageObserver observer);
+
+    /**
+     * Informs the model that the max calories value has changed.
+     * Sends an error to the observer in case of malformed text.
+     *
+     * @param field The contents of the TextField.
+     * @param observer The observer that invoked this method.
+     */
+    void setMaxCalories(String field, BaseObserver observer);
 }

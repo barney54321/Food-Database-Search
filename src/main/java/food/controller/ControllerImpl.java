@@ -124,4 +124,9 @@ public class ControllerImpl implements Controller {
     public void removeMessageObserver(MessageObserver observer) {
         this.facade.detach(observer);
     }
+
+    @Override
+    public void setMaxCalories(String field, BaseObserver observer) {
+
+    }
 }
