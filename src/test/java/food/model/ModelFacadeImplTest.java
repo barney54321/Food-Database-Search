@@ -31,6 +31,8 @@ public class ModelFacadeImplTest extends Application {
 
     private Nutrition nut;
 
+    private String text;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         // No op
@@ -66,6 +68,22 @@ public class ModelFacadeImplTest extends Application {
 
         this.nut = mock(Nutrition.class);
         when(this.nut.getCalories()).thenReturn(100);
+
+        this.text = "";
+        this.text += "Food ID: food_bn4bryqayjl958auu03k3bxf6ja8\n";
+        this.text += "Label: Ferrero Rocher Ferrero Eggs, Cocoa\n";
+        this.text += "Brand: Ferrero Rocher\n";
+        this.text += "Servings per container: 2.5\n";
+        this.text += "Size: size1\n";
+        this.text += "Calories: 100\n";
+        this.text += "Diet labels: [GLUTEN FREE]\n";
+        this.text += "Health labels: [HALAL, VEGETARIAN]\n\n";
+        this.text += "Nutrients: \n";
+        this.text += "ENERC_KCAL: 573.0\n";
+        this.text += "PROCNT: 5.0\n";
+        this.text += "FAT: 37.5\n";
+        this.text += "CHOCDF: 55.0\n";
+        this.text += "FIBTG: 5.0\n";
     }
 
     private void waitForPlatformRunLater() {
@@ -275,9 +293,35 @@ public class ModelFacadeImplTest extends Application {
 
     @Test
     public void sendMessage() {
-        when(twilio.sendMessage("Hello world")).thenReturn(true);
+        when(twilio.sendMessage(text)).thenReturn(true);
 
-        facade.sendMessage("Hello world");
+        facade.sendMessage(text);
+
+        waitForPlatformRunLater();
+
+        verify(message, times(1)).update(true);
+    }
+
+    @Test
+    public void sendMessageEqualBound() {
+        facade.setMaxCalories(100);
+
+        when(twilio.sendMessage(text)).thenReturn(true);
+
+        facade.sendMessage(text);
+
+        waitForPlatformRunLater();
+
+        verify(message, times(1)).update(true);
+    }
+
+    @Test
+    public void sendMessageAboveBound() {
+        facade.setMaxCalories(99);
+
+        when(twilio.sendMessage("*" + text)).thenReturn(true);
+
+        facade.sendMessage(text);
 
         waitForPlatformRunLater();
 
@@ -286,9 +330,9 @@ public class ModelFacadeImplTest extends Application {
 
     @Test
     public void sendMessageFail() {
-        when(twilio.sendMessage("Hello world")).thenReturn(false);
+        when(twilio.sendMessage(text)).thenReturn(false);
 
-        facade.sendMessage("Hello world");
+        facade.sendMessage(text);
 
         waitForPlatformRunLater();
 

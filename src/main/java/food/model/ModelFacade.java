@@ -31,6 +31,8 @@ public interface ModelFacade {
 
     /**
      * Sends the provided message and updates the observers on the outcome.
+     * If the number of calories in the item exceeds the max calorie value, the message is preceded
+     * by an asterisk.
      *
      * @param message The message to send.
      */
