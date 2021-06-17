@@ -110,4 +110,11 @@ public interface ModelFacade {
      * @param observer The observer to detach.
      */
     void detach(MessageObserver observer);
+
+    /**
+     * Sets the maximum amount of calories without error.
+     *
+     * @param maxCalories The new upper limit for calories.
+     */
+    void setMaxCalories(int maxCalories);
 }

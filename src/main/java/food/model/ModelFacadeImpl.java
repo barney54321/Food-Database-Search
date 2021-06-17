@@ -57,6 +57,11 @@ public class ModelFacadeImpl implements ModelFacade {
     private List<MessageObserver> messageObservers;
 
     /**
+     * The maximum number of calories that can be displayed without an error message.
+     */
+    private int maxCalories;
+
+    /**
      * Creates a new ModelFacadeImpl object.
      *
      * @param database The FoodDatabase the Facade will use.
@@ -71,6 +76,8 @@ public class ModelFacadeImpl implements ModelFacade {
         this.foodObservers = new CopyOnWriteArrayList<>();
         this.nutritionObservers = new CopyOnWriteArrayList<>();
         this.messageObservers = new CopyOnWriteArrayList<>();
+
+        this.maxCalories = 0;
     }
 
     @Override
@@ -207,5 +214,10 @@ public class ModelFacadeImpl implements ModelFacade {
     @Override
     public void detach(MessageObserver observer) {
         this.messageObservers.remove(observer);
+    }
+
+    @Override
+    public void setMaxCalories(int maxCalories) {
+        this.maxCalories = maxCalories;
     }
 }
