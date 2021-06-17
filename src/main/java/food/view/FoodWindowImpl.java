@@ -1,6 +1,7 @@
 package food.view;
 
 import food.controller.Controller;
+import food.view.screen.MaxCalorieScreen;
 import food.view.screen.Screen;
 import food.view.screen.SearchScreen;
 import javafx.scene.Scene;
@@ -45,7 +46,7 @@ public class FoodWindowImpl implements FoodWindow {
         this.pane = new Pane();
         this.scene = new Scene(pane, WIDTH, HEIGHT);
 
-        this.setScreen(new SearchScreen(controller));
+        this.setScreen(new MaxCalorieScreen(controller));
     }
 
     @Override
