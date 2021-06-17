@@ -110,6 +110,11 @@ SID: 480394196
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/79001e9ce30646a2393a67dc2ce0a34b51ad234f
     * **REFACTOR**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/9c5b75923c4ce705afc8ed505d6c2acdb88d2dad
     
+## Exam TDD Feature Commits
+### Controller
+* Add `setMaxCalories()`:
+    * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/0f64f11fd53792e8821c1fa948c3f9327a88ebde
+    
 ## Setup
 * Copy *credentials.json.example* and name the copy *credentials.json*
 * Replace the value for "food-id" with the Food-Database-API ID

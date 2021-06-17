@@ -127,6 +127,17 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void setMaxCalories(String field, BaseObserver observer) {
+        try {
+            int calories = Integer.parseInt(field);
 
+            if (calories < 1 || calories > 1000) {
+                throw new NumberFormatException();
+            }
+
+            this.facade.setMaxCalories(calories);
+
+        } catch (NumberFormatException e) {
+            observer.update(new NumberFormatException("Invalid calorie count."));
+        }
     }
 }
