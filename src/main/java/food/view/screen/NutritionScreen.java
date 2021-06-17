@@ -250,7 +250,7 @@ public class NutritionScreen extends AbstractScreen implements NutritionObserver
 
     @Override
     public void update(Exception exception) {
-        Alert alert = new Alert(Alert.AlertType.ERROR, "Select a size", ButtonType.OK);
+        Alert alert = new Alert(Alert.AlertType.ERROR, exception.getMessage(), ButtonType.OK);
         alert.show();
     }
 }

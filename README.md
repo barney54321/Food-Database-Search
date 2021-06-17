@@ -123,6 +123,10 @@ calorie amount'. If the user chooses to send a report on that item the report sh
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/26d0e06ab7dab7519a4a1880f94b1c9f04047275
     * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/9606f6ebcdc112604d79067d08d4a8c9f9f5a000
     * **GREEN**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/284216e56656ef136f1491cce9a256e024134bce
+
+### ModelFacade
+* Show alert when calories exceed the limit:
+    * **RED**: https://github.sydney.edu.au/aest9988/SCD2_2021_Exam/commit/735e86f77d0059d7add785496958d4f1348c9781
     
 ## Setup
 * Copy *credentials.json.example* and name the copy *credentials.json*

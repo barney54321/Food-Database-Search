@@ -129,6 +129,10 @@ public class ModelFacadeImpl implements ModelFacade {
             updateNutritionObservers(new NoSuchElementException("No matching nutrition object"));
         } else {
             updateNutritionObservers(nutrition);
+
+            if (nutrition.getCalories() == null || nutrition.getCalories() > this.maxCalories) {
+                updateNutritionObservers(new Exception("This item is above the max calorie amount."));
+            }
         }
     }
 
