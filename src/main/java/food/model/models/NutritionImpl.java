@@ -122,6 +122,8 @@ public class NutritionImpl implements Nutrition {
                 this.ingredients.add(new IngredientImpl((JSONObject) o));
             }
         }
+
+        this.over = false;
     }
 
     @Override
@@ -166,11 +168,11 @@ public class NutritionImpl implements Nutrition {
 
     @Override
     public void setOverCalorieLimit() {
-
+        this.over = true;
     }
 
     @Override
     public boolean isOverCalorieLimit() {
-        return false;
+        return this.over;
     }
 }

@@ -154,6 +154,10 @@ public class FoodImpl implements Food {
 
         String res = "";
 
+        if (nutrition.isOverCalorieLimit()) {
+            res = "*";
+        }
+
         res += "Food ID: " + this.id + "\n";
         res += "Label: " + this.label + "\n";
         res += "Brand: " + this.getBrand() + "\n";
