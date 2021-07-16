@@ -1,0 +1,11 @@
+{
+  "quantity": 1,
+  "measure": "whole",
+  "food": "Tomatoes, red, ripe, raw, year round average",
+  "foodId": "Food_11529",
+  "foodURI": "http://www.edamam.com/ontologies/edamam.owl#Food_11529",
+  "weight": 123,
+  "retainedWeight": 123,
+  "measureURI": "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+  "status": "OK"
+}

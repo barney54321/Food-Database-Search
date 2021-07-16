@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="food.model.IngredientImplTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2021-06-17T22:54:30" hostname="LAPTOP-JD00PDLT" time="0.01">
+  <properties/>
+  <testcase name="getFood" classname="food.model.IngredientImplTest" time="0.002"/>
+  <testcase name="getFoodID" classname="food.model.IngredientImplTest" time="0.001"/>
+  <testcase name="getQuantity" classname="food.model.IngredientImplTest" time="0.002"/>
+  <testcase name="getWeight" classname="food.model.IngredientImplTest" time="0.002"/>
+  <testcase name="getMeasure" classname="food.model.IngredientImplTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

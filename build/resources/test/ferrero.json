@@ -1,0 +1,51 @@
+{
+  "food": {
+    "foodId": "food_bn4bryqayjl958auu03k3bxf6ja8",
+    "label": "Ferrero Rocher Ferrero Eggs, Cocoa",
+    "nutrients": {
+      "ENERC_KCAL": 573.0,
+      "PROCNT": 5.0,
+      "FAT": 37.5,
+      "CHOCDF": 55.0,
+      "FIBTG": 5.0
+    },
+    "brand": "Ferrero Rocher",
+    "category": "Packaged foods",
+    "categoryLabel": "food",
+    "foodContentsLabel": "SEMISWEET CHOCOLATE (SUGAR; COCOA MASS; COCOA BUTTER; LECITHIN AS EMULSIFIER (SOY); VANILLIN: AN ARTIFICIAL FLAVOR); MILK CHOCOLATE (SUGAR; MILK POWDER; COCOA BUTTER; COCOA MASS; LECITHIN AS EMULSIFIER (SOY); VANILLIN: AN ARTIFICIAL FLAVOR); SUGAR; PALM OIL; COCOA; WHEAT FLOUR; HAZELNUTS; LECITHIN AS EMULSIFIER (SOY); SKIM MILK POWDER; SODIUM BICARBONATE AND AMMONIUM CARBONATE AS LEAVENING AGENTS; VANILLIN: AN ARTIFICIAL FLAVOR; SALT.",
+    "image": "https://www.edamam.com/food-img/4e9/4e9845d490d9df5161b963d310d0ce3e.png",
+    "servingsPerContainer": 2.5
+  },
+  "measures": [
+    {
+      "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+      "label": "Serving",
+      "weight": 40.0
+    },
+    {
+      "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_package",
+      "label": "Package",
+      "weight": 100.0
+    },
+    {
+      "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+      "label": "Gram",
+      "weight": 1.0
+    },
+    {
+      "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+      "label": "Ounce",
+      "weight": 28.349523125
+    },
+    {
+      "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+      "label": "Pound",
+      "weight": 453.59237
+    },
+    {
+      "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+      "label": "Kilogram",
+      "weight": 1000.0
+    }
+  ]
+}

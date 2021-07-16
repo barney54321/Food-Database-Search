@@ -1,0 +1,1206 @@
+{
+  "text": "hawaiian pizza",
+  "parsed": [
+    {
+      "food": {
+        "foodId": "food_at830s9amds32fb8w6ufmaopzk8n",
+        "label": "Pizza",
+        "nutrients": {
+          "ENERC_KCAL": 268.0,
+          "PROCNT": 10.36,
+          "FAT": 12.28,
+          "CHOCDF": 29.02,
+          "FIBTG": 2.2
+        },
+        "category": "Generic foods",
+        "categoryLabel": "food",
+        "image": "https://www.edamam.com/food-img/c01/c0150280d71059c23c025f501f502dc0.jpg",
+        "servingsPerContainer": 8.975308641975309
+      }
+    }
+  ],
+  "hints": [
+    {
+      "food": {
+        "foodId": "food_at830s9amds32fb8w6ufmaopzk8n",
+        "label": "Pizza",
+        "nutrients": {
+          "ENERC_KCAL": 268.0,
+          "PROCNT": 10.36,
+          "FAT": 12.28,
+          "CHOCDF": 29.02,
+          "FIBTG": 2.2
+        },
+        "category": "Generic foods",
+        "categoryLabel": "food",
+        "image": "https://www.edamam.com/food-img/c01/c0150280d71059c23c025f501f502dc0.jpg",
+        "servingsPerContainer": 8.975308641975309
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+          "label": "Whole",
+          "weight": 452.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pizza",
+          "label": "Pizza",
+          "weight": 452.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 81.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_package",
+          "label": "Package",
+          "weight": 727.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_aml79uwa7o9hyqat9vr29bl1smes",
+        "label": "Hawaiian Pizza",
+        "nutrients": {
+          "ENERC_KCAL": 196.0,
+          "PROCNT": 7.610000133514404,
+          "FAT": 5.429999828338623,
+          "CHOCDF": 29.350000381469727,
+          "FIBTG": 2.200000047683716
+        },
+        "brand": "Hawaiian",
+        "category": "Packaged foods",
+        "categoryLabel": "food",
+        "foodContentsLabel": "PIZZA CRUST (ENRICHED WHEAT FLOUR [NIACIN; IRON; THIAMINE; RIBOFLAVIN; FOLIC ACID]; WATER; YEAST; SALT; CANOLA OIL; SUGAR; MALT [MALTED BARLEY; WHEAT FLOUR; DEXTROSE]; CALCIUM PROPIONATE AND POTASSIUM SORBATE (TO RETARD SPOILAGE)); MOZZARELLA CHEESE (CULTURED PASTEURIZED MILK; SALT; ENZYMES; POWDERED CELLULOSE (TO PREVENT CAKING)); PIZZA SAUCE (FRESH VINE-RIPENED CALIFORNIA TOMATOES; SEA SALT; SUGAR; EXTRA VIRGIN OLIVE OIL; SUNFLOWER OIL; SPICES; DEHYDRATED GARLIC; NATURALLY DERIVED CITRIC ACID); HAM (CURED WITH WATER; DEXTROSE; SALT; CONTAINS 2% OR LESS OF POTASSIUM LACTATE; SODIUM LACTATE; SODIUM PHOSPHATE; SODIUM DIACETATE; SODIUM ERYTHORBATE; SODIUM NITRITE); PINEAPPLE TIDBITS (PINEAPPLE; PINEAPPLE JUICE; CITRIC ACID); ITALIAN SEASONING (OREGANO; MARJORAM; THYME; ROSEMARY; BASIL; SAGE).",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+            "label": "Whole",
+            "quantity": 1.0
+          },
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+            "label": "Gram",
+            "quantity": 92.0
+          }
+        ]
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 92.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+          "label": "Whole",
+          "weight": 92.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_amuvd3jbzr1ox4bb54ij9blt8oon",
+        "label": "Hawaiian Style Ham and Pineapple Pizza, Hawaiian Style",
+        "nutrients": {
+          "ENERC_KCAL": 247.0,
+          "PROCNT": 11.8100004196167,
+          "FAT": 8.329999923706055,
+          "CHOCDF": 29.860000610351562,
+          "FIBTG": 1.399999976158142
+        },
+        "brand": "Hawaiian",
+        "category": "Packaged foods",
+        "categoryLabel": "food",
+        "foodContentsLabel": "CRUST (WHITE FLOUR; WATER; SOYBEAN OIL; SALT; SUGAR; YEAST); PROVOLONE CHEESE (PASTEURIZED MILK; CHEESE CULTURES; SALT; ENZYMES); PIZZA SAUCE (VINE-RIPENED FRESH TOMATOES; CANOLA OIL; EXTRA VIRGIN OLIVE OIL; ONION POWDER; GARLIC POWDER; FINELY GROUND CAYENNE; SALT; OREGANO; SPICES AND CITRIC ACID); HARDWOOD SMOKED HAM IN NATURAL JUICES (CURED WITH WATER; SALT; DEXTROSE; SODIUM; PHOSPHATES; SODIUM ERYTHORBATE; SODIUM NITRATE); PINEAPPLE (PINEAPPLE; UNSWEETENED PINEAPPLE JUICE); AND A DASH OF FLAKE OREGANO.",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+            "label": "Whole",
+            "quantity": 0.20000000298023224
+          },
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+            "label": "Gram",
+            "quantity": 144.0
+          }
+        ]
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 144.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+          "label": "Whole",
+          "weight": 719.999989271164
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_bu6ia2dbcvow0qahptvd6bc6vjnf",
+        "label": "Pizzeria Style Hawaiian Pizza Made With Canadian Bacon & Pineapple",
+        "nutrients": {
+          "ENERC_KCAL": 207.0,
+          "PROCNT": 8.149999618530273,
+          "FAT": 5.929999828338623,
+          "CHOCDF": 28.889999389648438,
+          "FIBTG": 1.5
+        },
+        "brand": "Hawaiian",
+        "category": "Packaged foods",
+        "categoryLabel": "food",
+        "foodContentsLabel": "CRUST (ENRICHED WHEAT FLOUR [{FLOUR; NIACIN; REDUCED IRON; THIAMIN MONONITRATE; RIBOFLAVIN; FOLIC ACID}; MALTED BARLEY FLOUR; ASCORBIC ACID]; WATER; BREAD CRUMBS [WHEAT FLOUR; YEAST; SUGAR; SALT]; SOYBEAN OIL; YEAST; 2% OR LESS OF THE FOLLOWING: HONEY; SUGAR; SALT); SAUCE (WATER; TOMATOES; SUGAR; SALT; DEHYDRATED GARLIC; SPICE); LOW MOISTURE PART SKIM MOZZARELLA CHEESE (PASTEURIZED PART SKIM MILK; CHEESE CULTURES; SALT; ENZYMES); PINEAPPLE; CANADIAN BACON (PORK CURED WITH WATER; SUGAR; SALT; TWO PERCENT OR LESS OF THE FOLLOWING: SODIUM LACTATE; SODIUM PHOSPHATE; FLAVORING; SODIUM DIACETATE; SODIUM NITRITE).",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+            "label": "Gram",
+            "quantity": 135.0
+          },
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pizza",
+            "label": "Pizza",
+            "quantity": 0.25
+          }
+        ],
+        "servingsPerContainer": 0.9974832210648148
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 135.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pizza",
+          "label": "Pizza",
+          "weight": 540.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_package",
+          "label": "Package",
+          "weight": 538.640939375
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_a15ey6vbvu45p0bxvvvtgaao158n",
+        "label": "Hawaiian Pineapple Pieces, Canadian Bacon & Diced Ham Pizza, Hawaiian",
+        "nutrients": {
+          "ENERC_KCAL": 222.0,
+          "PROCNT": 11.109999656677246,
+          "FAT": 8.890000343322754,
+          "CHOCDF": 20.0,
+          "FIBTG": 1.5
+        },
+        "brand": "Hawaiian",
+        "category": "Packaged foods",
+        "categoryLabel": "food",
+        "foodContentsLabel": "LOW MOISTURE PART SKIM MOZZARELLA CHEESE (PASTEURIZED PART SKIM MILK; CHEESE CULTURES; SALT; ENZYMES); CRUST (WHEAT FLOUR [BLEACHED WHEAT FLOUR; NIACIN; REDUCED IRON; THIAMINE MONONITRATE; RIBOFLAVIN; ENZYME; FOLIC ACID]; WATER; LARD [BHA PROPYL GALLATE WITH CITRIC ACID ADDED; TO HELP PROTECT FLAVOR]; SOY BEAN OIL; DOUGH CONDITIONER [WHEY; L-CYSTEINE; MONO-HYDROCHLORIDE); SALT; SUGAR; YEAST); SAUCE (WATER; TOMATO PUREE; ROMANO CHEESE; [PASTUERIZED COWS MILK; CHEESE CULTURES; SALT; ENZYMES]; SALT; SPICES; SUGAR; GARLIC POWDER); PINEAPPLE; CANADIAN STYLE BACON (MADE FROM PORK SIRLOIN HIPS; PORK; WATER; SALT; BROWN SUGAR; POTASSIUM LACTATE; SODIUM LACTATE; SODIUM PHOSPHATE; SODIUM DIACETATE; SODIUM ERYTHORBATE; AND SODIUM NITRITE); COOKED DICED HAM (CURED WITH WATER; PORK; WATER; POTASSIUM LACTATE; DEXTROSE; SALT; CORN SYRUP SOLIDS; MODIFIED CORN STARCH; SODIUM PHOSPHATES; NATURAL FLAVORS; SMOKE FLAVORING; SODIUM ERYTHORBATE; SODIUM NITRITE)",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pizza",
+            "label": "Pizza",
+            "quantity": 0.20000000298023224
+          },
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+            "label": "Gram",
+            "quantity": 135.0
+          }
+        ]
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 135.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pizza",
+          "label": "Pizza",
+          "weight": 674.9999899417163
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_aafqkepb4nxuiqazsi19eb1gjrjq",
+        "label": "Hawaiian Style Pineapple & Canadian Bacon Pizzeria Style Crust Pizza, Hawaiian Style",
+        "nutrients": {
+          "ENERC_KCAL": 200.0,
+          "PROCNT": 8.149999618530273,
+          "FAT": 5.929999828338623,
+          "CHOCDF": 28.149999618530273,
+          "FIBTG": 1.5
+        },
+        "brand": "Hawaiian",
+        "category": "Packaged foods",
+        "categoryLabel": "food",
+        "foodContentsLabel": "CRUST (ENRICHED WHEAT FLOUR [WHEAT FLOUR; NIACIN; FERROUS SULFATE; THIAMINE MONONITRATE; RIBOFLAVIN; FOLIC ACID; ENZYME]; WATER; SOYBEAN OIL; YEAST; CONTAINS 2% OR LESS OF THE FOLLOWING: SUGAR; BREADCRUMBS [ENRICHED BLEACHED WHEAT FLOUR {WHEAT FLOUR; NIACIN; REDUCED IRON; THIAMINE MONONITRATE; RIBOFLAVIN; FOLIC ACID}]; SALT; HONEY; SOY LECITHIN [PROCESSING AID]); SAUCE (WATER; TOMATOES; SUGAR; SALT; DEHYDRATED GARLIC; SPICE); LOW MOISTURE PART SKIM MOZZARELLA CHEESE (PASTEURIZED PART SKIM MILK; CHEESE CULTURES; SALT; ENZYMES); PINEAPPLE; CANADIAN BACON (PORK CURED WITH WATER; SUGAR; SALT; TWO PERCENT OR LESS OF THE FOLLOWING: SODIUM LACTATE; SODIUM PHOSPHATE; FLAVORING; SODIUM DIACETATE; SODIUM NITRITE).",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+            "label": "Gram",
+            "quantity": 135.0
+          },
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pizza",
+            "label": "Pizza",
+            "quantity": 0.25
+          }
+        ]
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 135.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pizza",
+          "label": "Pizza",
+          "weight": 540.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_bbu4utxa77pn2bb1987y7bk2pyqy",
+        "label": "Hawaiian Style Canadian Bacon and Pineapple Original Rising Crust Pizza, Hawaiian Style",
+        "nutrients": {
+          "ENERC_KCAL": 200.0,
+          "PROCNT": 9.630000114440918,
+          "FAT": 5.190000057220459,
+          "CHOCDF": 28.889999389648438,
+          "FIBTG": 1.5
+        },
+        "brand": "Hawaiian",
+        "category": "Packaged foods",
+        "categoryLabel": "food",
+        "foodContentsLabel": "ENRICHED WHEAT FLOUR (WHEAT FLOUR; NIACIN; REDUCED IRON; THIAMINE MONONITRATE; RIBOFLAVIN; AND FOLIC ACID); WATER; LOW-MOISTURE PART-SKIM MOZZARELLA CHEESE (PART-SKIM MILK; CHEESE CULTURE; SALT; ENZYMES); PINEAPPLE; CANADIAN BACON CHUNKED & FORMED WITH NATURAL JUICES - NATURALLY SMOKED MADE FROM PORK SIRLOIN HIPS (CURED WITH WATER; SALT; LESS THAN 2% SUGAR; CORN SYRUP; SODIUM PHOSPHATE; SODIUM ASCORBATE; SODIUM NITRITE); TOMATO PASTE; SUGAR; 2% OR LESS OF VEGETABLE OIL (SOYBEAN OIL AND/OR CORN OIL); WHEAT GLUTEN; DEGERMINATED WHITE CORN MEAL; YEAST; SALT; DEGERMINATED YELLOW CORN MEAL; DATEM; BAKING SODA; SPICES; WHEAT FLOUR; ENZYMES; DRIED GARLIC; ASCORBIC ACID (DOUGH CONDITIONER).",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+            "label": "Whole",
+            "quantity": 0.16699999570846558
+          },
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+            "label": "Gram",
+            "quantity": 135.0
+          }
+        ],
+        "servingsPerContainer": 1.0
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 135.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+          "label": "Whole",
+          "weight": 808.3832543066142
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pizza",
+          "label": "Pizza",
+          "weight": 809.9999758601195
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_package",
+          "label": "Package",
+          "weight": 810.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_bi4zpc8at6pn4zaioqyr3btevo25",
+        "label": "Hawaiian Style 3 Cheese Blend, Pineapple, Canadian Bacon, Red Bell Peppers, Bacon Bits & Green Onions Traditional Crust Pizza, Hawaiian Style",
+        "nutrients": {
+          "ENERC_KCAL": 209.0,
+          "PROCNT": 8.109999656677246,
+          "FAT": 8.109999656677246,
+          "CHOCDF": 27.030000686645508,
+          "FIBTG": 0.699999988079071
+        },
+        "brand": "Hawaiian",
+        "category": "Packaged foods",
+        "categoryLabel": "food",
+        "foodContentsLabel": "CRUST (ENRICHED UNBLEACHED WHEAT FLOUR [WHEAT FLOUR; NIACIN; REDUCED IRON; THIAMINE MONONITRATE; RIBOFLAVIN; FOLIC ACID]; WATER; PALM OIL; YEAST; CONTAINS 2% OR LESS OF: SUGAR; SOYBEAN OIL; EXTRA VIRGIN OLIVE OIL; SALT; NATURAL FLAVOR); SAUCE (TOMATO PUREE [WATER; TOMATO PASTE]; SUGAR; CONTAINS 2% OR LESS OF: SPICES; SALT; SOYBEAN OIL; CITRIC ACID; XANTHAN GUM; DEHYDRATED ONION; GARLIC POWDER); LOW MOISTURE WHOLE MILK MOZZARELLA CHEESE (PASTEURIZED MILK; CHEESE CULTURES; SALT; ENZYMES); PINEAPPLE; FULLY COOKED CANADIAN BACON; WATER ADDED; SMOKE FLAVORING ADDED (CURED WITH WATER; SUGAR; SALT; CONTAINS 2% OR LESS OF: SODIUM LACTATE; FLAVORING; SODIUM PHOSPHATE; SODIUM DIACETATE; SODIUM ERYTHORBATE; SMOKE FLAVOR; SODIUM NITRITE); NOT SMOKED PROVOLONE CHEESE (CULTURED PASTEURIZED MILK; SALT; ENZYMES); RED BELL PEPPERS; CONTAINS 2% OR LESS OF: SMOKE FLAVORED GOUDA CHEESE (PASTEURIZED MILK; CHEESE CULTURES; SALT; ENZYMES; BETA CAROTENE [COLOR]; NATURAL SMOKE FLAVORS); FULLY COOKED BACON BITS (CURED WITH WATER; SALT; SMOKE FLAVORING; SODIUM PHOSPHATE; SODIUM ERYTHORBATE; SODIUM NITRITE. MAY CONTAIN SUGAR; BROWN SUGAR); GREEN ONION; NATURALLY FLAVORED PINEAPPLE ANCHO TYPE SEASONING (SUGAR; SPICES; SALT; BROWN SUGAR; NATURAL PINEAPPLE FLAVOR; GARLIC POWDER; ONION POWDER; TARTARIC ACID; CITRIC ACID; PARSLEY; LESS THAN 2% TRICALCIUM PHOSPHATE ADDED TO PREVENT CAKING).",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pizza",
+            "label": "Pizza",
+            "quantity": 0.125
+          },
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+            "label": "Gram",
+            "quantity": 148.0
+          }
+        ]
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 148.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pizza",
+          "label": "Pizza",
+          "weight": 1184.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_bdarbn4butz9c2a5muv08bta4pv2",
+        "label": "Pizza Hut Pan Pizza",
+        "nutrients": {
+          "ENERC_KCAL": 377.74586708553795,
+          "PROCNT": 5.942809066569595,
+          "FAT": 22.773118330907447,
+          "CHOCDF": 37.344488126015655,
+          "FIBTG": 1.5869104476919593
+        },
+        "category": "Generic meals",
+        "categoryLabel": "meal",
+        "foodContentsLabel": "water; dry milk; Salt; Flour; Sugar; yeast; Vegetable oil; Butter; Tomato Sauce; Oregano; Marjoram; Basil; Garlic salt; dough"
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+          "label": "Whole",
+          "weight": 87.96713839596565
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 87.96713839596565
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_avv8awwaoz46vyafjf9gfa1o1gar",
+        "label": "Mushroom Pizza",
+        "nutrients": {
+          "ENERC_KCAL": 167.58841479374342,
+          "PROCNT": 8.44489576343915,
+          "FAT": 11.315884811531898,
+          "CHOCDF": 8.451383735610438,
+          "FIBTG": 1.206993909171362
+        },
+        "category": "Generic meals",
+        "categoryLabel": "meal",
+        "foodContentsLabel": "Pizza Dough; oil; mushrooms; Pizza Sauce; Cheese"
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+          "label": "Whole",
+          "weight": 112.8826975
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 112.8826975
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_bebxu4wbvzu3jjbzjvipsab8plxk",
+        "label": "Pizza Margherita Pizza, Medium",
+        "nutrients": {
+          "ENERC_KCAL": 42.0,
+          "PROCNT": 2.2,
+          "FAT": 1.2000000000000002,
+          "CHOCDF": 5.6000000000000005,
+          "FIBTG": 0.4
+        },
+        "brand": "B C Pizza",
+        "category": "Fast foods",
+        "categoryLabel": "meal",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+            "label": "Gram",
+            "quantity": 500.0
+          }
+        ]
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_bdb2vv1a9val9obrz2ljda41h82f",
+        "label": "Pizza Margherita Pizza, Small",
+        "nutrients": {
+          "ENERC_KCAL": 42.0,
+          "PROCNT": 2.2105263157894735,
+          "FAT": 1.1052631578947367,
+          "CHOCDF": 5.747368421052632,
+          "FIBTG": 0.4421052631578947
+        },
+        "brand": "B C Pizza",
+        "category": "Fast foods",
+        "categoryLabel": "meal",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+            "label": "Gram",
+            "quantity": 452.3809523809524
+          }
+        ]
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_awibstya1w6erdbmjl1rtap6pj5z",
+        "label": "Pizza Verde Pizza, Large",
+        "nutrients": {
+          "ENERC_KCAL": 41.99999999999999,
+          "PROCNT": 1.6545454545454543,
+          "CHOCDF": 4.454545454545454,
+          "FIBTG": 0.2545454545454545
+        },
+        "brand": "Bertucci's",
+        "category": "Fast foods",
+        "categoryLabel": "meal",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+            "label": "Gram",
+            "quantity": 785.7142857142858
+          }
+        ]
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_afxtd7ibdcf9f9bzscrnba9qs01c",
+        "label": "Pizza Verde Pizza, Small",
+        "nutrients": {
+          "ENERC_KCAL": 42.0,
+          "PROCNT": 1.768421052631579,
+          "CHOCDF": 4.421052631578947,
+          "FIBTG": 0.22105263157894736
+        },
+        "brand": "Bertucci's",
+        "category": "Fast foods",
+        "categoryLabel": "meal",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+            "label": "Gram",
+            "quantity": 452.3809523809524
+          }
+        ]
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_bx15fwcb79ct4oa41ohbtar43tex",
+        "label": "Pizza Sauce for Sicilian Pizza",
+        "nutrients": {
+          "ENERC_KCAL": 40.7007268193327,
+          "PROCNT": 2.7133817879555133,
+          "FAT": 0.0,
+          "CHOCDF": 8.14014536386654,
+          "FIBTG": 2.7133817879555133
+        },
+        "brand": "Anthony's Pizza & Pasta",
+        "category": "Fast foods",
+        "categoryLabel": "meal",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+            "label": "Ounce",
+            "quantity": 1.2999999523162842
+          }
+        ]
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 36.854378710689396
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_a64ssp4a1v7pcubi92zkqb6xir0c",
+        "label": "Pizza",
+        "nutrients": {
+          "ENERC_KCAL": 207.07070707070707,
+          "PROCNT": 9.090909090909092,
+          "FAT": 5.050505050505051,
+          "CHOCDF": 31.81818181818182,
+          "FIBTG": 2.0202020202020203
+        },
+        "brand": "Denny's",
+        "category": "Fast foods",
+        "categoryLabel": "meal",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+            "label": "Gram",
+            "quantity": 198.0
+          }
+        ]
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 198.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_b2acmcsa85p2g5a6s3j7nbe3xwco",
+        "label": "Pepperoni Pizza",
+        "nutrients": {
+          "ENERC_KCAL": 198.565518015915,
+          "PROCNT": 9.587443636955568,
+          "FAT": 9.933260856891938,
+          "CHOCDF": 17.425003775486502,
+          "FIBTG": 1.5371497865492256
+        },
+        "category": "Generic meals",
+        "categoryLabel": "meal",
+        "foodContentsLabel": "button mushrooms; pizza dough; cornmeal; olive oil; pizza sauce; mozzarella cheese; Parmesan cheese; pepperoni"
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+          "label": "Whole",
+          "weight": 961.1542775
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 961.1542775
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_azb56ncbtxj17db5qbyp4av2zy8k",
+        "label": "Boboli Pizza",
+        "nutrients": {
+          "ENERC_KCAL": 271.0,
+          "PROCNT": 8.8,
+          "FAT": 3.5,
+          "CHOCDF": 50.0,
+          "FIBTG": 2.7
+        },
+        "category": "Generic foods",
+        "categoryLabel": "food",
+        "image": "https://www.edamam.com/food-img/19f/19fc0706f04d44f62fc79ab4d7a07d7b.jpg",
+        "servingsPerContainer": 6.842105263157895
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+          "label": "Whole",
+          "weight": 320.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_batch",
+          "label": "Batch",
+          "weight": 390.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_loaf",
+          "label": "Loaf",
+          "weight": 320.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_recipe",
+          "label": "Recipe",
+          "weight": 180.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_roll",
+          "label": "Roll",
+          "weight": 57.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 57.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_sandwich",
+          "label": "Sandwich",
+          "weight": 43.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_piece",
+          "label": "Piece",
+          "weight": 20.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_slab",
+          "label": "Slab",
+          "weight": 20.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_slice",
+          "label": "Slice",
+          "weight": 19.11111111111111,
+          "qualified": [
+            {
+              "qualifiers": [
+                {
+                  "uri": "http://www.edamam.com/ontologies/edamam.owl#Qualifier_large",
+                  "label": "large"
+                }
+              ],
+              "weight": 30.0
+            },
+            {
+              "qualifiers": [
+                {
+                  "uri": "http://www.edamam.com/ontologies/edamam.owl#Qualifier_small",
+                  "label": "small"
+                }
+              ],
+              "weight": 10.0
+            },
+            {
+              "qualifiers": [
+                {
+                  "uri": "http://www.edamam.com/ontologies/edamam.owl#Qualifier_medium",
+                  "label": "medium"
+                }
+              ],
+              "weight": 20.0
+            }
+          ]
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_square",
+          "label": "Square",
+          "weight": 20.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_crust",
+          "label": "Crust",
+          "weight": 5.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_can",
+          "label": "Can",
+          "weight": 390.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_package",
+          "label": "Package",
+          "weight": 390.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_handful",
+          "label": "Handful",
+          "weight": 4.375
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_cup",
+          "label": "Cup",
+          "weight": 35.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_b20nj78ajzve2qbjgnu8qbsazgdb",
+        "label": "Sausage Pizza",
+        "nutrients": {
+          "ENERC_KCAL": 280.0,
+          "PROCNT": 11.5,
+          "FAT": 12.35,
+          "CHOCDF": 30.62,
+          "FIBTG": 2.3
+        },
+        "category": "Generic foods",
+        "categoryLabel": "food",
+        "image": "https://www.edamam.com/food-img/7e4/7e4559e8b0dea671e0d0e7cd2fecbef5.jpg"
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+          "label": "Whole",
+          "weight": 932.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pizza",
+          "label": "Pizza",
+          "weight": 932.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+          "label": "Serving",
+          "weight": 116.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_slice",
+          "label": "Slice",
+          "weight": 116.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    },
+    {
+      "food": {
+        "foodId": "food_aa9uqvvbs8731tbypkdaubrsk59l",
+        "label": "Pizza Margherita Pizza, Large",
+        "nutrients": {
+          "ENERC_KCAL": 42.0,
+          "PROCNT": 2.373913043478261,
+          "FAT": 1.2782608695652173,
+          "CHOCDF": 5.660869565217391,
+          "FIBTG": 0.5478260869565217
+        },
+        "brand": "B C Pizza",
+        "category": "Fast foods",
+        "categoryLabel": "meal",
+        "servingSizes": [
+          {
+            "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+            "label": "Gram",
+            "quantity": 547.6190476190476
+          }
+        ]
+      },
+      "measures": [
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+          "label": "Gram",
+          "weight": 1.0
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+          "label": "Ounce",
+          "weight": 28.349523125
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+          "label": "Pound",
+          "weight": 453.59237
+        },
+        {
+          "uri": "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+          "label": "Kilogram",
+          "weight": 1000.0
+        }
+      ]
+    }
+  ],
+  "_links": {
+    "next": {
+      "title": "Next page",
+      "href": "https://api.edamam.com/api/food-database/v2/parser?session=27&ingr=hawaiian+pizza&app_id=5c317a30&app_key=81af36a5009c2eec8a15307a3ec6d768"
+    }
+  }
+}
