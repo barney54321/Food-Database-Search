@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"food"},{"l":"food.controller"},{"l":"food.model"},{"l":"food.model.input"},{"l":"food.model.input.cache"},{"l":"food.model.models"},{"l":"food.model.output"},{"l":"food.view"},{"l":"food.view.observers"},{"l":"food.view.screen"}]
